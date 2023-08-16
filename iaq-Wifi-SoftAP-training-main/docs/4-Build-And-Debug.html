@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<!-- Useful for tablet and mobile based browsing-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Title of the page (not necessarily the lab) - for reference only, not displayed on the page-->
+	<title>Build And Debug</title>
+	<!-- CSS template stylesheet must be linked here-->
+	<link href="css/renesas_layout_style.css" rel="stylesheet" type="text/css">
+	<!-- Javascript based lab templating helper must be placed here-->
+	<script type="text/javascript" src="js/lab-templater.js"></script>
+</head>
+
+<body>
+	<!-- Populate the page header (banner, title & navigation menu)-->
+	<script>lab_templater.Generate_header();</script>
+
+	<!-- Begin the main content of the page-->
+	<div class="main-content">
+
+		<!-- Page/Section Summary & Description-->
+		<summary>4. Build &amp; Debug</summary>
+		<p>Here we will guide you through debugging this labs project and will provide details on how to verify the
+			working of the project.</p>
+
+		<!-- Start adding "details" sections for lab steps-->
+
+		<details open>
+			<summary>4.1 Build the project</summary>
+			<p>To build the project please <b>[Right-Click]</b> the project and click <b>Build Project</b>.</p>
+			<img class="modal-thumbnails" src="img/img_lab/projectbuild.gif" alt="">
+		</details>
+
+		<details>
+			<summary>4.2 Hardware</summary>
+			<p>Before debugging the project, please ensure headers are fitted to the header <b>H1</b> in positions 1-2
+				(VBATT-VDD) &amp; 4-5 (VDD_RL78 - VDD).<br>
+				Finally connect the E2-Lite - the user does not need to connect batteries for this lab as we will supply
+				the board via the debugger.
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/headers.png" alt="">
+			<img class="modal-thumbnails" src="img/img_lab/e2lite.png" alt="">
+		</details>
+
+		<details>
+			<summary>4.3 Debugging the project</summary>
+			<p>To start a debug session please select the project by clicking on it and click the debug icon along the
+				menu bar.
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/projectdebug.gif" alt="">
+			<p>Finally Click the <b>run</b> icon, first it will run to main, click the <b>run</b> icon again and the
+				project will start running.</p>
+			<img class="modal-thumbnails" src="img/img_lab/projectrun.gif" alt="">
+		</details>
+
+		<details>
+			<summary>4.4 Operating project</summary>
+			<p>Now the project is running you can cycle through the different output states 1- 3.<br>
+				<ul>
+					<li>Each number represented on the screen indicates a system state.</li>
+					<li>Each state represents a different LED brightness &amp; buzzer tone sequence.</li>
+					<li>To cycle through the states use the rotary encoder.</li>
+					<li>To activate the state, click the button.</li>
+				</ul>
+			</p>
+		</details>
+
+		<!-- Prepare the pages modal images-->
+		<script>lab_templater.Prepare_modal();</script>
+
+		<!-- Button for going to the next page-->
+		<script>lab_templater.Generate_next_page_button("Finished!");</script>
+
+	</div>
+</body>
+
+</html>

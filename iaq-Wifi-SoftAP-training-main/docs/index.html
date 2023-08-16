@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- Useful for tablet and mobile based browsing-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page (not necessarily the lab) - for reference only, not displayed on the page-->
+    <title>RL78/G23 Indoor Air Quality Training - Actuation</title>
+    <!-- CSS template stylesheet must be linked here-->
+    <link href="css/renesas_layout_style.css" rel="stylesheet" type="text/css">
+    <!-- Javascript based lab templating helper must be placed here-->
+    <script type="text/javascript" src="js/lab-templater.js"></script>
+</head>
+
+<body>
+    <!-- Populate the page header (banner, title & navigation menu)-->
+    <script>lab_templater.Generate_header();</script>
+
+    <!-- Begin the main content of the page-->
+    <div class="main-content">
+
+        <!-- Page/Section Summary & Description-->
+        <p>
+            This lab aims to introduce the Renesas RL78/G23 indoor air quality demonstration board and in particular highlight it's capability Publish the gathered data online over a hosted website using DA16200.<br>
+            Covering also the following:
+        </p>
+        <ol>
+            <li>Creating &amp; configuraing a project with RL78/G23</li>
+            <li>Usage of key peripherals including CCIO, ELCL, DTC & Timers</li>
+            <li>"Free" snippets of useful code such as display driver & ELCL library</li>
+            <li>Building & debugging the project</li>
+        </ol>
+        <p>Please read the important notes below carefully and then click the <b>Get Started!</b> button to start the
+            lab.</p>
+
+        <!-- Start adding "details" sections for lab steps-->
+        <details open>
+            <summary>Important Notes</summary>
+            <ul>
+                <li><b>All headings</b> are expandable and collapsable.</li>
+                <li>The reader should <b>combine</b> the <b>written instructions</b> with the <b>animations</b> (gif's)
+                    to follow/understand the
+                    steps.</li>
+                <li><b>All images &amp; videos</b> can be <b>expanded to full size in a modal</b> by clicking on them.
+                </li>
+                <li><b>All Code Snippets</b> can be <b>Copied</b> by clicking the <b>Copy Code</b> button in the top
+                    right
+                    corner of the snippet.</li>
+                <li>Steps titled <b><i>[optional]</i></b> can be skipped without consequence.</li>
+                <li>Steps titled <b><i>[recommended]</i></b> can be skipped but the consequence is typically less value
+                    in executing the lab steps.</li>
+                <li>Steps titled <b><i>[informative]</i></b> have no actionable steps but are typically useful nuggets
+                    of information.</li>
+                <li><b>Please read the requirements carefully</b> and ensure you meet them - otherwise you will likely
+                    encounter strange errors.</li>
+                <li>If you do <b>encounter any error's</b> - double <b>check the requirements</b> and verify manually
+                    you meet each one, such as software versions.</li>
+                <li>For any extra documentation that may be useful but not particularly required (such as schematics or
+                    user manuals) always check the useful links list below as they will likely be provided!
+                </li>
+            </ul>
+        </details>
+
+        <details open>
+            <summary>Requirements</summary>
+            <p>The following are the requirements of the lab - without first completing or acquiring the following
+                list items -
+                the lab will not be achievable.
+            </p>
+            <ul>
+                <li>Windows 10</li>
+                <li>My Renesas Account</li>
+                <li>RL78/G23 Indoor Air Sensor Board</li>
+                <li>DA16200 WiFi PMOD</li>
+                <li>E2 Lite</li>
+                <li>e² studio v2022-10 or later</li>
+                <li>CC-RL Compiler v1.11.00 or later</li>
+            </ul>
+        </details>
+
+        <details open>
+            <summary>Useful Links</summary>
+            <p>The following are links which some may find useful for this excercise as well as some extra
+                reading/reference
+                material.
+            </p>
+            <ol>
+                <li><a target="_blank" href="https://www.renesas.com/us/en/software-tool/e-studio">e<sup>2</sup>studio
+                        Landing
+                        page</a></li>
+                <li><a target="_blank"
+                        href="https://www.renesas.com/us/en/products/microcontrollers-microprocessors/rl78-low-power-8-16-bit-mcus">RL78
+                        Landing page</a></li>
+                <li><a target="_blank"
+                        href="https://www.renesas.com/us/en/oauth2/default/v1/authorize?client_id=0oa2ixjskq8o2hdJB357&response_type=code&scope=openid%20email%20phone%20profile%20MyRenesasUserInfo&redirect_uri=https%3A//update.renesas.com/openid-connect/renesas-okta&state=r2OKOkoEixzFgvWMlxp1caxs8C3PD5_5RflEtioYq9U">My
+                        Renesas Registration Page</a></li>
+                <li><a target="_blank"
+                        href="https://www.renesas.com/us/en/document/man/smart-configurator-users-manual-rl78-api-reference">Smart
+                        Configurator User Manual (RL78 API Reference)</a></li>
+            </ol>
+        </details>
+
+        <details open>
+            <summary>Support &amp; Contact</summary>
+            <p>To report any bugs or issues with this lab or for any technical querries on the contents - please
+                see the <a href="https://en-support.renesas.com/dashboard">support page</a> or contact your local
+                sales rep.</p>
+        </details>
+
+        <!-- Button for going to the next page-->
+        <script>lab_templater.Generate_next_page_button("Get Started!");</script>
+    </div>
+</body>
+
+</html>
