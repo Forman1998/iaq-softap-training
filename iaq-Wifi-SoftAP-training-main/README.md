@@ -1,5 +1,5 @@
-# lab-rl78-g23-iaq-actuators
-A lab on interacting with the actuation portion of the RL78/G23 Indoor Air Quality Sensor Promotion Boad.
+# lab-rl78-g23-iaq-WiFi-IoT-Connectivity
+A lab on IoT connectivity portion of the RL78/G23 Indoor Air Quality Sensor Promotion Boad.
 
 ## Contents
 - docs: folder containing github pages.
