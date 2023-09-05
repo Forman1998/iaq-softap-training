@@ -27,7 +27,8 @@
 
 		<!-- Page/Section Summary & Description-->
 		<summary>3. Source Code</summary>
-		<p>Here we will guide you through both inclusion and understanding of the code for this project. The aim is to
+		<p>
+			Here we will guide you through both inclusion and understanding of the code for this project. The aim is to
 			give an understanding of how to use smart configurator generated code, the e² studio build settings &amp;
 			finally what the lab code does.
 		</p>
@@ -35,7 +36,8 @@
 		<!-- Start adding "details" sections for lab steps-->
 		<details open>
 			<summary>3.1 Pull In The Free Code</summary>
-			<p>First we have to pull in the free code provided for this lab that is the hs4001 sensor library &amp; WiFi connection
+			<p>
+				First we have to pull in the free code provided for this lab that is the hs4001 sensor library &amp; WiFi connection
 				. We call this free code as it serves a fixed purpose and is only here to facilitate the
 				training.<br><br>
 
@@ -44,7 +46,28 @@
 
 				Please copy the folder "app" into the "src" folder in your e² studio project.
 			</p>
-			<img class="modal-thumbnails" src="img/img_lab/copyfreecode.gif" alt="">
+			<img class="modal-thumbnails" src="img/img_lab/copyfreecode.gif" alt=""><br>
+			<p>
+				Once you have copied the app folder, it's now time to include the folder to the project. Follow the following steps to do so:
+				<ol>
+					<li>
+						Locate the include directory in the project and left click on it to see an <b>C/C++ Project Settings</b> or use Ctrl+Alt+P.
+					</li>
+					<img class="modal-thumbnails" src="img/img_lab/locateinclude.gif" alt=""><br>
+					<li>
+						Select Settings->Tool Settings->Compiler->Source.
+					</li>
+					<img class="modal-thumbnails" src="img/img_lab/locatesourceinclude.PNG" alt=""><br>
+					<li>
+						click on add icon and Select workspace that will take you to the folders of the current workspace now select project folder->src->app folder which we want to include. Finally check on Add subdirectories and press ok.
+					</li>
+					<img class="modal-thumbnails" src="img/img_lab/include.gif" alt=""><br>
+					<li>
+						Hit Apply and you should see the files added in the includes folder as follows
+					</li>
+					<img class="modal-thumbnails" src="img/img_lab/includes_final.PNG" alt=""><br>
+				</ol>
+			</p>
 		</details>
 
 		<details>
@@ -59,23 +82,47 @@
 			<p>
 				<b>Function:</b> r_Config_IICA0_callback_master_sendend
 				<pre>
-					<code class="C">rm_comms_i2c_bus0_callback(false);</code>
+				<code class="C">rm_comms_i2c_bus0_callback(false);</code>
 				</pre>
 			</p>
 			<p>
 				<b>Function:</b> r_Config_IICA0_callback_master_receiveend
 				<pre>
-					<code class="C">rm_comms_i2c_bus0_callback(false);</code>
+				<code class="C">rm_comms_i2c_bus0_callback(false);</code>
 				</pre>
 			</p>
 			<p>
 				<b>Function:</b> r_Config_IICA0_callback_master_error
 				<pre>
-					<code class="C">rm_comms_i2c_bus0_callback(true);</code>
+				<code class="C">rm_comms_i2c_bus0_callback(true);</code>
 				</pre>
 			</p>
 			<p>Which should look like this:</p>
 			<img class="modal-thumbnails" src="img/img_lab/i2csrc.png" alt="">
+		</details>
+
+		<details>
+			<summary>3.2 Edit the UARTA0 Driver</summary>
+			<p>
+				Now, let's edit the UART base driver with the appropriate functionality to achieve desired function requirementsed, this is namely an UART sendend and receive end function which triggers when there's a send and receive completion flag respectively.<br><br>
+				Navigate to <b>[src] &rarr; [smc_gen] &rarr; [Config_UARTA0] &rarr; Config_UARTA0_user.c</b><br>
+				You can edit the file in section starting with the "Start user code for function..." comment gaurd - place the following
+				function declarations.
+			</p>
+			<p>
+				<b>Function:</b>  r_Config_UARTA0_callback_sendend
+				<pre>
+					<code class="C">Hal_uart_tx_done_callback();</code>
+				</pre>
+			</p>
+			<p>
+				<b>Function:</b> r_Config_UARTA0_callback_receiveend
+				<pre>
+					<code class="C">Hal_uart_rx_done_callback();</code>
+				</pre>
+			</p>
+			<p>Which should look like this:</p>
+			<img class="modal-thumbnails" src="img/img_lab/UART_User.png" alt="">
 		</details>
 
 		<details>
@@ -92,7 +139,7 @@
 			<pre><code class="C">#include "HAL.h"</code></pre>
 			<p>Then add the following the global variable declaration section</p>
 			<pre>
-				<code class="C">extern bool oneshot_timer_done;</code>
+			<code class="C">extern bool oneshot_timer_done;</code>
 			</pre>
 			<p>
 				Finally inside the r_Config_TAU0_0_interrupt isr, please place the following code. This code
@@ -110,7 +157,8 @@ R_Config_TAU0_0_Stop();</code>
 
 		<details>
 			<summary>3.4 Populate TAU05 ISR</summary>
-			<p>The sensor counter needs it's ISR populating - this ISR fires every milisecond to make sure the the steps of reading sensor value is initated. We fill this ISR with some code so the
+			<p>
+				The sensor counter needs it's ISR populating - this ISR fires every milisecond to make sure the sensor reading is initiated after the sensor measurement is completed. We fill this ISR with some code so the
 				application functions properly.<br><br>
 				Now first we need to include our function in the header file.
 				Navigate to the <b>[src] &rarr; [smc_gen] &rarr; [Config_TAU0_5] &rarr; Config_TAU0_5.h</b> &amp;
@@ -142,9 +190,11 @@ R_Config_TAU0_0_Stop();</code>
 		</details>
 		<details>
 			<summary>3.5 Pull In The Main Code</summary>
-			<p>Now lets copy in the main code - this is running the application.<br>
+			<p>
+				Now lets copy in the main code - this is running the application.<br>
 				Simply <b>replace</b> the entire contents of your main source file src/<i>&lt;project_name&gt;.c</i>
-				with the code below.</p>
+				with the code below.
+			</p>
 
 			<pre><code class="C">#include "r_smc_entry.h"
 #include "da16200_AT.h"
@@ -192,110 +242,112 @@ void main(void)
 		</details>
 
 		<details>
-			<summary>3.10 Application Explained <i>[Informative]</i></summary>
-			<p>As the section name implies this in informative, there are no actions in this step and it can be freely
+			<summary>3.6 Application Explained <i>[Informative]</i></summary>
+			<p>
+				As the section name implies this in informative, there are no actions in this step and it can be freely
 				skipped. But this section aims to explain the application code and provide a clear understanding of why
 				&amp; how certain things have been done. We will do this by combing through the code, picking out
 				lines of code or groups of lines of code in order to dissect what is happening.<br><br>
 
-				The application is inherently simple once configured - the main loop infinitely waits for either a
-				button click or rotation event to be signalled from the hardware layer (ISR's).<br>
-				These events are signalled through a variable hw_event_flags. The mechanism for setting and getting the
-				events is provided through simple bit manipulation.<br>
-				Each bit is defined in an enumerated typedef to clearly define the events which can be stored in the
-				hardware event flags type hw_event_flags_t.<br>
-				Setting and checking events has been simplified with macros in the application header defined.<br>
-				The checking of this variable is done via copy during disabled interrupts to emulate a simplified
-				critical section.<br>
-				The image below shows the flowchart for the top level main loop.
+				The application codes in the folder looks like <br>
 			</p>
-			<img class="modal-thumbnails" src="img/img_lab/actuator_lab_fc_main.png" alt=""><br>
-
-			<p>For each of the two events (button click and rotation) there is a handling process.<br>
-				A button click invokes the tone generation and latches the LED CCIO current strength corresponding to
-				the system state.<br>
-				The flowchart for executing this can be seen in the image below.
-			</p>
-			<img class="modal-thumbnails" src="img/img_lab/actuator_lab_fc_buttonclick.png" alt=""><br>
-
-			<p>The rotation event simply invokes a system state change (output LED current strength &amp; tone sequence
-				change) which is represented by simply writing a state number to the display. The new tone and LED CCIO
-				current strength can be output by clicking the button.<br>
-				The flowchart for executing this can be seen in the image below.
-			</p>
-			<img class="modal-thumbnails" src="img/img_lab/actuator_lab_fc_rotation.png" alt=""><br>
-
-			<p>An important part of the intialisation process is the ELCL settings. We are aiming to achieve the
-				following circuit:
-			</p>
-			<img class="modal-thumbnails" src="img/img_lab/rotarydecoding1.png" alt=""><br>
-
-			<p>To do so there are 4 components when intialising the ELCL:</p>
-			<ol>
-				<li><b>Elcl_set_input</b>: Select the input pins - this means the ELCL inputs 4 & 6 are linked to their
-					respecitve pins.
-					<pre class="no-copy"><code class="C">Elcl_set_input(&elcl_ctl, ELCL_INPUT_4, ELCL_SRC_PIN1_611_INTC5);
-Elcl_set_input(&elcl_ctl, ELCL_INPUT_6, ELCL_SRC_P51);</code></pre>
-				</li>
-				<li>ELCL Block 1:
-					<ul>
-						<li><b>Elcl_link_input</b>: Link input pins to to block 1's link registers - this means our
-							input
-							pins on inputs 4 & 6 are now linked to block 1's link registers 2,0 & 6,1 respecitvely.
-							<pre class="no-copy"><code class="C">Elcl_link_input(&elcl_ctl, ELCL_BLOCK1, ELCL_LNK_2, ELCL_INPUT_REG_4, ELCL_INVERTED_LOGIC);
-Elcl_link_input(&elcl_ctl, ELCL_BLOCK1, ELCL_LNK_6, ELCL_INPUT_REG_6, ELCL_INVERTED_LOGIC);
-Elcl_link_input(&elcl_ctl, ELCL_BLOCK1, ELCL_LNK_0, ELCL_INPUT_REG_4, ELCL_INVERTED_LOGIC);
-Elcl_link_input(&elcl_ctl, ELCL_BLOCK1, ELCL_LNK_1, ELCL_INPUT_REG_6, ELCL_INVERTED_LOGIC);</code></pre>
-						</li>
-						<li><b>Elcl_set_logic</b>: Enable the logic gates of interest in logic block 1 - this means we
-							can
-							enable the flip lop and EXOR gate or direction detection and clock generation respectively.
-							<pre class="no-copy"><code class="C">Elcl_set_logic(&elcl_ctl, ELCL_BLOCK1, ELCL_ENABLE_FLIPFLOP0);
-Elcl_set_logic(&elcl_ctl, ELCL_BLOCK1, ELCL_EXOR_CELL_0);</code></pre>
-						</li>
-						<li><b>Elcl_link_to_logic</b>: Link the input link registers for block 1 to the logic cells
-							meaning
-							link registers 2,6 & 0,1 are now connected to the flip flop and exor gates respectively.
-							<pre class="no-copy"><code class="C">Elcl_link_to_logic(&elcl_ctl, ELCL_BLOCK1, ELCL_LNK_2, ELCL_FLIP_FLOP0_INPUT);
-Elcl_link_to_logic(&elcl_ctl, ELCL_BLOCK1, ELCL_LNK_6, ELCL_FLIP_FLOP0_CLK);
-Elcl_link_to_logic(&elcl_ctl, ELCL_BLOCK1, ELCL_LNK_0, ELCL_CELL0_INPUT_0);
-Elcl_link_to_logic(&elcl_ctl, ELCL_BLOCK1, ELCL_LNK_1, ELCL_CELL0_INPUT_1);</code></pre>
-						</li>
-					</ul>
-				</li>
-				<li>ELCL Block 2:
-					<ul>
-						<li><b>Elcl_link_input</b>: Link outputs from block 1's logic gates to block 2.
-							<pre class="no-copy"><code class="C">Elcl_link_input(&elcl_ctl, ELCL_BLOCK2, ELCL_LNK_0, ELCL_OUTPUT_FLIP_FLOP0_L1, ELCL_INVERTED_LOGIC);
-Elcl_link_input(&elcl_ctl, ELCL_BLOCK2, ELCL_LNK_1, ELCL_OUTPUT_FLIP_FLOP0_L1, ELCL_POSITIVE_LOGIC);
-Elcl_link_input(&elcl_ctl, ELCL_BLOCK2, ELCL_LNK_2, ELCL_OUTPUT_CELL0_L1, ELCL_INVERTED_LOGIC);
-Elcl_link_input(&elcl_ctl, ELCL_BLOCK2, ELCL_LNK_3, ELCL_OUTPUT_CELL0_L1, ELCL_INVERTED_LOGIC);</code></pre>
-						</li>
-						<li><b>Elcl_set_logic</b>: Enable the logic gates of interest in logic block 2.
-							<pre class="no-copy"><code class="C">Elcl_set_logic(&elcl_ctl, ELCL_BLOCK2, ELCL_AND_CELL_0);
-Elcl_set_logic(&elcl_ctl, ELCL_BLOCK2, ELCL_AND_CELL_1);</code></pre>
-						</li>
-						<li><b>Elcl_link_to_logic</b>: Link the input link registers for block 2 to the logic cells.
-							<pre class="no-copy"><code class="C">Elcl_link_to_logic(&elcl_ctl, ELCL_BLOCK2, ELCL_LNK_0, ELCL_CELL0_INPUT_0);
-Elcl_link_to_logic(&elcl_ctl, ELCL_BLOCK2, ELCL_LNK_2, ELCL_CELL0_INPUT_1);
-Elcl_link_to_logic(&elcl_ctl, ELCL_BLOCK2, ELCL_LNK_1, ELCL_CELL1_INPUT_0);
-Elcl_link_to_logic(&elcl_ctl, ELCL_BLOCK2, ELCL_LNK_3, ELCL_CELL1_INPUT_1);</code></pre>
-						</li>
-					</ul>
-				</li>
-				<li><b>Elcl_set_output &amp; <b></b>Elcl_set_output_state</b>: Select the ELCL outputs &amp; their
-					source's from
-					within the ELCL - then enable them.
-					<pre class="no-copy"><code class="C">Elcl_set_output(&elcl_ctl, ELCL_OUTPUT_3, ELCL_OUTPUT_L2_CELL0, ELCL_POSITIVE_LOGIC);
-Elcl_set_output(&elcl_ctl, ELCL_OUTPUT_4, ELCL_OUTPUT_L2_CELL1, ELCL_POSITIVE_LOGIC);
-Elcl_set_output_state(&elcl_ctl, ELCL_OUTPUT_3, ELCL_OUTPUT_ENABLED);
-Elcl_set_output_state(&elcl_ctl, ELCL_OUTPUT_4, ELCL_OUTPUT_ENABLED);</code></pre>
-				</li>
-			</ol>
-
+			<img class="modal-thumbnails" src="img/img_lab/lab_layout.png" alt=""><br>
 			<p>
+				The folder has a following files and what it signifies<br>
+				<ol>
+					<li>
+						da16200_AT - All of the code involving AT commands to communicate with DA16200 to initiate Wifi or connect to a wifi connection.
+					</li>
+					<li>
+						http_server - This code has all the function involving the hosting of http server and the design of the html webpage that will be hosted. This the webpage where the sensor updates will be visible.
+					</li>
+					<li>
+						Sensor - These files entail the functions which initiates sensors and read the sensor values.
+					</li>
+				</ol>
+				The application is simple, the main loop infinitely waits for either of the following events.
+				<ol>
+					<li>
+						Refresh of the webpage at a schedules interval to make sure the sensor value is updated.
+					</li>
+					<li>
+						A user induced webpage get request i.e. user refreshes the webpage.
+					</li>
+					<li>
+						User clickes LED toggle button on the webpage to turn on/off LED.
+					</li>
+				</ol><br>
+				The main function which includes the main loop is explained below.
 			</p>
-
+			<img class="modal-thumbnails" src="img/img_lab/main_loop.gif" alt=""><br>
+			<p>
+				The first part of the program is wifi initialization (wifi_init Function) which requires a sequence of AT
+				commands. AT commands are the medium of interraction for DA16200, and to initiate this AT command communication
+				we give a <b>ATZ</b>. Once AT commands are initiated, the user might wish to see what command was send before
+				the response is received to avoid confusion. This can be achieved using Echo mode. Echo mode would reflect/Echo
+				back the command that was sent by the user making sure the sequence shown is Command-Response-Command-Response....<br>
+				The wifi_init function and th AT commands used can be seen in the da16200_AT.c file as follows. To get to the function, you can ctrl+click on the
+				wifi_init function in the project main file.
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/Wifi_init.gif" alt=""><br>
+			<p>
+				The list of the AT commands used and the expected responses can be found in the start of the da16200_AT.c.
+				The main AT command of interest is WFSAP, a command used to setup Soft AP interface. A soft-AP needs
+				following arguments to set up.
+				<ol>
+					<li>
+						AP SSID: Name of the Wi-Fi
+					</li>
+					<li>
+						Security Protocol:
+						<ul>
+							<li>0 - open</li>
+							<li>2 - WPA</li>
+							<li>3 - WPA2</li>
+							<li>4 - WPA+WPA2</li>
+							<li>5 - WPA3 OWE</li>
+							<li>6 - WPA3 SAE</li>
+							<li>7 - WPA2 RSN &amp; WPA3 SAE</li>
+						</ul>
+					</li>
+					<li>
+						Encryption:
+						<ul>
+							<li>0 - TKIP</li>
+							<li>1 - AES</li>
+							<li>2 - TKIP+AES</li>
+						</ul>
+					</li>
+					<li>
+						Passphrase: Password for your Wi-Fi
+					</li>
+					<li>
+						Country code
+					</li>
+				</ol>
+				The AT commands in the file and the WFSAP used in the project looks as follows in the code.
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/Soft_AP_setup.gif" alt=""><br>
+			<p> The Soft-AP initialize and setup chain looks as follows</p>
+			<img style="max-width:90%;" src="img/img_lab/AT_command.png" alt=""><br>
+			<p>
+				Now moving to the sensor part of the project. This is the explaination of the code file sensor.c and the
+				sensor_read function which is used to get the sensor reading. The code is divided into two sections, the
+				first section is where the sensor is triggered to start measurements. The second section is initiated
+				after the successfull completion of the first section. This part reads the acquired measurement in a raw
+				format and then calculates a temperature and humdity value out of the raw sensor data.<br>
+				The code for executing this and it's stages are explained below.
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/sensor_read.gif" alt=""><br>
+			<p>
+				The final piece of the project is the webpage that is showing the sensor value graphically. This involves http_update
+				function from the code file http_server.c. The layout of the html page is described in the start of the code. The
+				http_update function gets the last read sensor value which then decides the colour of the graph depiciting the value.
+				Once all of the data is gathered in one string it is then attached to the html page. This update html page is then
+				uploaded for the user to view. <br> Note: the webpage will auto refresh every 10 seconds.<br>
+				The code for http update is as follows
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/http_server.gif" alt=""><br>
 		</details>
 
 		<!-- Prepare the pages modal images-->
