@@ -1,0 +1,423 @@
+/* Default Desktop*/
+html {
+  /* Colours*/
+  --renesas-background-color: #29289D;
+  --details-background-color: white;
+  --details-box-shadow: 0px 0px 10px 5px #f1f1f1;
+  --page-background-colour: #fcfcfd;
+  --modal-caption-text-colour: #ccc;
+  --banner-menu-button-hover-colour: #dddddd;
+  --next-page-button-colour: white;
+  --next-page-button-background-colour: rgb(32, 34, 179);
+  --modal-close-button-colour: #f1f1f1;
+  --modal-close-button-hover-colour: #bbb;
+  --sidenav-colour: #818181;
+  --sidenav-active-colour: white;
+  --sidenav-active-background-colour: #303030;
+  --sidenav-hover-colour: #f1f1f1;
+
+  /* General*/
+  --title-font-size: x-large;
+  --main-content-margin-left: 20%;
+  --main-content-margin-right: 20%;
+  --details-padding-left: 2px;
+  --details-padding-right: 2px;
+  --details-margin-top: 25px;
+  --details-content-margin: 8px;
+  --sumary-font-size: x-large;
+  --paragraph-font-size: medium;
+
+  /* Banner*/
+  --logo-width: default;
+  --logo-height: 60%;
+  --logo-margin-top: 20px;
+  --logo-margin-right: 1%;
+  --banner-height: 80px;
+  --banner-content-colour: white;
+  --banner-heading-max-width: 50%;
+  --banner-heading-margin-left: 3%;
+  --banner-heading-margin-top: 1.5%;
+  --banner-menu-button-margin-left: 20px;
+  --banner-menu-button-margin-top: 20px;
+  --banner-menu-button-font-size: 30px;
+
+  /* Modal*/
+  --modal-thumbnail-max-width: 20%;
+  --modal-caption-top-margin: 10px;
+  --modal-thumbnail-radius: 5px;
+  --modal-padding-top: 5%;
+  --modal-content-max-width: 80%;
+  --modal-content-max-height: 80%;
+  --modal-close-button-top: 1.5%;
+  --modal-close-button-right: 3%;
+  --modal-close-button-font-size: 50px;
+
+  /* Sidenav*/
+  --sidenav-max-width: 30%;
+  --sidenav-font-size: 22px;
+  --sidenav-padding-top: 5%;
+  --sidenav-hover-letter-spacing: 1px;
+  --sidenav-close-button-top: 0;
+  --sidenav-close-button-right: 25px;
+  --sidenav-close-button-font-size: 30px;
+  --sidenav-close-button-margin-left: 50px;
+  --sidenav-padding: 8px 8px 8px 32px;
+
+  /* Next page button*/
+  --next-page-button-margin-top: 2.5%;
+  --next-page-button-margin-bottom: 2.5%;
+  --next-page-button-padding-x: 16px;
+  --next-page-button-padding-y: 32px;
+  --next-page-button-font-size: 24px;
+
+  /* Copy code button*/
+  --copy-code-border-radius: 5px;
+  --copy-code-top: 5px;
+  --copy-code-right: 5px;
+  --copy-code-padding: 5px 10px;
+  --copy-code-font-size: 18px;
+}
+
+/* Small screens (laptop)*/
+@media screen and (max-width:1024px) {
+  html {
+    /* General*/
+    --main-content-margin-left: 15%;
+    --main-content-margin-right: 15%;
+
+    /* Banner*/
+    --logo-height: 50%;
+
+    /* Modal*/
+    --modal-thumbnail-max-width: 30%;
+
+    /* Sidenav*/
+    --sidenav-max-width: 40%;
+    --sidenav-padding-top: 6%;
+
+    /* Next page button*/
+
+    /* Copy code button*/
+  }
+}
+
+/* Tablets*/
+@media screen and (max-width:768px) {
+  html {
+    /* General*/
+    --title-font-size: large;
+    --main-content-margin-left: 2.5%;
+    --main-content-margin-right: 2.5%;
+
+    /* Banner*/
+    --logo-height: 35%;
+
+    /* Modal*/
+    --modal-thumbnail-max-width: 40%;
+
+    /* Sidenav*/
+    --sidenav-max-width: 60%;
+    --sidenav-padding-top: 10%;
+    --sidenav-font-size: 18px;
+
+    /* Next page button*/
+  --next-page-button-padding-x: 16px;
+  --next-page-button-padding-y: 26px;
+  --next-page-button-font-size: 20px;
+
+    /* Copy code button*/
+  }
+}
+
+/* Mobile phone*/
+@media screen and (max-width:480px) {
+  html {
+    /* General*/
+    --title-font-size: medium;
+
+    /* Banner*/
+    --logo-height: 20%;
+
+    /* Modal*/
+    --modal-thumbnail-max-width: 60%;
+
+    /* Sidenav*/
+    --sidenav-max-width: 70%;
+    --sidenav-font-size: small;
+
+    /* Next page button*/
+  --next-page-button-padding-x: 14px;
+  --next-page-button-padding-y: 22px;
+  --next-page-button-font-size: 16px;
+
+    /* Copy code button*/
+  --copy-code-padding: 5px 10px;
+  --copy-code-font-size: 14px;
+  }
+}
+
+/* General settings*/
+body {
+  margin: 0;
+  background-color: var(--page-background-colour);
+}
+
+html, table, div, p, h1, h2, dl, #nav-tree .label, .title, .sm-dox a, .sm-dox a:hover, .sm-dox a:focus, #projectname, .SelectItem, #MSearchField, .navpath li.navelem a, .navpath li.navelem a:hover {
+  font-family: Arial, sans-serif;
+}
+
+p {
+  font-size: var(--paragraph-font-size);
+}
+
+details {
+  background-color: var(--details-background-color);
+  box-shadow: var(--details-box-shadow);
+  margin-top: var(--details-margin-top);
+  padding-left: var(--details-padding-left);
+  padding-bottom: var(--details-padding-right);
+}
+
+details summary {
+  cursor: pointer;
+}
+
+summary {
+  font-size: var(--sumary-font-size);
+  font-weight: bold;
+}
+
+details p, img {
+  margin: var(--details-content-margin);
+}
+
+pre {
+  position: relative;
+}
+
+/* General settings end*/
+
+/* ID's*/
+
+/* Caption of Modal Image */
+#modal-caption {
+  margin-top: var(--modal-caption-top-margin);
+  text-align: center;
+  color: var(--modal-caption-text-colour);
+}
+
+/* ID's End*/
+
+/*Classes*/
+
+.main-content {
+  text-align: left;
+  color: black;
+  margin-left: var(--main-content-margin-left);
+  margin-right: var(--main-content-margin-right);
+}
+
+.banner {
+  height: var(--banner-height);
+  color: var(--banner-content-colour);
+  background-color: var(--renesas-background-color);
+  text-align: center;
+}
+
+.banner-heading {
+  float: left;
+  max-width: var(--banner-heading-max-width);
+  margin-left: var(--banner-heading-margin-left);
+  margin-top: var(--banner-heading-margin-top);
+  font-size: var(--title-font-size);
+}
+
+.banner-logo {
+  height: var(--logo-height);
+  width: var(--logo-width);
+  float: right;
+  margin-top: var(--logo-margin-top);
+  margin-right: var(--logo-margin-right);
+}
+
+.banner-menu-button {
+  float: left;
+  margin-left: var(--banner-menu-button-margin-left);
+  margin-top: var(--banner-menu-button-margin-top);
+  font-size: var(--banner-menu-button-font-size);
+  cursor: pointer;
+}
+
+.banner-menu-button:hover {
+  color: var(--banner-menu-button-hover-colour);
+}
+
+.next-page-button {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: var(--next-page-button-margin-top);
+  margin-bottom: var(--next-page-button-margin-bottom);
+  display: block;
+  border: none;
+  padding: var(--next-page-button-padding-x) var(--next-page-button-padding-y);
+  text-align: center;
+  font-size: var(--next-page-button-font-size);
+  transition-duration: 0.2s;
+  cursor: pointer;
+  background-color: var(--next-page-button-background-colour);
+  color: var(--next-page-button-colour);
+  font-weight: bold;
+}
+
+.next-page-button:hover {
+  opacity: 0.7;
+}
+
+/*Modal Image*/
+/* Style the Image Used to Trigger the Modal */
+.modal-thumbnails {
+  border-radius: var(--modal-thumbnail-radius);
+  cursor: pointer;
+  transition: 0.3s;
+  max-width: var(--modal-thumbnail-max-width);
+}
+
+.modal-thumbnails:hover {
+  opacity: 0.7;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: var(--modal-padding-top);
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: var(--modal-content-max-width);
+  max-height: var(--modal-content-max-height);
+}
+
+/* Add Animation */
+.modal-content, #modal-caption {
+  -webkit-animation-name: modal-zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: modal-zoom;
+  animation-duration: 0.6s;
+}
+
+/* The modal-close-button Button */
+.modal-close-button {
+  position: absolute;
+  top: var(--modal-close-button-top);
+  right: var(--modal-close-button-right);
+  color: var(--modal-close-button-colour);
+  font-size: var(--modal-close-button-font-size);
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus {
+  color: var(--modal-close-button-hover-colour);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/*Modal Image End*/
+
+/*Sidenav*/
+.sidenav {
+  text-align: left;
+  height: 100%;
+  width: 0;
+  max-width: var(--sidenav-max-width);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: 0.5s;
+  padding-top: var(--sidenav-padding-top);
+}
+
+.sidenav a {
+  padding: var(--sidenav-padding);
+  text-decoration: none;
+  font-size: var(--sidenav-font-size);
+  color: var(--sidenav-colour);
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav p:last-child { height: 50%; }
+
+.sidenav a.active {
+  background-color: var(--sidenav-active-background-colour);
+  color: var(--sidenav-active-colour);
+}
+
+.sidenav a:hover {
+  color: var(--sidenav-hover-colour);
+  letter-spacing: var(--sidenav-hover-letter-spacing);
+}
+
+.sidenav .sidenav-close-button {
+  position: absolute;
+  top: var(--sidenav-close-button-top);
+  right: var(--sidenav-close-button-right);
+  font-size: var(--sidenav-close-button-font-size);
+  margin-left: var(--sidenav-close-button-margin-left);
+}
+
+/*SideNav End*/
+
+.copy-code-button {
+  position: absolute;
+  border-radius: var(--copy-code-border-radius);
+  top: var(--copy-code-top);
+  right: var(--copy-code-right);
+  border: none;
+  padding: var(--copy-code-padding);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: var(--copy-code-font-size);
+  transition-duration: 0.2s;
+  cursor: pointer;
+  background-color: var(--next-page-button-background-colour);
+  color: var(--next-page-button-colour);
+  font-weight: bold;
+}
+
+.copy-code-button:hover {
+  opacity: 0.7;
+}
+
+/*Classes End*/
+
+/*Animations*/
+
+@keyframes modal-zoom {
+  from {
+    transform: scale(0)
+  }
+
+  to {
+    transform: scale(1)
+  }
+}
+
+/*Animations End*/

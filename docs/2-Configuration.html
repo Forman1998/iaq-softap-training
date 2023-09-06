@@ -1,0 +1,275 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<!-- Useful for tablet and mobile based browsing-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Title of the page (not necessarily the lab) - for reference only, not displayed on the page-->
+	<title>Project Configuration</title>
+	<!-- CSS template stylesheet must be linked here-->
+	<link href="css/renesas_layout_style.css" rel="stylesheet" type="text/css">
+	<!-- Javascript based lab templating helper must be placed here-->
+	<script type="text/javascript" src="js/lab-templater.js"></script>
+</head>
+
+<body>
+	<!-- Populate the page header (banner, title & navigation menu)-->
+	<script>lab_templater.Generate_header();</script>
+
+	<!-- Begin the main content of the page-->
+	<div class="main-content">
+
+		<!-- Page/Section Summary & Description-->
+		<summary>2. Project Configuration</summary>
+		<p>
+			Here we will guide you through configuring a device &amp; it's peripherals on the RL78/G23 Indoor Air Sensor
+			Board.<br>
+			For more information on the smart configurator please consult the e<sup>2</sup>studio users manual and
+			<a target="_blank"
+			   href="https://www.renesas.com/us/en/document/man/smart-configurator-users-manual-rl78-api-reference">
+				Smart
+				Configurator User Manual (RL78 API Reference)
+			</a>.
+		</p>
+
+		<!-- Start adding "details" sections for lab steps-->
+		<details open>
+			<summary>2.1 Clocks &amp; Supply</summary>
+			<p>Navigate to the Clocks Tab &amp; perform the following:</p>
+			<ol>
+				<li>
+					Set the <b>Operating mode</b> to <i>High-speed main mode 1.8(V)~5.5(V)</i><br>
+					This sets the operating mode/voltage of the device used for things like flash programming & in other back end operations of the smart configurator.
+				</li>
+				<li>
+					Set the <b>EVDD setting</b> to <i>1.8 V &le; EVDD 5.5 &le; V</i><br>
+					This sets the operating voltage of EVDD, as above.
+				</li>
+				<li>
+					Enable the low-speed on-chip oscillator as the source clock for fSXP (sub-system clock)
+					and disable XT1.<br>
+					This uses the LOCO as the fSXP - a crystal is not fitted on this board - therefore it cannot be used.
+				</li>
+			</ol>
+			<img class="modal-thumbnails" src="img/img_lab/clocks.gif" alt="">
+		</details>
+
+		<details>
+			<summary>2.2 System</summary>
+			<p>
+				Navigate to the System Tab &amp; set the <b>On-chip debug operation setting</b> to <i>Use emulator</i>
+				&amp; <b>Emulator setting</b> to <i>E2 Lite</i>.<br>
+				Finally disable the use of the trace function by setting <b>Trace function setting</b> to
+				<i>Unused</i>.<br>
+				Enabling trace function consumes RAM unncessarily as we will not be using the trace function in this
+				project.
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/system.gif" alt="">
+		</details>
+
+		<details>
+			<summary>2.3 I<sup>2</sup>C Driver</summary>
+			<p>
+				Navigate to the Components Tab.<br>
+				This section is where the "magic" happens. The peripheral functions &amp; middlewares can be included,
+				removed and configured from this single location.<br>
+				The process outlined here for adding and configuring the simple component - I<sup>2</sup>C<br>
+				It is in the configuration of the peripherals after adding them when the process/layout between the
+				perihperals will differ.
+			</p>
+			<ol>
+				<li>First click the add components button</li>
+				<li>
+					Here you will be presented with the <b>Software Component Selection</b> dialog - you can use the
+					filters along the top or simply scroll to find the component of interest.<br>
+					We will select the <i>IIC Communication(Master mode)</i> component
+				</li>
+				<li>Click <b>Next &gt;</b></li>
+				<li>
+					This presents you with the <b>Resource Selection</b> dialog - this allows you to select a specific
+					instance of a peripheral.
+					For example where there are multiple I<sup>2</sup>c outputs, we can chose which one we would like to include
+					and thus configure.<br>
+					This is done using the <b>Resource</b> dropdown - please select <i>IICA0</i> as the resource and
+					Click <b>Finish</b>
+				</li>
+			</ol>
+			<img class="modal-thumbnails" src="img/img_lab/i2cp1.gif" alt="">
+			<p>
+				Now we enter the configuration stage of the process for the I<sup>2</sup>C component.<br>
+				In the configuration window after selecting the component you will see some configuration settings which can be used to tailor the companent based on the needs of the project.
+				Use the following selections<br>
+				<b>Clock mode setting: </b><i>fCLK/2</i><br>
+				<b>Operation mode setting: </b><i>Fast mode</i><br>
+				<b>Transfer clock fSCL: </b><i>400000</i><br>
+				<b>Communication end interrupt priority (INTIICA0)</b><i>Level 1</i><br>
+				<b>Callback function enhanced feature </b><i>Unchecked</i><br>
+				We will use this component to get sensor readings.
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/i2cp2.gif" alt="">
+		</details>
+		<details>
+			<summary>2.4 I<sup>2</sup>C Middleware</summary>
+			<p>
+				Now using the above mechanism, do the following to include the drivers for i<sup>2</sup>c communication :
+			</p>
+			<ol>
+				<li>Add the <i>IIC communication driver interface middleware (r_comms_i2c)</i> component</li>
+			</ol>
+			<img class="modal-thumbnails" src="img/img_lab/i2cdp1.gif" alt="">
+			<p>Make the following changes to the configuration:</p>
+			<ol>
+				<li><b>I2C Driver Type for I2C Shared Bus0:</b> <i>IICA</i></li>
+				<li><b>Component name for the I2C Shared Bus0:</b> <i>Config_IICA0</i></li>
+				<li><b>Slave address for I2C Communication Device0:</b> <i>0x54</i></li>
+				<li><b>Callback function for I2C Communication Device0:</b> <i>rm_hs400x_callback0</i></li>
+			</ol>
+			<img class="modal-thumbnails" src="img/img_lab/i2cdp2.gif" alt="">
+		</details>
+		<details>
+			<summary>2.5 UART</summary>
+			<p>
+				Now using the above mechanism, do the following to include the UART component which controls/communicates
+				with the DA16200:
+			</p>
+			<ol>
+				<li>Add the <i>UART Communication</i> component</li>
+				<li><b>Operation:</b> <i>Transmission/reception</i></li>
+				<li><b>Resource:</b> <i>UARTA0</i></li>
+			</ol>
+			<img class="modal-thumbnails" src="img/img_lab/UARTp1.gif" alt="">
+			<p>Make the following changes to the configuration:</p>
+			<ol>
+				<li><b>Operation clock:</b> <i>fSEL &amp fSEL clock selct fIHP</i></li>
+				<li><b>Transmit mode setting:</b> <i>Continuous transmit by interrupt</i></li>
+				<li><b>Transfer rate setting:</b> <i>115200</i></li>
+			</ol>
+			<img class="modal-thumbnails" src="img/img_lab/UARTp2.gif" alt="">
+		</details>
+
+		<details>
+			<summary>2.6 Ports</summary>
+			<p>
+				The <b>Ports</b> component controls the GPIO ports for things like LED control and display I/O, please do
+				the following:
+			</p>
+			<ol>
+				<li>Add the <i>Ports</i> component</li>
+				<li><b>Resource:</b> <i>PORT</i></li>
+			</ol>
+			<img class="modal-thumbnails" src="img/img_lab/portp1.gif" alt="">
+			<p>Make the following changes to the configuration:</p>
+			<ol>
+				<li><b>Port selection tab:</b> Check the following boxes; <i>PORT0</i>, <i>PORT1</i>, <i>PORT7</i>, <i>PORT14</i></li>
+				<li>
+					<b>PORT0 tab:</b> Set the following to <b>Out</b> ;
+					<i>P01</i><br>
+				</li>
+				<li>
+					<b>PORT1 tab:</b> Set the following to <b>Output current</b> &amp; <b>Hi-Z initial output</b>;
+					<i>P16</i>,<i>P17</i><br>
+					These are the LED control pins.
+				</li>
+				<li>
+					<b>PORT7 tab:</b> Set the following to <b>Out</b>  &amp; <b>initial output 1</b>;
+					<i>P70</i><br>
+				</li>
+				<li><b>PORT14 tab:</b> Set the following to <b>Out</b>; <i>P146</i>,<i>P147</i><br></li>
+			</ol>
+			<img class="modal-thumbnails" src="img/img_lab/portp2.gif" alt="">
+		</details>
+
+		<details>
+			<summary>2.7 TAU05</summary>
+			<p>
+				An important component in the connectivity to the humidity sensor is an interval timer to trigger the function reading sensor values.<br>
+				Please do the following:
+			</p>
+			<ol>
+				<li>Add the <i>Interval Timer</i> component</li>
+				<li><b>Operation:</b> <i>16 bit count mode</i></li>
+				<li><b>Resource:</b> <i>TAU0_5</i></li>
+			</ol>
+			<img class="modal-thumbnails" src="img/img_lab/tau05p1.gif" alt="">
+			<p>Make the following changes to the configuration:</p>
+			<ol>
+				<li><b>Operation clock:</b> <i>CK01</i></li>
+				<li><b>Clock source:</b> <i>fCLK</i></li>
+				<li><b>Interval value (16 bits):</b> <i>1 ms</i></li>
+				<li><b>Generates INTTM05 when counting is started:</b> <i>Unchecked</i></li>
+				<li><b>End of timer channel 5 count, generate an interrupt (INTTM05):</b> <i>Checked</i></li>
+			</ol>
+			<img class="modal-thumbnails" src="img/img_lab/tau05p2.gif" alt="">
+		</details>
+
+		<details>
+			<summary>2.8 TAU00</summary>
+			<p>
+				Now we add the second channel.<br>
+				Please do the following:
+			</p>
+			<ol>
+				<li>Add the <i>Interval Timer</i> component</li>
+				<li><b>Operation:</b> <i>16 bit count mode</i></li>
+				<li><b>Resource:</b> <i>TAU0_0</i></li>
+			</ol>
+			<img class="modal-thumbnails" src="img/img_lab/tau00p1.gif" alt="">
+			<p>Make the following changes to the configuration:</p>
+			<ol>
+				<li><b>Operation clock:</b> <i>CK00</i></li>
+				<li><b>Clock source:</b> <i>fCLK/2^15</i></li>
+				<li><b>Interval value (16 bits):</b> <i>1.024 ms</i></li>
+				<li><b>Generates INTTM00 when counting is started:</b> <i>Unchecked</i></li>
+				<li><b>End of timer channel 0 count, generate an interrupt (INTTM00):</b> <i>Checked</i></li>
+			</ol>
+			<img class="modal-thumbnails" src="img/img_lab/tau00p2.gif" alt="">
+		</details>
+
+		<details>
+			<summary>2.9 INTC - INTP1</summary>
+			<p>
+				To make use of the integrated DA16200, we must enable the external interrupt channel.<br>
+				Please do the following:
+			</p>
+			<ol>
+				<li>Add the <i>Interrupt Controller</i> component</li>
+				<li><b>Resource:</b> <i>INTC</i></li>
+			</ol>
+			<img class="modal-thumbnails" src="img/img_lab/intcp1.gif" alt="">
+			<p>Make the following changes to the configuration:</p>
+			<ol>
+				<li><b>INTP1 setting:</b> <i>Enabled/Checked</i></li>
+				<li><b>Valid edge:</b> <i>Falling edge</i></li>
+				<li><b>Priority:</b> <i>Level 3 (low)</i></li>
+			</ol>
+			<img class="modal-thumbnails" src="img/img_lab/intcp2.gif" alt="">
+		</details>
+
+		<details>
+			<summary>2.10 r_bsp</summary>
+			<p>
+				Now lets enable software delay in the bsp, Select the r_bsp cpmponent which is already present in the components tab. locate the <b>API functions disable (R_BSP_SoftwareDelay)</b> and select Enable for the configuration.
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/r_bsp.gif" alt="">
+		</details>
+
+		<details>
+			<summary>2.11 Generate Code</summary>
+			<p>Now click Generate Code.</p>
+			<img class="modal-thumbnails" src="img/img_lab/generate.gif" alt="">
+			<p>
+				What happens here is the src/smc_gen folder is populated with code reflecting the
+				settings made in the smart configurator.
+			</p>
+		</details>
+
+		<!-- Prepare the pages modal images-->
+		<script>lab_templater.Prepare_modal();</script>
+
+		<!-- Button for going to the next page-->
+		<script>lab_templater.Generate_next_page_button("Next...");</script>
+	</div>
+</body>
+
+</html>

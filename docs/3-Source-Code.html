@@ -1,0 +1,365 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<!-- Useful for tablet and mobile based browsing-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Title of the page (not necessarily the lab) - for reference only, not displayed on the page-->
+	<title>Source Code</title>
+	<!-- CSS template stylesheet must be linked here-->
+	<link href="css/renesas_layout_style.css" rel="stylesheet" type="text/css">
+	<!-- Javascript based lab templating helper must be placed here-->
+	<script type="text/javascript" src="js/lab-templater.js"></script>
+
+	<!-- Addition of code highlighting Stylesheet & Script-->
+	<link rel="stylesheet" href="js/highlight/styles/atom-one-light.min.css">
+	<script type="text/javascript" src="js/highlight/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
+</head>
+
+<body>
+	<!-- Populate the page header (banner, title & navigation menu)-->
+	<script>lab_templater.Generate_header();</script>
+
+	<!-- Begin the main content of the page-->
+	<div class="main-content">
+
+		<!-- Page/Section Summary & Description-->
+		<summary>3. Source Code</summary>
+		<p>
+			Here we will guide you through both inclusion and understanding of the code for this project. The aim is to
+			give an understanding of how to use smart configurator generated code, the e² studio build settings &amp;
+			finally what the lab code does.
+		</p>
+
+		<!-- Start adding "details" sections for lab steps-->
+		<details open>
+			<summary>3.1 Pull In The Free Code</summary>
+			<p>
+				First we have to pull in the free code provided for this lab that is the hs4001 sensor library &amp; WiFi connection
+				. We call this free code as it serves a fixed purpose and is only here to facilitate the
+				training.<br><br>
+
+				To acquire the free code please click <a href="dl/src.zip" download>here</a> to download &amp; extract
+				the contents of the .zip archive.<br><br>
+
+				Please copy the folder "app" into the "src" folder in your e² studio project.
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/copyfreecode.gif" alt=""><br>
+			<p>
+				Once you have copied the app folder, it's now time to include the folder to the project. Follow the following steps to do so:
+				<ol>
+					<li>
+						Locate the include directory in the project and left click on it to see an <b>C/C++ Project Settings</b> or use Ctrl+Alt+P.
+					</li>
+					<img class="modal-thumbnails" src="img/img_lab/locateinclude.gif" alt=""><br>
+					<li>
+						Select Settings->Tool Settings->Compiler->Source.
+					</li>
+					<img class="modal-thumbnails" src="img/img_lab/locatesourceinclude.PNG" alt=""><br>
+					<li>
+						click on add icon and Select workspace that will take you to the folders of the current workspace now select project folder->src->app folder which we want to include. Finally check on Add subdirectories and press ok.
+					</li>
+					<img class="modal-thumbnails" src="img/img_lab/include.gif" alt=""><br>
+					<li>
+						Hit Apply and you should see the files added in the includes folder as follows
+					</li>
+					<img class="modal-thumbnails" src="img/img_lab/includes_final.PNG" alt=""><br>
+				</ol>
+			</p>
+		</details>
+
+		<details>
+			<summary>3.2 Edit the IICA0 Driver</summary>
+			<p>
+				The I<sup>2</sup>C base driver doesn't provide the appropriate functionality out of the box - so let's edit it and
+				give ourselves the functions we need, this is namely an I<sup>2</sup>C send function which triggers when there's a error or event completion flag.<br><br>
+				Navigate to <b>[src] &rarr; [smc_gen] &rarr; [Config_IICA0] &rarr; Config_IICA0_user.c</b><br>
+				You can edit the file in section starting with the "Start user code for function..." comment gaurd - place the following
+				function declarations.
+			</p>
+			<p>
+				<b>Function:</b> r_Config_IICA0_callback_master_sendend
+				<pre>
+				<code class="C">rm_comms_i2c_bus0_callback(false);</code>
+				</pre>
+			</p>
+			<p>
+				<b>Function:</b> r_Config_IICA0_callback_master_receiveend
+				<pre>
+				<code class="C">rm_comms_i2c_bus0_callback(false);</code>
+				</pre>
+			</p>
+			<p>
+				<b>Function:</b> r_Config_IICA0_callback_master_error
+				<pre>
+				<code class="C">rm_comms_i2c_bus0_callback(true);</code>
+				</pre>
+			</p>
+			<p>Which should look like this:</p>
+			<img class="modal-thumbnails" src="img/img_lab/i2csrc.png" alt="">
+		</details>
+
+		<details>
+			<summary>3.2 Edit the UARTA0 Driver</summary>
+			<p>
+				Now, let's edit the UART base driver with the appropriate functionality to achieve desired function requirementsed, this is namely an UART sendend and receive end function which triggers when there's a send and receive completion flag respectively.<br><br>
+				Navigate to <b>[src] &rarr; [smc_gen] &rarr; [Config_UARTA0] &rarr; Config_UARTA0_user.c</b><br>
+				You can edit the file in section starting with the "Start user code for function..." comment gaurd - place the following
+				function declarations.
+			</p>
+			<p>
+				<b>Function:</b>  r_Config_UARTA0_callback_sendend
+				<pre>
+					<code class="C">Hal_uart_tx_done_callback();</code>
+				</pre>
+			</p>
+			<p>
+				<b>Function:</b> r_Config_UARTA0_callback_receiveend
+				<pre>
+					<code class="C">Hal_uart_rx_done_callback();</code>
+				</pre>
+			</p>
+			<p>Which should look like this:</p>
+			<img class="modal-thumbnails" src="img/img_lab/UART_User.png" alt="">
+		</details>
+
+		<details>
+			<summary>3.3 Populate TAU00 ISR</summary>
+			<p>
+				The clockwise timer counter needs it's ISR populating - this ISR fires everytime timer runs out to make sure the UART connection with DA16200 functions timely. We fill this ISR with some code so the
+				application can be made aware of a clockwise rotation.<br><br>
+				Now first we need to include our "main.h" file from earlier to enable the ISR to communicate with the
+				application.
+				Navigate to the <b>[src] &rarr; [smc_gen] &rarr; [Config_TAU0_0] &rarr; Config_TAU0_0_user.c</b> &amp;
+				copy the code below into the includes section of the file, inside the "Start user code for include..."
+				comment gaurd.
+			</p>
+			<pre><code class="C">#include "HAL.h"</code></pre>
+			<p>Then add the following the global variable declaration section</p>
+			<pre>
+			<code class="C">extern bool oneshot_timer_done;</code>
+			</pre>
+			<p>
+				Finally inside the r_Config_TAU0_0_interrupt isr, please place the following code. This code
+				signals to the application that the timer ran out. It also
+				clears the interrupt flags <b>both</b> timers as a debounce precaution. It should be
+				placed within the "Start user code for r_Config_TAU0_0_interrupt..." comment gaurd.
+			</p>
+			<pre>
+			<code class="C">oneshot_timer_done = true;
+R_Config_TAU0_0_Stop();</code>
+			</pre>
+			<p>The changes should look like this when finished:</p>
+			<img class="modal-thumbnails" src="img/img_lab/tau00src.png" alt="">
+		</details>
+
+		<details>
+			<summary>3.4 Populate TAU05 ISR</summary>
+			<p>
+				The sensor counter needs it's ISR populating - this ISR fires every milisecond to make sure the sensor reading is initiated after the sensor measurement is completed. We fill this ISR with some code so the
+				application functions properly.<br><br>
+				Now first we need to include our function in the header file.
+				Navigate to the <b>[src] &rarr; [smc_gen] &rarr; [Config_TAU0_5] &rarr; Config_TAU0_5.h</b> &amp;
+				copy the code below at the end of the file, inside the "Start user code for function..."
+				comment gaurd.
+			</p>
+			<pre><code class="C">void R_Config_TAU0_5_Blocking_Wait(void);</code></pre>
+			<p>
+				Next navigate to the corresponding <b>Config_TAU0_4_user.c</b> file ([src] &rarr; [smc_gen] &rarr;
+				[Config_TAU0_5] &rarr; Config_TAU0_5_user.c) and please add the following code at the bottom of the file,
+				again within the comment gaurd "Start user code for adding...".
+			</p>
+			<pre><code class="C">void R_Config_TAU0_5_Blocking_Wait(void)
+{
+	TMIF05 = 0U;    /* clear INTTM05 interrupt flag */
+	TMMK05 = 1U;    /* disable INTTM05 interrupt */
+	TS0 |= _0020_TAU_CH5_START_TRG_ON;
+
+	while(0U == TMIF05)
+	{
+		NOP(); /* TODO: HALT*/
+	}
+	Sensor_read();
+	TT0 |= _0020_TAU_CH5_STOP_TRG_ON;
+	TMIF05 = 0U;    /* clear INTTM05 interrupt flag */
+}</code></pre>
+			<p>The changes should look like this when finished:</p>
+			<img class="modal-thumbnails" src="img/img_lab/tau05src.png" alt="">
+		</details>
+		<details>
+			<summary>3.5 Pull In The Main Code</summary>
+			<p>
+				Now lets copy in the main code - this is running the application.<br>
+				Simply <b>replace</b> the entire contents of your main source file src/<i>&lt;project_name&gt;.c</i>
+				with the code below.
+			</p>
+
+			<pre><code class="C">#include "r_smc_entry.h"
+#include "da16200_AT.h"
+#include "http_server.h"
+#include "sensor.h"
+#include &ltstring.h&gt
+
+static uint8_t http_ip_port[500];
+void main(void)
+{
+	http_receive_status http_status;
+	EI();
+	wifi_init();
+	wifi_set();
+	Sensor_read();
+	while(1)
+	{
+		Sensor_read();
+		memset(http_ip_port, 0, 500);
+		http_status = HTTP_ERROR;
+		/* Wi-Fi server data receive */
+		http_status = http_server_receive(http_ip_port);
+		switch(http_status)
+		{
+			/* HTTP GET command received */
+			case HTTP_GET:
+			http_update(http_ip_port);
+			break;
+
+			/* LED BLINK command received */
+			case HTTP_LED_BLINK:
+			CCS0 ^= 0x01U;
+			break;
+
+			/* HTTP OTHER command received */
+			case HTTP_OTHERS:
+			http_update(http_ip_port);
+			break;
+
+			default:
+			break;
+		}
+	}
+}</code></pre>
+		</details>
+
+		<details>
+			<summary>3.6 Application Explained <i>[Informative]</i></summary>
+			<p>
+				As the section name implies this in informative, there are no actions in this step and it can be freely
+				skipped. But this section aims to explain the application code and provide a clear understanding of why
+				&amp; how certain things have been done. We will do this by combing through the code, picking out
+				lines of code or groups of lines of code in order to dissect what is happening.<br><br>
+
+				The application codes in the folder looks like <br>
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/lab_layout.png" alt=""><br>
+			<p>
+				The folder has a following files and what it signifies<br>
+				<ol>
+					<li>
+						da16200_AT - All of the code involving AT commands to communicate with DA16200 to initiate Wifi or connect to a wifi connection.
+					</li>
+					<li>
+						http_server - This code has all the function involving the hosting of http server and the design of the html webpage that will be hosted. This the webpage where the sensor updates will be visible.
+					</li>
+					<li>
+						Sensor - These files entail the functions which initiates sensors and read the sensor values.
+					</li>
+				</ol>
+				The application is simple, the main loop infinitely waits for either of the following events.
+				<ol>
+					<li>
+						Refresh of the webpage at a schedules interval to make sure the sensor value is updated.
+					</li>
+					<li>
+						A user induced webpage get request i.e. user refreshes the webpage.
+					</li>
+					<li>
+						User clickes LED toggle button on the webpage to turn on/off LED.
+					</li>
+				</ol><br>
+				The main function which includes the main loop is explained below.
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/main_loop.gif" alt=""><br>
+			<p>
+				The first part of the program is wifi initialization (wifi_init Function) which requires a sequence of AT
+				commands. AT commands are the medium of interraction for DA16200, and to initiate this AT command communication
+				we give a <b>ATZ</b>. Once AT commands are initiated, the user might wish to see what command was send before
+				the response is received to avoid confusion. This can be achieved using Echo mode. Echo mode would reflect/Echo
+				back the command that was sent by the user making sure the sequence shown is Command-Response-Command-Response....<br>
+				The wifi_init function and th AT commands used can be seen in the da16200_AT.c file as follows. To get to the function, you can ctrl+click on the
+				wifi_init function in the project main file.
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/Wifi_init.gif" alt=""><br>
+			<p>
+				The list of the AT commands used and the expected responses can be found in the start of the da16200_AT.c.
+				The main AT command of interest is WFSAP, a command used to setup Soft AP interface. A soft-AP needs
+				following arguments to set up.
+				<ol>
+					<li>
+						AP SSID: Name of the Wi-Fi
+					</li>
+					<li>
+						Security Protocol:
+						<ul>
+							<li>0 - open</li>
+							<li>2 - WPA</li>
+							<li>3 - WPA2</li>
+							<li>4 - WPA+WPA2</li>
+							<li>5 - WPA3 OWE</li>
+							<li>6 - WPA3 SAE</li>
+							<li>7 - WPA2 RSN &amp; WPA3 SAE</li>
+						</ul>
+					</li>
+					<li>
+						Encryption:
+						<ul>
+							<li>0 - TKIP</li>
+							<li>1 - AES</li>
+							<li>2 - TKIP+AES</li>
+						</ul>
+					</li>
+					<li>
+						Passphrase: Password for your Wi-Fi
+					</li>
+					<li>
+						Country code
+					</li>
+				</ol>
+				The AT commands in the file and the WFSAP used in the project looks as follows in the code.
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/Soft_AP_setup.gif" alt=""><br>
+			<p> The Soft-AP initialize and setup chain looks as follows</p>
+			<img style="max-width:90%;" src="img/img_lab/AT_command.png" alt=""><br>
+			<p>
+				Now moving to the sensor part of the project. This is the explaination of the code file sensor.c and the
+				sensor_read function which is used to get the sensor reading. The code is divided into two sections, the
+				first section is where the sensor is triggered to start measurements. The second section is initiated
+				after the successfull completion of the first section. This part reads the acquired measurement in a raw
+				format and then calculates a temperature and humdity value out of the raw sensor data.<br>
+				The code for executing this and it's stages are explained below.
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/sensor_read.gif" alt=""><br>
+			<p>
+				The final piece of the project is the webpage that is showing the sensor value graphically. This involves http_update
+				function from the code file http_server.c. The layout of the html page is described in the start of the code. The
+				http_update function gets the last read sensor value which then decides the colour of the graph depiciting the value.
+				Once all of the data is gathered in one string it is then attached to the html page. This update html page is then
+				uploaded for the user to view. <br> Note: the webpage will auto refresh every 10 seconds.<br>
+				The code for http update is as follows
+			</p>
+			<img class="modal-thumbnails" src="img/img_lab/http_server.gif" alt=""><br>
+		</details>
+
+		<!-- Prepare the pages modal images-->
+		<script>lab_templater.Prepare_modal();</script>
+
+		<!-- Button for going to the next page-->
+		<script>lab_templater.Generate_next_page_button("Next...");</script>
+
+		<!-- Setup code copying functionality on all appropriately formatted code snippets-->
+		<script>Setup_code_copy();</script>
+
+	</div>
+</body>
+
+</html>
