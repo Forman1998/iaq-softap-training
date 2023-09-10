@@ -7,4 +7,4 @@ A lab on IoT connectivity portion of the RL78/G23 Indoor Air Quality Sensor Prom
 - all other files/folders are the project source which can be imported directly from git using the clone URI in e² studio.
 
 ## Lab webpage
-https://lwray-renesas.github.io/iaq-actuator-training/
+https://forman1998.github.io/iaq-softap-training/
