@@ -11,6 +11,14 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+/** @brief enumerated type for sensor read state*/
+typedef enum
+{
+	SENSOR_WAITING = 0U, /**< Sensor waiting to be triggered*/
+	SENSOR_START_MEASURMENT,
+	SENSOR_WAIT_TO_READ,
+}sensor_read_state_t;
+
 /** @brief Initiaises the sensors in the application*/
 void Sensor_init(void);
 
@@ -18,9 +26,9 @@ void Sensor_init(void);
 void Sensor_read(void);
 
 /** @brief Gets live humidity readings*/
-float Sensor_get_humidity(void);
+uint16_t Sensor_get_humidity(void);
 
 /** @brief Gets live temperature readings*/
-float Sensor_get_temp(void);
+uint16_t Sensor_get_temp(void);
 
 #endif /* APP_SENSOR_SENSOR_H_ */

@@ -17,25 +17,10 @@
  * OTHER ECONOMIC DAMAGE, PROPERTY DAMAGE, OR PERSONAL INJURY; AND EVEN IF RENESAS HAS BEEN ADVISED OF THE POSSIBILITY
  * OF SUCH LOSS, DAMAGES, CLAIMS OR COSTS.
  **********************************************************************************************************************/
+
 #include "da16200_AT.h"
-#include <string.h>
-#include <stdio.h>
-
-char country[]          = "CH";
-char ap_ssid[]          = "'"WIFI_SSID"',";
-char ap_pw[]            = WIFI_PASSWORD;
-char mqtt_broker_ip[]   = "io.adafruit.com,";
-char mqtt_port[]        = "1883";
-char mqtt_broker_ssid[] = ADAFRUIT_USERNAME",";
-char mqtt_broker_pw[]   = ADAFRUIT_AIO_KEY;
-char mqtt_client_id[]   = "DA16200-client";
-char at_cmd_end[]       = "\r\n";
-char at_topic_t[]         = ","ADAFRUIT_USERNAME"/feeds/temperature";
-char at_topic_h[]         = ","ADAFRUIT_USERNAME"/feeds/humidity";
-
-uint8_t     at_cmd_data[AT_CMD_LENGTH];
-uint32_t    part_array[3];
-char        ip_addr[20];
+#include "string.h"
+#include "sensor.h"
 
 /** AT Command sets */
 /*LDRA_INSPECTED 27 D This structure must be accessible in user code. It cannot be static. */
@@ -45,519 +30,284 @@ da16200_at_cmd_set_t g_da16200_cmd_set[] =
 		[DA16200_AT_CMD_INDEX_ATZ] =
 		{
 				.p_cmd = (uint8_t *) "ATZ\r\n",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.max_resp_length = DA16200_STR_LEN_64,
+				.p_success_resp = (uint8_t *) "OK",
 				.retry = DA16200_RETRY_VALUE_10,
 				.retry_delay = DA16200_DELAY_500MS
 		},
-		/** Echo on/off */
+		/** Echo on/ off */
 		[DA16200_AT_CMD_INDEX_ATE] =
 		{
 				.p_cmd = (uint8_t *) "ATE\r\n",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.max_resp_length = DA16200_STR_LEN_32,
+				.p_success_resp = (uint8_t *) "OK",
 				.retry = DA16200_RETRY_VALUE_5,
 				.retry_delay = DA16200_DELAY_200MS
 		},
-		/* Set AP mode, here is station */
+		/* Set AP mode */
 		[DA16200_AT_CMD_INDEX_AT_WFMODE] =
 		{
-				.p_cmd = (uint8_t *) "AT+WFMODE=0\r\n",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.max_resp_length = DA16200_STR_LEN_32,
+				.p_cmd = (uint8_t *) "AT+WFMODE=1\r\n",
+				.p_success_resp = (uint8_t *) "OK",
 				.retry = DA16200_RETRY_VALUE_5,
 				.retry_delay = DA16200_DELAY_200MS
 		},
 		/* Set Country Code */
 		[DA16200_AT_CMD_INDEX_AT_WFCC] =
 		{
-				.p_cmd = (uint8_t *) "AT+WFCC=",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.max_resp_length = DA16200_STR_LEN_32,
+				.p_cmd = (uint8_t *) "AT+WFCC=GB\r\n",
+				.p_success_resp = (uint8_t *) "OK",
 				.retry = DA16200_RETRY_VALUE_5,
 				.retry_delay = DA16200_DELAY_200MS
 		},
-		/* All profiles in NVRAM are removed and set up in Soft-AP mode with the default configuration. */
-		[ DA16200_AT_CMD_INDEX_AT_DEFAP] =
+		/* Set Country Code */
+		[ DA16200_AT_CMD_INDEX_AT_WFSAP] =
 		{
-				.p_cmd = (uint8_t *) "AT+DEFAP\r\n",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.p_success_resp[1] = (uint8_t *) "+INIT:DONE,1",
-				.max_resp_length = DA16200_STR_LEN_128,
+				.p_cmd = (uint8_t *) "AT+WFSAP=Renesas_Wifi,3,1,12345678,1,CH\r\n",
+				.p_success_resp = (uint8_t *) "OK",
 				.retry = DA16200_RETRY_VALUE_5,
 				.retry_delay = DA16200_DELAY_200MS
 		},
-		/* System restart */
+		/* Restart */
 		[ DA16200_AT_CMD_INDEX_AT_RESTART] =
 		{
 				.p_cmd = (uint8_t *) "AT+RESTART\r\n",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.p_success_resp[1] = (uint8_t *) "+INIT:DONE,0",
-				.max_resp_length = DA16200_STR_LEN_128,
+				.p_success_resp = (uint8_t *) "DONE",
 				.retry = DA16200_RETRY_VALUE_5,
 				.retry_delay = DA16200_DELAY_1000MS
 		},
-		/* Connect to an AP */
-		[ DA16200_AT_CMD_INDEX_AT_WFJAPA] =
+		/* Set IP */
+		[ DA16200_AT_CMD_INDEX_AT_NWIP] =
 		{
-				.p_cmd = (uint8_t *) ("AT+WFJAPA="),
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.p_success_resp[1] = (uint8_t *) "+WFJAP:1",
-				.max_resp_length = DA16200_STR_LEN_128,
+				.p_cmd = (uint8_t *) "AT+NWIP=1,192.168.10.2,255.255.255.0,192.168.10.1\r\n",
+				.p_success_resp = (uint8_t *) "OK",
 				.retry = DA16200_RETRY_VALUE_5,
 				.retry_delay = DA16200_DELAY_1000MS
 		},
-		/* Start the DHCP Client */
-		[ DA16200_AT_CMD_INDEX_AT_NWDHC] =
+		/* Start DHCP */
+		[ DA16200_AT_CMD_INDEX_AT_NWDHS] =
 		{
-				.p_cmd = (uint8_t *) "AT+NWDHC=1\r\n",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.max_resp_length = DA16200_STR_LEN_64,
+				.p_cmd = (uint8_t *) "AT+NWDHS=1\r\n",
+				.p_success_resp = (uint8_t *) "OK",
 				.retry = DA16200_RETRY_VALUE_5,
 				.retry_delay = DA16200_DELAY_200MS
 		},
-		/* Start the DHCP Client */
-		[ DA16200_AT_CMD_INDEX_AT_NWDHC_READ] =
+		/* DHCP IP area set*/
+		[ DA16200_AT_CMD_INDEX_AT_NWDHR] =
 		{
-				.p_cmd = (uint8_t *) "AT+NWDHC=?\r\n",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.p_success_resp[1] = (uint8_t *) "+NWDHC:1",
-				.max_resp_length = DA16200_STR_LEN_64,
+				.p_cmd = (uint8_t *) "AT+NWDHR=192.168.10.3,192.168.10.10\r\n",
+				.p_success_resp = (uint8_t *) "OK",
 				.retry = DA16200_RETRY_VALUE_5,
 				.retry_delay = DA16200_DELAY_200MS
 		},
-		/* Set the IP address and the port number of the MQTT Broker */
-		[ DA16200_AT_CMD_INDEX_AT_NWMQBR] =
+		/* TCP server port set*/
+		[ DA16200_AT_CMD_INDEX_AT_TRTS] =
 		{
-				.p_cmd = (uint8_t *) "AT+NWMQBR=",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.max_resp_length = DA16200_STR_LEN_64,
+				.p_cmd = (uint8_t *) "AT+TRTS=80\r\n",
+				.p_success_resp = (uint8_t *) "OK",
 				.retry = DA16200_RETRY_VALUE_5,
 				.retry_delay = DA16200_DELAY_200MS
 		},
-		/* Set the MQTT QoS level */
-		[ DA16200_AT_CMD_INDEX_AT_NWMQQOS] =
+		/* TCP server port message save */
+		[ DA16200_AT_CMD_INDEX_AT_TRSAVE] =
 		{
-				.p_cmd = (uint8_t *) "AT+NWMQQOS=0\r\n",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.max_resp_length = DA16200_STR_LEN_64,
+				.p_cmd = (uint8_t *) "AT+TRSAVE\r\n",
+				.p_success_resp = (uint8_t *) "OK",
 				.retry = DA16200_RETRY_VALUE_5,
 				.retry_delay = DA16200_DELAY_200MS
 		},
-		/* MQTT login information */
-		[ DA16200_AT_CMD_INDEX_AT_NWMQLI] =
+		[ DA16200_AT_CMD_INDEX_SDKVER ] =
 		{
-				.p_cmd = (uint8_t *) "AT+NWMQLI=",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.max_resp_length = DA16200_STR_LEN_32,
-				.retry = DA16200_RETRY_VALUE_5,
-				.retry_delay = DA16200_DELAY_200MS
-		},
-		/* Set the MQTT Client ID */
-		[ DA16200_AT_CMD_INDEX_AT_NWMQCID] =
-		{
-				.p_cmd = (uint8_t *) "AT+NWMQCID=",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.max_resp_length = DA16200_STR_LEN_32,
-				.retry = DA16200_RETRY_VALUE_5,
-				.retry_delay = DA16200_DELAY_200MS
-		},
-		/* Enable the MQTT client, 1 enable, 0 disable */
-		[ DA16200_AT_CMD_INDEX_AT_NWMQCL] =
-		{
-				.p_cmd = (uint8_t *) "AT+NWMQCL=1\r\n",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.max_resp_length = DA16200_STR_LEN_32,
-				.retry = DA16200_RETRY_VALUE_5,
-				.retry_delay = DA16200_DELAY_200MS
-		},
-		/* Publish an MQTT message with <msg>,<topic> */
-		[ DA16200_AT_CMD_INDEX_AT_NWMQMSG] =
-		{
-				.p_cmd = (uint8_t *) "AT+NWMQMSG=",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.max_resp_length = DA16200_STR_LEN_128,
-				.retry = DA16200_RETRY_VALUE_5,
-				.retry_delay = DA16200_DELAY_1000MS
-		},
-		[ DA16200_AT_CMD_INDEX_AT_NWMQTS] =
-		{
-				.p_cmd = (uint8_t *) "AT+NWMQTS=2,"ADAFRUIT_USERNAME"/feeds/led_toggle,"ADAFRUIT_USERNAME"/feeds/buzzer\r\n",
-				.p_success_resp[0] = (uint8_t *) "OK",
-				.max_resp_length = DA16200_STR_LEN_64,
+				.p_cmd = (uint8_t *) "AT+SDKVER\r\n",
+				.p_success_resp = (uint8_t *) "OK",
 				.retry = DA16200_RETRY_VALUE_5,
 				.retry_delay = DA16200_DELAY_200MS
 		}
+
+
 };
 
-static fsp_err_t wifi_serial_read(uint8_t * p_dest, const uint8_t * expected_resp0, const uint8_t * expected_resp1, uint32_t timeout_ms);
-static void wifi_serial_write(uint8_t * p_src, uint16_t bytes);
-static void DA16200_err(void);
+static uint8_t resp_buf[DA16200_STR_LEN_512] = {0U,};
 
-/************************************************************************************
- * Name:       AT_cmd_send_ok
- * Function:   AT command with OK feedback only
- * Parameters: da16200_at_cmd_index_t CMD index
- * Return:     AT command operation status
- ************************************************************************************/
-fsp_err_t AT_cmd_send_ok(da16200_at_cmd_index_t cmd_index)
+#define DA16200_CMD_SET_LENGTH	(sizeof(g_da16200_cmd_set)/sizeof(g_da16200_cmd_set[0]))
+
+/** @brief Issue WiFi AT Command
+ * @param command_index - index of command to handle
+ * @param timeout_ms - milliseconds timeout for command handling
+ * @return FSP_SUCCESS - successfully detected response
+ * FSP_ERR_TIMEOUT - timed out waiting for successful response.
+ */
+static fsp_err_t wifi_command_issue(da16200_at_cmd_index_t command_index, uint16_t timeout_ms);
+
+/** @brief Wait for AT command response and test if it is the correct response.
+ * @param p_resp - response to test UART read data against.
+ * @param timeout_ms - maximum delay to wait for successful response.
+ * @return FSP_SUCCESS - successfully detected response
+ * FSP_ERR_TIMEOUT - timed out waiting for successful response.
+ */
+static fsp_err_t wifi_serial_read_response(uint8_t * p_resp, uint32_t timeout_ms);
+
+static fsp_err_t wifi_command_issue(da16200_at_cmd_index_t command_index, uint16_t timeout_ms)
 {
-	uint16_t    bytes_write;
-	static uint8_t     resp_buff[DA16200_STR_LEN_128] = {0};
-	fsp_err_t   retval = FSP_ERR_ASSERTION;
-	fsp_err_t   result;
-	uint8_t     retry_count = 0U;
+	fsp_err_t result = FSP_SUCCESS;
+	uint8_t retry_count = 0U;
 	da16200_at_cmd_set_t  * p_cmd_set = g_da16200_cmd_set;
-
+	memset(resp_buf,0,512);
 	do
 	{
-		bytes_write = (uint16_t)strlen((char *) p_cmd_set[cmd_index].p_cmd);
-		wifi_serial_write((uint8_t*)p_cmd_set[cmd_index].p_cmd, bytes_write);
+		/* Flush the buffer*/
+		(void)Hal_uart_read((char *) resp_buf);
 
-		/** Clear respond memory **/
-		memset (resp_buff, 0 , sizeof(resp_buff));
-		result = wifi_serial_read(resp_buff, p_cmd_set[cmd_index].p_success_resp[0], NULL, 1000);
+		/* Transmit data*/
+		wifi_serial_write(p_cmd_set[command_index].p_cmd, p_cmd_set[command_index].cmd_length);
 
-		if(FSP_SUCCESS == result)
+		/* wait for and process response*/
+		result = wifi_serial_read_response(p_cmd_set[command_index].p_success_resp, timeout_ms);
+
+		/* If success response has not been received - delay*/
+		if(FSP_SUCCESS != result)
 		{
-			retval = FSP_SUCCESS;
-			break;
-		}
-
-		R_BSP_SoftwareDelay(p_cmd_set[cmd_index].retry_delay, BSP_DELAY_MILLISECS);
-		++retry_count;
-	}
-	while(retry_count < p_cmd_set[cmd_index].retry);
-
-	return retval;
-}
-
-/************************************************************************************
- * Name:       AT_cmd_send_data
- * Function:   AT command with OK and DATA feedback
- * Parameters: da16200_at_cmd_index_t    CMD index
- *             uint16_t                  wait time (ms)
- * Return:     AT command operation status
- ************************************************************************************/
-fsp_err_t AT_cmd_send_data(da16200_at_cmd_index_t cmd_index, uint16_t wait_time_ms)
-{
-	uint16_t    bytes_write;
-	static uint8_t     resp_buff[DA16200_STR_LEN_128] = {0};
-	fsp_err_t   retval = FSP_ERR_ASSERTION;
-	fsp_err_t   result;
-	uint8_t     retry_count = 0U;
-	da16200_at_cmd_set_t  * p_cmd_set = g_da16200_cmd_set;
-
-	do
-	{
-		bytes_write = (uint16_t)strlen((char *) p_cmd_set[cmd_index].p_cmd);
-		wifi_serial_write((uint8_t*)p_cmd_set[cmd_index].p_cmd, bytes_write);
-
-		/** Clear respond memory **/
-		memset (resp_buff, 0 , sizeof(resp_buff));
-		result = wifi_serial_read(resp_buff, p_cmd_set[cmd_index].p_success_resp[0], p_cmd_set[cmd_index].p_success_resp[1], 1000);
-
-		if(FSP_SUCCESS == result)
-		{
-			retval = FSP_SUCCESS;
-			break;
-		}
-
-		R_BSP_SoftwareDelay(p_cmd_set[cmd_index].retry_delay, BSP_DELAY_MILLISECS);
-		++retry_count;
-	}
-	while(retry_count < p_cmd_set[cmd_index].retry);
-
-	return retval;
-}
-
-/************************************************************************************
- * Name:       AT_cmd_set_confirm
- * Function:   AT command confirm if the value has been set already
- * Parameters: da16200_at_cmd_index_t CMD index
- * Return:     AT command operation status
- ************************************************************************************/
-fsp_err_t AT_cmd_set_confirm(da16200_at_cmd_index_t cmd_index)
-{
-	uint16_t    bytes_write;
-	static uint8_t     resp_buff[DA16200_STR_LEN_64] = {0};
-	fsp_err_t   retval = FSP_ERR_ASSERTION;
-	fsp_err_t   result;
-	uint8_t     retry_count = 0U;
-	da16200_at_cmd_set_t  * p_cmd_set = g_da16200_cmd_set;
-
-	do
-	{
-		bytes_write = (uint16_t)strlen((char *) p_cmd_set[cmd_index].p_cmd);
-		wifi_serial_write((uint8_t*)p_cmd_set[cmd_index].p_cmd, bytes_write);
-
-		/** Clear respond memory **/
-		memset (resp_buff, 0 , sizeof(resp_buff));
-		result = wifi_serial_read(resp_buff, p_cmd_set[cmd_index].p_success_resp[0], p_cmd_set[cmd_index].p_success_resp[1], 1000);
-
-		if(FSP_SUCCESS == result)
-		{
-			retval = FSP_SUCCESS;
-			break;
-		}
-
-		R_BSP_SoftwareDelay(p_cmd_set[cmd_index].retry_delay, BSP_DELAY_MILLISECS);
-		++retry_count;
-	}
-	while(retry_count < p_cmd_set[cmd_index].retry);
-
-	return retval;
-}
-
-/************************************************************************************
- * Name:       AT_cmd_rcv_data
- * Function:   AT command get information from DA16200
- * Parameters: da16200_at_cmd_index_t CMD index
- * Return:     AT command operation status
- ************************************************************************************/
-fsp_err_t AT_cmd_rcv_data(da16200_at_cmd_index_t cmd_index, uint16_t wait_time_ms)
-{
-	uint16_t    bytes_write;
-	static uint8_t     resp_buff[DA16200_STR_LEN_128] = {0};
-	fsp_err_t   retval = FSP_ERR_ASSERTION;
-	fsp_err_t   result;
-	uint8_t     retry_count = 0U;
-	const char *    p;
-	da16200_at_cmd_set_t  * p_cmd_set = g_da16200_cmd_set;
-
-	do
-	{
-		bytes_write = (uint16_t)strlen((char *) p_cmd_set[cmd_index].p_cmd);
-		wifi_serial_write((uint8_t*)p_cmd_set[cmd_index].p_cmd, bytes_write);
-
-		/** Clear respond memory **/
-		memset (resp_buff, 0 , sizeof(resp_buff));
-		result = wifi_serial_read(resp_buff, p_cmd_set[cmd_index].p_success_resp[0], p_cmd_set[cmd_index].p_success_resp[1], 1000);
-
-		if(FSP_SUCCESS == result)
-		{
-			p = strrchr((const char *)resp_buff,',');
-			memcpy(ip_addr, (p+1), 16);
-			retval = FSP_SUCCESS;
-			break;
-		}
-
-		R_BSP_SoftwareDelay(p_cmd_set[cmd_index].retry_delay, BSP_DELAY_MILLISECS);
-		++retry_count;
-	}
-	while(retry_count < p_cmd_set[cmd_index].retry);
-
-	return retval;
-}
-
-void At_cmd_combine(da16200_at_cmd_index_t cmd_index, uint32_t * part_ptr, uint8_t number)
-{
-	da16200_at_cmd_set_t  * p_cmd_set = g_da16200_cmd_set;
-	uint8_t * temp_ptr;
-	uint16_t length, i;
-
-	length = (uint16_t)strlen((char *) p_cmd_set[cmd_index].p_cmd);
-	temp_ptr = p_cmd_set[cmd_index].p_cmd;
-	for(i = 0; i < AT_CMD_LENGTH; i++)
-	{
-		at_cmd_data[i] = 0;
-	}
-	for(i = 0; i < length; i++)
-	{
-		at_cmd_data[i] = *temp_ptr;
-		temp_ptr++;
-	}
-	for(i = 0; i < number; i++)
-	{
-		strcat((char *)at_cmd_data, (char *)(*(part_ptr + i)));
-	}
-	p_cmd_set[cmd_index].p_cmd = (uint8_t *)at_cmd_data;
-}
-
-
-/************************************************************************************
- * Name:       wifi_con_init
- * Function:   wifi connection test by ATZ CMD
- * Parameters: none
- * Return:     none
- ************************************************************************************/
-fsp_err_t wifi_con_init(void)
-{
-	fsp_err_t status;
-
-	status = AT_cmd_send_ok(DA16200_AT_CMD_INDEX_ATZ);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	status = AT_cmd_send_ok(DA16200_AT_CMD_INDEX_ATE);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	return status;
-}
-
-/************************************************************************************
- * Name:       wifi_con_routine
- * Function:   Start wifi connection procedure
- * Parameters: none
- * Return:     wifi connection status
- ************************************************************************************/
-fsp_err_t wifi_con_routine(void)
-{
-	fsp_err_t status = FSP_SUCCESS;
-
-	status = AT_cmd_send_data(DA16200_AT_CMD_INDEX_AT_DEFAP, 4000);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	status = AT_cmd_send_ok(DA16200_AT_CMD_INDEX_ATE);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	part_array[0] = (uint32_t)country;
-	part_array[1] = (uint32_t)at_cmd_end;
-	At_cmd_combine(DA16200_AT_CMD_INDEX_AT_WFCC, part_array, 2);
-	status = AT_cmd_send_ok(DA16200_AT_CMD_INDEX_AT_WFCC);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	status = AT_cmd_send_ok(DA16200_AT_CMD_INDEX_AT_WFMODE);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	status = AT_cmd_send_ok(DA16200_AT_CMD_INDEX_AT_NWMQTS);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	status = AT_cmd_send_data(DA16200_AT_CMD_INDEX_AT_RESTART, 3000);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	status = AT_cmd_send_ok(DA16200_AT_CMD_INDEX_ATE);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	status = AT_cmd_set_confirm(DA16200_AT_CMD_INDEX_AT_NWDHC_READ);
-	if(status != FSP_SUCCESS)
-	{
-		status = AT_cmd_send_ok(DA16200_AT_CMD_INDEX_AT_NWDHC);
-		{
-			DA16200_err();
+			R_BSP_SoftwareDelay(p_cmd_set[command_index].retry_delay, BSP_DELAY_MILLISECS);
+			++retry_count;
 		}
 	}
+	while( (retry_count < p_cmd_set[command_index].retry) && (FSP_SUCCESS != result) );
 
-	part_array[0] = (uint32_t)ap_ssid;
-	part_array[1] = (uint32_t)ap_pw;
-	part_array[2] = (uint32_t)at_cmd_end;
-	At_cmd_combine(DA16200_AT_CMD_INDEX_AT_WFJAPA, part_array, 3);
-	status = AT_cmd_rcv_data(DA16200_AT_CMD_INDEX_AT_WFJAPA, 4000);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	return status;
-}
-
-/************************************************************************************
- * Name:       mqtt_con_routine
- * Function:   Start MQTT Server connection procedure
- * Parameters: none
- * Return:     MQTT connection status
- ************************************************************************************/
-fsp_err_t mqtt_con_routine(void)
-{
-	fsp_err_t status = FSP_SUCCESS;
-
-	part_array[0] = (uint32_t)mqtt_broker_ip;
-	part_array[1] = (uint32_t)mqtt_port;
-	part_array[2] = (uint32_t)at_cmd_end;
-	At_cmd_combine(DA16200_AT_CMD_INDEX_AT_NWMQBR, part_array, 3);
-	status = AT_cmd_send_ok(DA16200_AT_CMD_INDEX_AT_NWMQBR);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	status = AT_cmd_send_ok(DA16200_AT_CMD_INDEX_AT_NWMQQOS);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	part_array[0] = (uint32_t)mqtt_broker_ssid;
-	part_array[1] = (uint32_t)mqtt_broker_pw;
-	part_array[2] = (uint32_t)at_cmd_end;
-	At_cmd_combine(DA16200_AT_CMD_INDEX_AT_NWMQLI, part_array, 3);
-	status = AT_cmd_send_ok(DA16200_AT_CMD_INDEX_AT_NWMQLI);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	part_array[0] = (uint32_t)mqtt_client_id;
-	part_array[1] = (uint32_t)at_cmd_end;
-	At_cmd_combine(DA16200_AT_CMD_INDEX_AT_NWMQCID, part_array, 2);
-	status = AT_cmd_send_ok(DA16200_AT_CMD_INDEX_AT_NWMQCID);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	status = AT_cmd_send_ok(DA16200_AT_CMD_INDEX_AT_NWMQCL);
-	if(status != FSP_SUCCESS)
-	{
-		DA16200_err();
-	}
-
-	return status;
-}
-
-/************************************************************************************
- * Name:       is_str_present
- * Function:   compare string
- * Parameters: p_resp_str, p_search_str
- * Return:     comparing result
- ************************************************************************************/
-uint8_t is_str_present(const char * p_resp_str, const char * p_search_str)
-{
-	if (strstr(p_resp_str, p_search_str))
-	{
-		return STRING_EXIST;
-	}
-
-	return STRING_ABSENCE;
+	return result;
 }
 /* END OF FUNCTION*/
 
-/************************************************************************************
- * Name:       wifi_serial_read
- * Function:   read receive data
- * Parameters: p_dest, p_bytes, timeout_ms
- * Return:     read result
- ************************************************************************************/
-static fsp_err_t wifi_serial_read(uint8_t * p_dest, const uint8_t * expected_resp0, const uint8_t * expected_resp1, uint32_t timeout_ms)
+fsp_err_t wifi_init(void)
+{
+	fsp_err_t status = FSP_SUCCESS;
+	da16200_at_cmd_set_t  * p_cmd_set = g_da16200_cmd_set;
+
+	/* Enable the UART*/
+	Hal_uart_start();
+	
+	Sensor_init();
+	
+	/* Initialise cmd lengths*/
+	for(uint16_t i = 0U; i < DA16200_CMD_SET_LENGTH; ++i)
+	{
+		p_cmd_set[i].cmd_length = strlen((char *) p_cmd_set[i].p_cmd);
+	}
+
+	status = wifi_command_issue(DA16200_AT_CMD_INDEX_ATZ, 100);
+	if(status != FSP_SUCCESS)
+	{
+		return status;
+	}
+
+	status = wifi_command_issue(DA16200_AT_CMD_INDEX_ATE, 500);
+	if(status != FSP_SUCCESS)
+	{
+		return status;
+	}
+	status = wifi_command_issue(DA16200_AT_CMD_INDEX_SDKVER, 500);
+	if(status != FSP_SUCCESS)
+	{
+		return status;
+	}
+
+#ifdef LOGO_SUPPORTED
+	/* TODO: Check version is compatible with transmission of image and include image if it is*/
+#endif
+
+	return status;
+}
+/* END OF FUNCTION*/
+
+fsp_err_t wifi_set(void)
+{
+	fsp_err_t status = FSP_SUCCESS;
+
+	status = wifi_command_issue(DA16200_AT_CMD_INDEX_AT_WFMODE, 500);
+	if(status != FSP_SUCCESS)
+	{
+		return status;
+	}
+
+	status = wifi_command_issue(DA16200_AT_CMD_INDEX_AT_WFCC, 500);
+	if(status != FSP_SUCCESS)
+	{
+		return status;
+	}
+
+	status = wifi_command_issue(DA16200_AT_CMD_INDEX_AT_WFSAP, 3000);
+	if(status != FSP_SUCCESS)
+	{
+		return status;
+	}
+
+	status = wifi_command_issue(DA16200_AT_CMD_INDEX_AT_RESTART, 8000);
+	if(status != FSP_SUCCESS)
+	{
+		return status;
+	}
+
+	status = wifi_command_issue(DA16200_AT_CMD_INDEX_ATE, 500);
+	if(status != FSP_SUCCESS)
+	{
+		return status;
+	}
+
+	status = wifi_command_issue(DA16200_AT_CMD_INDEX_AT_NWIP, 3000);
+	if(status != FSP_SUCCESS)
+	{
+		return status;
+	}
+
+	status = wifi_command_issue(DA16200_AT_CMD_INDEX_AT_NWDHS, 500);
+	if(status != FSP_SUCCESS)
+	{
+		return status;
+	}
+
+	status = wifi_command_issue(DA16200_AT_CMD_INDEX_AT_NWDHR, 2000);
+	if(status != FSP_SUCCESS)
+	{
+		return status;
+	}
+
+	status = wifi_command_issue(DA16200_AT_CMD_INDEX_AT_TRTS, 500);
+	if(status != FSP_SUCCESS)
+	{
+		return status;
+	}
+
+	status = wifi_command_issue(DA16200_AT_CMD_INDEX_AT_TRSAVE, 300);
+	if(status != FSP_SUCCESS)
+	{
+		return status;
+	}
+
+	return status;
+}
+/* END OF FUNCTION*/
+
+void wifi_serial_write(uint8_t * p_src, uint16_t len)
+{
+	/* Wait until TX is ready*/
+	while(!Hal_uart_tx_ready())
+	{
+		/* Do Nothing*/
+	}
+
+	/* Transmit data*/
+	Hal_uart_send((char *)p_src, len);
+
+	/* Wait until TX is ready*/
+	while(!Hal_uart_tx_ready())
+	{
+		/* Do Nothing*/
+	}
+}
+/* END OF FUNCTION*/
+
+fsp_err_t wifi_serial_read(uint8_t * p_dst, uint16_t * p_num_bytes, uint16_t timeout_ms)
 {
 	fsp_err_t status = FSP_ERR_ASSERTION;
 	uint16_t total_count = 0U;
+	const uint16_t max_bytes = *p_num_bytes;
 
 	/* Start timeout timer*/
 	Hal_oneshot_start(timeout_ms);
@@ -568,13 +318,10 @@ static fsp_err_t wifi_serial_read(uint8_t * p_dest, const uint8_t * expected_res
 		if(Hal_uart_rx_ready())
 		{
 			/* Check if success response is present*/
-			total_count += Hal_uart_read((char *)&p_dest[total_count]);
-			if(STRING_EXIST == is_str_present((const char *)p_dest, (const char*)expected_resp0))
+			total_count += Hal_uart_read((char *)&p_dst[total_count]);
+			if(total_count >= max_bytes)
 			{
-				if( (STRING_EXIST == is_str_present((const char *)p_dest, (const char*)expected_resp1)) || (NULL == expected_resp1))
-				{
-					status = FSP_SUCCESS;
-				}
+				status = FSP_SUCCESS;
 			}
 		}
 		else if(Hal_oneshot_elapsed())
@@ -589,41 +336,54 @@ static fsp_err_t wifi_serial_read(uint8_t * p_dest, const uint8_t * expected_res
 	}
 	while( (FSP_SUCCESS != status) && (FSP_ERR_TIMEOUT != status) );
 
+	*p_num_bytes = total_count;
+
 	return status;
 }
 /* END OF FUNCTION*/
 
-
-/************************************************************************************
- * Name:       wifi_serial_write
- * Function:   write data
- * Parameters: p_src, bytes
- * Return:     write result
- ************************************************************************************/
-static void wifi_serial_write(uint8_t * p_src, uint16_t bytes)
+uint8_t is_str_present(const char * p_resp_str, const char * p_search_str)
 {
-	/* Wait until TX is ready*/
-	while(!Hal_uart_tx_ready())
+	if (strstr (p_resp_str, p_search_str))
 	{
-		/* Do Nothing*/
+		return SF_WIFI_TRUE;
 	}
 
-	/* Transmit data*/
-	Hal_uart_send((char *)p_src, bytes);
-
-	/* Wait until TX is ready*/
-	while(!Hal_uart_tx_ready())
-	{
-		/* Do Nothing*/
-	}
+	return SF_WIFI_FALSE;
 }
 /* END OF FUNCTION*/
 
-static void DA16200_err(void)
+static fsp_err_t wifi_serial_read_response(uint8_t * p_resp, uint32_t timeout_ms)
 {
-	while(1)
+	fsp_err_t status = FSP_ERR_ASSERTION;
+	uint16_t total_count = 0U;
+	const uint16_t max_bytes_read = strlen((char *)p_resp);
+	uint16_t resp_length = max_bytes_read;
+	uint8_t expected_resp_present;
+
+	do
 	{
-		/* TODO: Flash LED*/
+		status = wifi_serial_read(&resp_buf[total_count], &resp_length, timeout_ms);
+
+		if(resp_length > 0U)
+		{
+			total_count += resp_length;
+			resp_length = max_bytes_read;
+
+			expected_resp_present = is_str_present((const char *)resp_buf, (const char*)p_resp);
+			if(SF_WIFI_TRUE == expected_resp_present)
+			{
+				status = FSP_SUCCESS;
+			}
+			else
+			{
+				status = FSP_ERR_ASSERTION;
+			}
+		}
 	}
+	while( (FSP_SUCCESS != status) && (FSP_ERR_TIMEOUT != status) );
+
+	return status;
 }
 /* END OF FUNCTION*/
+

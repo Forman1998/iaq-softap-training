@@ -44,7 +44,7 @@
 #define RM_HS400X_CFG_DEVICE0_COMMS_INSTANCE            (g_comms_i2c_device0)
 
 /* SPECIFY CALLBACK FUNCTION NAME FOR DEVICE 0 */
-#define RM_HS400X_CFG_DEVICE0_CALLBACK                  (Hs400x_user_i2c_callback0) /* Enable user callback for HS400x Sensor Device0 */
+#define RM_HS400X_CFG_DEVICE0_CALLBACK                  (hs400x_user_i2c_callback0) /* Enable user callback for HS400x Sensor Device0 */
 
 /* SPECIFY TEMPERATURE RESOLUTION FOR DEVICE 0 */
 #define RM_HS400X_CFG_DEVICE0_TEMPERATURE_RESOLUTION            (RM_HS400X_TEMPERATURE_RESOLUTION_14BIT)
