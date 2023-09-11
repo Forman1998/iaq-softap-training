@@ -19,8 +19,8 @@
 
 /***********************************************************************************************************************
 * File Name        : Config_PCLBUZ1.c
-* Component Version: 1.2.0
-* Device(s)        : R7F100GFNxFP
+* Component Version: 1.3.0
+* Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_PCLBUZ1.
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
@@ -58,7 +58,7 @@ void R_Config_PCLBUZ1_Create(void)
     PMCE1 &= 0xDFU;
     P1 &= 0xDFU;
     PM1 &= 0xDFU;
-    CKS1 = _0E_PCLBUZ_OUTCLK_FSXP6;
+    CKS1 = _0D_PCLBUZ_OUTCLK_FSXP5;
 
     R_Config_PCLBUZ1_Create_UserInit();
 }

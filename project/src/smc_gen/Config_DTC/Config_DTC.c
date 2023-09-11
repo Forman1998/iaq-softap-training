@@ -19,8 +19,8 @@
 
 /***********************************************************************************************************************
 * File Name        : Config_DTC.c
-* Component Version: 1.1.1
-* Device(s)        : R7F100GFNxFP
+* Component Version: 1.2.0
+* Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_DTC.
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
@@ -46,9 +46,6 @@ Global variables and functions
 #pragma address dtc_vectortable = 0x0FFD00U
 uint8_t __near dtc_vectortable[40U];
 
-#pragma address dtc_controldata_0 = 0x0FFD40U
-st_dtc_data_t __near dtc_controldata_0;
-
 #pragma address dtc_controldata_1 = 0x0FFD48U
 st_dtc_data_t __near dtc_controldata_1;
 
@@ -70,15 +67,6 @@ void R_Config_DTC_Create(void)
     DTCEN4 = 0x00U;
     /* Set base address */
     DTCBAR = 0xFDU;
-    /* Set DTCD0 */
-    dtc_vectortable[29U] = 0x40U;
-    dtc_controldata_0.dtccr = _00_DTC_DATA_SIZE_8BITS | _00_DTC_CHAIN_TRANSFER_DISABLE | _00_DTC_DEST_ADDR_FIXED | 
-                              _04_DTC_SOURCE_ADDR_INCREMENTED | _00_DTC_TRANSFER_MODE_NORMAL;
-    dtc_controldata_0.dtbls = _01_DTCD0_TRANSFER_BLOCKSIZE;
-    dtc_controldata_0.dtcct = _09_DTCD0_TRANSFER_BYTE;
-    dtc_controldata_0.dtrld = 0x00U;
-    dtc_controldata_0.dtsar = _0000_DTCD0_SRC_ADDRESS;
-    dtc_controldata_0.dtdar = _FFA6_DTCD0_DEST_ADDRESS;
     /* Set DTCD1 */
     dtc_vectortable[12U] = 0x48U;
     dtc_controldata_1.dtccr = _00_DTC_DATA_SIZE_8BITS | _00_DTC_CHAIN_TRANSFER_DISABLE | _00_DTC_DEST_ADDR_FIXED | 
@@ -90,28 +78,6 @@ void R_Config_DTC_Create(void)
     dtc_controldata_1.dtdar = _0000_DTCD1_DEST_ADDRESS;
 
     R_Config_DTC_Create_UserInit();
-}
-
-/***********************************************************************************************************************
-* Function Name: R_DTCD0_Start
-* Description  : This function starts DTCD0 module operation.
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-void R_DTCD0_Start(void)
-{
-    DTCEN3 |= _04_DTC_TAU06_ACTIVATION_ENABLE;
-}
-
-/***********************************************************************************************************************
-* Function Name: R_DTCD0_Stop
-* Description  : This function stops DTCD0 module operation.
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-void R_DTCD0_Stop(void)
-{
-    DTCEN3 &= (uint8_t)~_04_DTC_TAU06_ACTIVATION_ENABLE;
 }
 
 /***********************************************************************************************************************
@@ -138,11 +104,14 @@ void R_DTCD1_Stop(void)
 
 /* Start user code for adding. Do not edit comment generated here */
 
-void Start_dtc(__near uint8_t * tone)
+void Start_dtc1(__near const uint8_t * src, __near uint8_t * dst, uint16_t cnt)
 {
-	dtc_controldata_0.dtcct = _09_DTCD0_TRANSFER_BYTE;
-	dtc_controldata_0.dtsar = (uint16_t)tone;
-	DTCEN3 |= _04_DTC_TAU06_ACTIVATION_ENABLE;
+	dtc_controldata_1.dtbls = 1U;
+	dtc_controldata_1.dtcct = (cnt > 255U) ? 0U : (uint8_t)cnt;
+	dtc_controldata_1.dtsar = (uint16_t)src;
+	dtc_controldata_1.dtdar = (uint16_t)dst;
+
+	R_DTCD1_Start();
 }
 /* END OF FUNCTION*/
 

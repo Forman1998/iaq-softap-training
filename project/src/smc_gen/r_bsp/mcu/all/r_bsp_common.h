@@ -34,8 +34,10 @@
 *                               Changed to always determine the version of smart configurator.
 *         : 31.05.2022 1.30     Added the following enumerated variable.
 *                                - e_bsp_delay_units_t
-*                               Added prototype of the following function
+*                               Added prototype of the following function.
 *                                - R_BSP_SoftwareDelay
+*         : 11.11.2022 1.40     Added Xm to the clock mode comment.
+*                               Added RL78/G22 resource to clock mode comment.
 ***********************************************************************************************************************/
 
 /*************************************************
@@ -64,16 +66,17 @@
 
 /* clock mode */
 /* NOTE: 
+ * m = this clock can only use one or the other depending on the number of terminals.
  * n = this clock may not be available depending on the number of terminals. 
  * RL78 MCU supported clocks
  *
- * Clock  G23 F24 F23 G15
- * ------ --- --- --- ---
- * HIOCLK  X   X   X   X
- * SYSCLK  X   X   X   Xn
- * SXCLK   X   Xn  Xn
- * MIOCLK  X
- * LOCLK   X   X   X
+ * Clock  G23 F24 F23 G15 G22
+ * ------ --- --- --- --- ---
+ * HIOCLK  X   X   X   X   X
+ * SYSCLK  Xm  X   X   Xn  Xm
+ * SXCLK   Xm  Xn  Xn      Xm
+ * MIOCLK  X               X
+ * LOCLK   X   X   X       X
  * PLLCLK      X   X
  * ADCLK       X   X
 */

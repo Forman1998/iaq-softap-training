@@ -19,8 +19,8 @@
 
 /***********************************************************************************************************************
 * File Name        : Config_CSI00_user.c
-* Component Version: 1.2.0
-* Device(s)        : R7F100GFNxFP
+* Component Version: 1.3.0
+* Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_CSI00.
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
@@ -46,8 +46,6 @@ Global variables and functions
 extern volatile uint8_t * gp_csi00_tx_address;    /* csi00 send buffer address */
 extern volatile uint16_t g_csi00_tx_count;        /* csi00 send data count */
 /* Start user code for global. Do not edit comment generated here */
-
-extern st_dtc_data_t __near dtc_controldata_1;
 
 static volatile bool tx_done = true;
 
@@ -154,13 +152,7 @@ void R_Config_CSI00_Send_app(const uint8_t * const tx_buf, uint16_t tx_num)
 		}
 		else
 		{
-			/* Configure DTC*/
-			dtc_controldata_1.dtbls = 1U;
-			dtc_controldata_1.dtcct = ((bytes_to_send-1U) > 255U) ? 0U : (uint8_t)(bytes_to_send-1U);
-			dtc_controldata_1.dtsar = (uint16_t)(&l_tx_buf[1]);
-			dtc_controldata_1.dtdar = (uint16_t)(__near uint8_t *)&SIO00;
-			R_DTCD1_Start();
-
+			Start_dtc1(l_tx_buf+1, (__near uint8_t *)&SIO00, bytes_to_send-1U); /* Setup the DTC*/
 			SIO00 = *l_tx_buf;    /* Trigger SPI transmission */
 			l_tx_buf += bytes_to_send; /* Move the buffer pointer forward*/
 		}

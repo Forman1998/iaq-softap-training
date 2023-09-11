@@ -8,6 +8,7 @@
 #define ST7735S_PORT_H_
 
 #include "r_smc_entry.h"
+#include "Config_CSI00.h"
 
 #if defined(__clang__) || defined(__GNUC__)
 
@@ -43,6 +44,6 @@
 #define Spi_write_block(tx_buf, tx_num)	{R_Config_CSI00_Send_app(tx_buf, tx_num);}
 
 /** @brief Implements milli-second resolution delay*/
-#define Delay_ms(ms) {Hw_delay_ms(ms);}
+#define Delay_ms(ms) {R_BSP_SoftwareDelay(ms, BSP_DELAY_MILLISECS);}
 
 #endif /* ST7735S_PORT_H_ */

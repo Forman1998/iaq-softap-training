@@ -19,8 +19,8 @@
 
 /***********************************************************************************************************************
 * File Name        : Config_CSI00.c
-* Component Version: 1.2.0
-* Device(s)        : R7F100GFNxFP
+* Component Version: 1.3.0
+* Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_CSI00.
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
@@ -61,8 +61,8 @@ void R_Config_CSI00_Create(void)
     /* Mask channel 0 interrupt */
     CSIMK00 = 1U;    /* disable INTCSI00 interrupt */
     CSIIF00 = 0U;    /* clear INTCSI00 interrupt flag */
-    /* Set INTCSI00 low priority */
-    CSIPR100 = 1U;
+    /* Set INTCSI00 level 1 priority */
+    CSIPR100 = 0U;
     CSIPR000 = 1U;
     SIR00 = _0002_SAU_SIRMN_PECTMN | _0001_SAU_SIRMN_OVCTMN;    /* clear error flag */
     SMR00 = _0020_SAU_SMRMN_INITIALVALUE | _0000_SAU_CLOCK_SELECT_CK00 | _0000_SAU_CLOCK_MODE_CKS | 

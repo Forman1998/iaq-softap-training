@@ -19,8 +19,8 @@
 
 /***********************************************************************************************************************
 * File Name        : Config_INTC_user.c
-* Component Version: 1.2.0
-* Device(s)        : R7F100GFNxFP
+* Component Version: 1.3.0
+* Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_INTC.
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
@@ -30,13 +30,12 @@ Includes
 #include "r_cg_userdefine.h"
 #include "Config_INTC.h"
 /* Start user code for include. Do not edit comment generated here */
-#include "../../app/app.h"
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
 Pragma directive
 ***********************************************************************************************************************/
-#pragma interrupt r_Config_INTC_intp4_interrupt(vect=INTP4)
+#pragma interrupt r_Config_INTC_intp1_interrupt(vect=INTP1)
 /* Start user code for pragma. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
 
@@ -59,15 +58,14 @@ void R_Config_INTC_Create_UserInit(void)
 }
 
 /***********************************************************************************************************************
-* Function Name: r_Config_INTC_intp4_interrupt
-* Description  : This function is INTP4 interrupt service routine
+* Function Name: r_Config_INTC_intp1_interrupt
+* Description  : This function is INTP1 interrupt service routine
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-static void __near r_Config_INTC_intp4_interrupt(void)
+static void __near r_Config_INTC_intp1_interrupt(void)
 {
-    /* Start user code for r_Config_INTC_intp4_interrupt. Do not edit comment generated here */
-	HW_SET_EVENT(hw_event_flags, BUTTON_CLICK);
+    /* Start user code for r_Config_INTC_intp1_interrupt. Do not edit comment generated here */
     /* End user code. Do not edit comment generated here */
 }
 

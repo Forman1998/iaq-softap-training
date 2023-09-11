@@ -19,8 +19,8 @@
 
 /***********************************************************************************************************************
 * File Name        : Config_TAU0_0.c
-* Component Version: 1.2.0
-* Device(s)        : R7F100GFNxFP
+* Component Version: 1.3.0
+* Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_TAU0_0.
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
@@ -46,14 +46,14 @@ Global variables and functions
 
 /***********************************************************************************************************************
 * Function Name: R_Config_TAU0_0_Create
-* Description  : This function initializes the TAU0 channel0 module.
+* Description  : This function initializes the TAU0 channel 0 module.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
 void R_Config_TAU0_0_Create(void)
 {
-    TPS0 &= _FF0F_TAU_CKM1_CLEAR;
-    TPS0 |= _00E0_TAU_CKM1_FCLK_14;
+    TPS0 &= _FFF0_TAU_CKM0_CLEAR;
+    TPS0 |= _000F_TAU_CKM0_FCLK_15;
     /* Stop channel 0 */
     TT0 |= _0001_TAU_CH0_STOP_TRG_ON;
     /* Mask channel 0 interrupt */
@@ -62,20 +62,19 @@ void R_Config_TAU0_0_Create(void)
     /* Set INTTM00 low priority */
     TMPR100 = 1U;
     TMPR000 = 1U;
-    /* TAU00 used as external event counter function */
-    TIS1 |= _01_TAU_CH0_INPUT_ELCL;
-    TMR00 = _8000_TAU_CLOCK_SELECT_CKM1 | _1000_TAU_CLOCK_MODE_TIMN | _0000_TAU_TRIGGER_SOFTWARE | 
-            _0040_TAU_TIMN_EDGE_RISING | _0006_TAU_MODE_EVENT_COUNT;
-    TDR00 = _0001_TAU_TDR00_VALUE;
+    /* TAU00 used as interval timer */
+    TMR00 = _0000_TAU_CLOCK_SELECT_CKM0 | _0000_TAU_CLOCK_MODE_CKS | _0000_TAU_TRIGGER_SOFTWARE | 
+            _0000_TAU_MODE_INTERVAL_TIMER | _0000_TAU_START_INT_UNUSED;
+    TDR00 = _0000_TAU_TDR00_VALUE;
     TO0 &= (uint16_t)~_0001_TAU_CH0_OUTPUT_VALUE_1;
     TOE0 &= (uint16_t)~_0001_TAU_CH0_OUTPUT_ENABLE;
-
+    
     R_Config_TAU0_0_Create_UserInit();
 }
 
 /***********************************************************************************************************************
 * Function Name: R_Config_TAU0_0_Start
-* Description  : This function starts the TAU0 channel0 counter.
+* Description  : This function starts the TAU0 channel 0 counter.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
@@ -88,7 +87,7 @@ void R_Config_TAU0_0_Start(void)
 
 /***********************************************************************************************************************
 * Function Name: R_Config_TAU0_0_Stop
-* Description  : This function stops the TAU0 channel0 counter.
+* Description  : This function stops the TAU0 channel 0 counter.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/

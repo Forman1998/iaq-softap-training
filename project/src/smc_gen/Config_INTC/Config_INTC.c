@@ -19,8 +19,8 @@
 
 /***********************************************************************************************************************
 * File Name        : Config_INTC.c
-* Component Version: 1.2.0
-* Device(s)        : R7F100GFNxFP
+* Component Version: 1.3.0
+* Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_INTC.
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
@@ -52,42 +52,44 @@ Global variables and functions
 ***********************************************************************************************************************/
 void R_Config_INTC_Create(void)
 {
-    PMK4 = 1U;    /* disable INTP4 operation */
-    PIF4 = 0U;    /* clear INTP4 interrupt flag */
-    /* Set INTP4 low priority */
-    PPR14 = 1U;
-    PPR04 = 1U;
-    EGN0 = _00_INTP4_EDGE_FALLING_UNSEL;
-    EGP0 = _10_INTP4_EDGE_RISING_SEL;
-    /* Set INTP4 pin */
-    PMCT3 &= 0xFDU;
-    PM3 |= 0x02U;
+    PMK1 = 1U;    /* disable INTP1 operation */
+    PIF1 = 0U;    /* clear INTP1 interrupt flag */
+    /* Set INTP1 low priority */
+    PPR11 = 1U;
+    PPR01 = 1U;
+    EGN0 = _02_INTP1_EDGE_FALLING_SEL;
+    EGP0 = _00_INTP1_EDGE_RISING_UNSEL;
+    /* Set INTP1 pin */
+    PMCT5 &= 0xFEU;
+    PMCE5 &= 0xFEU;
+    CCDE &= 0xF7U;
+    PM5 |= 0x01U;
 
     R_Config_INTC_Create_UserInit();
 }
 
 /***********************************************************************************************************************
-* Function Name: R_Config_INTC_INTP4_Start
-* Description  : This function clears INTP4 interrupt flag and enables interrupt.
+* Function Name: R_Config_INTC_INTP1_Start
+* Description  : This function clears INTP1 interrupt flag and enables interrupt.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_Config_INTC_INTP4_Start(void)
+void R_Config_INTC_INTP1_Start(void)
 {
-    PIF4 = 0U;    /* clear INTP4 interrupt flag */
-    PMK4 = 0U;    /* enable INTP4 interrupt */
+    PIF1 = 0U;    /* clear INTP1 interrupt flag */
+    PMK1 = 0U;    /* enable INTP1 interrupt */
 }
 
 /***********************************************************************************************************************
-* Function Name: R_Config_INTC_INTP4_Stop
-* Description  : This function disables INTP4 interrupt and clears interrupt flag.
+* Function Name: R_Config_INTC_INTP1_Stop
+* Description  : This function disables INTP1 interrupt and clears interrupt flag.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_Config_INTC_INTP4_Stop(void)
+void R_Config_INTC_INTP1_Stop(void)
 {
-    PMK4 = 1U;    /* disable INTP4 interrupt */
-    PIF4 = 0U;    /* clear INTP4 interrupt flag */
+    PMK1 = 1U;    /* disable INTP1 interrupt */
+    PIF1 = 0U;    /* clear INTP1 interrupt flag */
 }
 
 /* Start user code for adding. Do not edit comment generated here */

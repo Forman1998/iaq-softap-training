@@ -1,5 +1,6 @@
 #include "font.h"
 
+#pragma section const FONT
 /** @brief Store the image of the letters (glyph's)*/
 __far static const uint8_t font_glyph_bitmap[] =
 {

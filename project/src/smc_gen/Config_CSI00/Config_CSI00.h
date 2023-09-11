@@ -19,8 +19,8 @@
 
 /***********************************************************************************************************************
 * File Name        : Config_CSI00.h
-* Component Version: 1.2.0
-* Device(s)        : R7F100GFNxFP
+* Component Version: 1.3.0
+* Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_CSI00.
 ***********************************************************************************************************************/
 
@@ -54,16 +54,7 @@ void R_Config_CSI00_Stop(void);
 MD_STATUS R_Config_CSI00_Send(uint8_t * const tx_buf, uint16_t tx_num);
 void R_Config_CSI00_Create_UserInit(void);
 /* Start user code for function. Do not edit comment generated here */
-
-/**@brief Start application and masks interrupt flags*/
 void R_Config_CSI00_Start_app(void);
-
-/**@brief Send data with far addressing over SPI.
- * @param tx_buf - pointer to 8bit width buffer.
- * @param tx_num - number of bytes to send
- * Function is blocking.
- */
 void R_Config_CSI00_Send_app(const uint8_t * const tx_buf, uint16_t tx_num);
-
 /* End user code. Do not edit comment generated here */
 #endif

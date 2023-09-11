@@ -19,8 +19,8 @@
 
 /***********************************************************************************************************************
 * File Name        : Config_INTC.h
-* Component Version: 1.2.0
-* Device(s)        : R7F100GFNxFP
+* Component Version: 1.3.0
+* Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_INTC.
 ***********************************************************************************************************************/
 
@@ -48,8 +48,8 @@ Typedef definitions
 Global functions
 ***********************************************************************************************************************/
 void R_Config_INTC_Create(void);
-void R_Config_INTC_INTP4_Start(void);
-void R_Config_INTC_INTP4_Stop(void);
+void R_Config_INTC_INTP1_Start(void);
+void R_Config_INTC_INTP1_Stop(void);
 void R_Config_INTC_Create_UserInit(void);
 /* Start user code for function. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */

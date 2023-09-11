@@ -19,8 +19,8 @@
 
 /***********************************************************************************************************************
 * File Name        : Config_TAU0_0_user.c
-* Component Version: 1.2.0
-* Device(s)        : R7F100GFNxFP
+* Component Version: 1.3.0
+* Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_TAU0_0.
 ***********************************************************************************************************************/
 /***********************************************************************************************************************
@@ -30,7 +30,6 @@ Includes
 #include "r_cg_userdefine.h"
 #include "Config_TAU0_0.h"
 /* Start user code for include. Do not edit comment generated here */
-#include "../../app/app.h"
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
@@ -44,18 +43,18 @@ Pragma directive
 Global variables and functions
 ***********************************************************************************************************************/
 /* Start user code for global. Do not edit comment generated here */
+extern bool oneshot_timer_done;
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
 * Function Name: R_Config_TAU0_0_Create_UserInit
-* Description  : This function adds user code after initializing the TAU0 channel0.
+* Description  : This function adds user code after initializing the TAU0 channel 0.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
 void R_Config_TAU0_0_Create_UserInit(void)
 {
     /* Start user code for user init. Do not edit comment generated here */
-	NFEN1_bit.no0 = 1U;
     /* End user code. Do not edit comment generated here */
 }
 
@@ -68,15 +67,8 @@ void R_Config_TAU0_0_Create_UserInit(void)
 static void __near r_Config_TAU0_0_interrupt(void)
 {
     /* Start user code for r_Config_TAU0_0_interrupt. Do not edit comment generated here */
-	TS0 |= _0001_TAU_CH0_START_TRG_ON;
-	TS0 |= _0002_TAU_CH1_START_TRG_ON;
-
-	TMIF01 = 0U;    /* clear INTTM01 interrupt flag */
-	TMIF00 = 0U;    /* clear INTTM00 interrupt flag */
-
-	++rotary_count;
-
-	HW_SET_EVENT(hw_event_flags, ROTARY_COUNT_UPDATED);
+	oneshot_timer_done = true;
+	R_Config_TAU0_0_Stop();
     /* End user code. Do not edit comment generated here */
 }
 

@@ -8,7 +8,7 @@
 #include "text_driver.h"
 #include "text.h"
 #include "stddef.h"
-#include "../assert/display_assert.h"
+#include "display_assert.h"
 
 static const font_descriptor_t * cur_font_dsc;
 
@@ -148,7 +148,7 @@ uint8_t Text_put_custom_glyph(const uint16_t x, const uint16_t y, const font_gly
 }
 /* END OF FUNCTION*/
 
-uint16_t Text_put_line(const uint16_t x, const uint16_t y, const char * const str, const uint8_t * colour, const uint8_t * bg_colour)
+uint16_t Text_put_line(const uint16_t x, const uint16_t y, const char * str, const uint8_t * colour, const uint8_t * bg_colour)
 {
 	const uint16_t str_len_bytes = Local_str_len(str);
 	const bool set_bg_colour = (NULL != bg_colour);
@@ -170,7 +170,7 @@ uint16_t Text_put_line(const uint16_t x, const uint16_t y, const char * const st
 }
 /* END OF FUNCTION*/
 
-uint16_t Text_put_str(const uint16_t x, const uint16_t y, const char * const str, const uint8_t * colour, const uint8_t * bg_colour)
+uint16_t Text_put_str(const uint16_t x, const uint16_t y, const char * str, const uint8_t * colour, const uint8_t * bg_colour)
 {
 	const uint16_t str_len_bytes = Local_str_len(str);
 	const bool set_bg_colour = (NULL != bg_colour);

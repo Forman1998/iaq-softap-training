@@ -4,24 +4,31 @@
         <Setting id="SrcGeneratedPath" value="src/smc_gen"/>
     </Segment>
     <Segment id="Pin">
-        <Setting id="P12" value="SO00"/>
-        <Setting id="P13" value="P13"/>
-        <Setting id="P16" value="CCD00"/>
-        <Setting id="P15" value="PCLBUZ1"/>
+        <Setting id="P147" value="P147"/>
         <Setting id="P146" value="P146"/>
-        <Setting id="P17" value="CCD01"/>
+        <Setting id="P70" value="P70"/>
+        <Setting id="P50" value="INTP1"/>
+        <Setting id="P61" value="SDAA0"/>
+        <Setting id="P72" value="TxDA0"/>
+        <Setting id="P71" value="RxDA0"/>
+        <Setting id="P60" value="SCLA0"/>
         <Setting id="P62" value="CCD06"/>
         <Setting id="P73" value="P73"/>
         <Setting id="P40" value="TOOL0"/>
         <Setting id="P10" value="SCK00"/>
-        <Setting id="P31" value="INTP4"/>
+        <Setting id="P01" value="P01"/>
+        <Setting id="P12" value="SO00"/>
+        <Setting id="P13" value="P13"/>
+        <Setting id="P16" value="CCD00"/>
+        <Setting id="P15" value="PCLBUZ1"/>
+        <Setting id="P17" value="CCD01"/>
     </Segment>
     <Segment id="Device">
         <Setting id="Series" value="RL78G2x"/>
         <Setting id="Group" value="RL78G23"/>
         <Setting id="Board" value="Custom User Board"/>
-        <Setting id="PartNo" value="R7F100GFNxFP"/>
-        <Setting id="PinCount" value="44"/>
+        <Setting id="PartNo" value="R7F100GGNxFB"/>
+        <Setting id="PinCount" value="48"/>
     </Segment>
     <Segment id="Clock">
         <Setting id="FSXL" value="32.768"/>
@@ -33,15 +40,16 @@
         <Setting id="FCLK" value="32000.0"/>
     </Segment>
     <Segment id="Component">
-        <Setting id="Config_DTC" value="CG"/>
         <Setting id="Config_TAU0_0" value="CG"/>
-        <Setting id="r_bsp" value=""/>
-        <Setting id="Config_TAU0_1" value="CG"/>
+        <Setting id="Config_UARTA0" value="CG"/>
+        <Setting id="Config_DTC" value="CG"/>
         <Setting id="Config_INTC" value="CG"/>
+        <Setting id="r_bsp" value=""/>
         <Setting id="Config_CSI00" value="CG"/>
         <Setting id="Config_PORT" value="CG"/>
-        <Setting id="Config_TAU0_6" value="CG"/>
         <Setting id="Config_PCLBUZ1" value="CG"/>
-        <Setting id="Config_TAU0_4" value="CG"/>
+        <Setting id="Config_TAU0_5" value="CG"/>
+        <Setting id="Config_IICA0" value="CG"/>
+        <Setting id="r_comms_i2c" value=""/>
     </Segment>
 </QE>
