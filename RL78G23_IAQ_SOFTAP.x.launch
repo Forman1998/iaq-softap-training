@@ -33,6 +33,10 @@
     <stringAttribute key="com.renesas.cdt.debug.ioview.dsf.registerSelection0" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;selectedRegisterList ioFilePath=&quot;C:\Users\a5126135\.eclipse\com.renesas.platform_881187684\DebugComp\RL78\IoFiles\R7F100GGN.sfrx&quot;/&gt;&#13;&#10;"/>
     <stringAttribute key="com.renesas.cdt.launch.dsf.IO_MAP" value="${support_area_loc}"/>
     <booleanAttribute key="com.renesas.cdt.launch.dsf.USE_DEFAULT_IO_MAP" value="true"/>
+    <listAttribute key="com.renesas.cdt.launch.dsf.coreSettings">
+        <listEntry value="CPU|enabled"/>
+        <listEntry value="FAA|disabled"/>
+    </listAttribute>
     <listAttribute key="com.renesas.cdt.launch.dsf.downloadImages">
         <listEntry value="|true|true|true||true|No core|INTERNAL_MEMORY||false"/>
     </listAttribute>
@@ -42,7 +46,7 @@
     <stringAttribute key="com.renesas.cdt.launch.dsf.launchSeqType" value="com.renesas.cdt.launch.dsf.launchSequence.e2GdbServer"/>
     <stringAttribute key="com.renesas.cdt.launch.dsf.serverPath" value="${renesas.support.targetLoc:rl78-debug}\e2-server-gdb"/>
     <booleanAttribute key="com.renesas.hardwaredebug.e1rl78-uRelayBreak=" value="false"/>
-    <booleanAttribute key="com.renesas.hardwaredebug.e1rl78.allowRRMDMM" value="false"/>
+    <booleanAttribute key="com.renesas.hardwaredebug.e1rl78.allowRRMDMM" value="true"/>
     <booleanAttribute key="com.renesas.hardwaredebug.e1rl78.e1_pwr" value="true"/>
     <booleanAttribute key="com.renesas.hardwaredebug.e1rl78.enable.hot.plug" value="false"/>
     <booleanAttribute key="com.renesas.hardwaredebug.e1rl78.eraseFlash" value="true"/>

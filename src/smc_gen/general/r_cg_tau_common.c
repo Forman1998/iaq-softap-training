@@ -30,7 +30,6 @@ Includes
 #include "r_cg_userdefine.h"
 #include "Config_TAU0_5.h"
 #include "Config_TAU0_0.h"
-#include "Config_TAU0_4.h"
 #include "r_cg_tau_common.h"
 /* Start user code for include. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
@@ -59,7 +58,6 @@ void R_TAU0_Create(void)
     /* Set TAU0 settings */
     R_Config_TAU0_5_Create();
     R_Config_TAU0_0_Create();
-    R_Config_TAU0_4_Create();
 }
 
 /***********************************************************************************************************************

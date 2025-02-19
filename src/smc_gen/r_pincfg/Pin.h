@@ -45,8 +45,6 @@ Macro definitions
 
 /* PIOR pin function assignments */
 #define SMC_PIN_SDAA0        6,1
-#define SMC_PIN_SO00        1,2
-#define SMC_PIN_SCK00        1,0
 #define SMC_PIN_SCLA0        6,0
 
 /* Pin write helper */
