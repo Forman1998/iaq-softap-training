@@ -7,6 +7,223 @@
   </Placeholders>
   <Project Name="RL78G23_IAQ_SOFTAP" Type="Application">
     <Files>
+      <Category Name="docs">
+        <Category Name="dl">
+          <Category Name="src">
+            <Path>docs\dl\src\RL78G23_IAQ_SOFTAP.c</Path>
+            <Category Name="app">
+              <Path>docs\dl\src\app\da16200_AT.c</Path>
+              <Path>docs\dl\src\app\da16200_AT.h</Path>
+              <Path>docs\dl\src\app\hal.c</Path>
+              <Path>docs\dl\src\app\hal.h</Path>
+              <Path>docs\dl\src\app\http_server.c</Path>
+              <Path>docs\dl\src\app\http_server.h</Path>
+              <Path>docs\dl\src\app\hw.c</Path>
+              <Path>docs\dl\src\app\hw.h</Path>
+              <Path>docs\dl\src\app\sensor.c</Path>
+              <Path>docs\dl\src\app\sensor.h</Path>
+            </Category>
+            <Category Name="gfx">
+              <Path>docs\dl\src\gfx\gfx.h</Path>
+              <Category Name="src">
+                <Path>docs\dl\src\gfx\src\gfx.c</Path>
+                <Path>docs\dl\src\gfx\src\images.h</Path>
+                <Category Name="display">
+                  <Category Name="assert">
+                    <Path>docs\dl\src\gfx\src\display\assert\display_assert.h</Path>
+                  </Category>
+                  <Category Name="draw">
+                    <Path>docs\dl\src\gfx\src\display\draw\draw.c</Path>
+                    <Path>docs\dl\src\gfx\src\display\draw\draw.h</Path>
+                    <Path>docs\dl\src\gfx\src\display\draw\draw_driver.h</Path>
+                  </Category>
+                  <Category Name="driver">
+                    <Path>docs\dl\src\gfx\src\display\driver\st7735s.c</Path>
+                    <Path>docs\dl\src\gfx\src\display\driver\st7735s.h</Path>
+                    <Path>docs\dl\src\gfx\src\display\driver\st7735s_port.h</Path>
+                  </Category>
+                  <Category Name="text">
+                    <Path>docs\dl\src\gfx\src\display\text\font.c</Path>
+                    <Path>docs\dl\src\gfx\src\display\text\font.h</Path>
+                    <Path>docs\dl\src\gfx\src\display\text\text.c</Path>
+                    <Path>docs\dl\src\gfx\src\display\text\text.h</Path>
+                    <Path>docs\dl\src\gfx\src\display\text\text_driver.h</Path>
+                  </Category>
+                </Category>
+              </Category>
+            </Category>
+            <Category Name="smc_gen">
+              <Category Name="Config_CSI00">
+                <Path>docs\dl\src\smc_gen\Config_CSI00\Config_CSI00.c</Path>
+                <Path>docs\dl\src\smc_gen\Config_CSI00\Config_CSI00.h</Path>
+                <Path>docs\dl\src\smc_gen\Config_CSI00\Config_CSI00_user.c</Path>
+              </Category>
+              <Category Name="Config_DTC">
+                <Path>docs\dl\src\smc_gen\Config_DTC\Config_DTC.c</Path>
+                <Path>docs\dl\src\smc_gen\Config_DTC\Config_DTC.h</Path>
+                <Path>docs\dl\src\smc_gen\Config_DTC\Config_DTC_user.c</Path>
+              </Category>
+              <Category Name="Config_IICA0">
+                <Path>docs\dl\src\smc_gen\Config_IICA0\Config_IICA0.c</Path>
+                <Path>docs\dl\src\smc_gen\Config_IICA0\Config_IICA0.h</Path>
+                <Path>docs\dl\src\smc_gen\Config_IICA0\Config_IICA0_user.c</Path>
+              </Category>
+              <Category Name="Config_PORT">
+                <Path>docs\dl\src\smc_gen\Config_PORT\Config_PORT.c</Path>
+                <Path>docs\dl\src\smc_gen\Config_PORT\Config_PORT.h</Path>
+                <Path>docs\dl\src\smc_gen\Config_PORT\Config_PORT_user.c</Path>
+              </Category>
+              <Category Name="Config_TAU0_0">
+                <Path>docs\dl\src\smc_gen\Config_TAU0_0\Config_TAU0_0.c</Path>
+                <Path>docs\dl\src\smc_gen\Config_TAU0_0\Config_TAU0_0.h</Path>
+                <Path>docs\dl\src\smc_gen\Config_TAU0_0\Config_TAU0_0_user.c</Path>
+              </Category>
+              <Category Name="Config_TAU0_4">
+                <Path>docs\dl\src\smc_gen\Config_TAU0_4\Config_TAU0_4.c</Path>
+                <Path>docs\dl\src\smc_gen\Config_TAU0_4\Config_TAU0_4.h</Path>
+                <Path>docs\dl\src\smc_gen\Config_TAU0_4\Config_TAU0_4_user.c</Path>
+              </Category>
+              <Category Name="Config_TAU0_5">
+                <Path>docs\dl\src\smc_gen\Config_TAU0_5\Config_TAU0_5.c</Path>
+                <Path>docs\dl\src\smc_gen\Config_TAU0_5\Config_TAU0_5.h</Path>
+                <Path>docs\dl\src\smc_gen\Config_TAU0_5\Config_TAU0_5_user.c</Path>
+              </Category>
+              <Category Name="Config_UARTA0">
+                <Path>docs\dl\src\smc_gen\Config_UARTA0\Config_UARTA0.c</Path>
+                <Path>docs\dl\src\smc_gen\Config_UARTA0\Config_UARTA0.h</Path>
+                <Path>docs\dl\src\smc_gen\Config_UARTA0\Config_UARTA0_user.c</Path>
+              </Category>
+              <Category Name="general">
+                <Path>docs\dl\src\smc_gen\general\r_cg_dtc.h</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_dtc_common.c</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_dtc_common.h</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_iica.h</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_iica_common.c</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_iica_common.h</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_macrodriver.h</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_port.h</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_sau.h</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_sau_common.c</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_sau_common.h</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_systeminit.c</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_tau.h</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_tau_common.c</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_tau_common.h</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_uarta.h</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_uarta_common.c</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_uarta_common.h</Path>
+                <Path>docs\dl\src\smc_gen\general\r_cg_userdefine.h</Path>
+                <Path>docs\dl\src\smc_gen\general\r_smc_entry.h</Path>
+              </Category>
+              <Category Name="r_bsp">
+                <Path>docs\dl\src\smc_gen\r_bsp\platform.h</Path>
+                <Path>docs\dl\src\smc_gen\r_bsp\readme.txt</Path>
+                <Category Name="board">
+                  <Category Name="generic_rl78_g23">
+                    <Path>docs\dl\src\smc_gen\r_bsp\board\generic_rl78_g23\hdwinit.c</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\board\generic_rl78_g23\hdwinit.h</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\board\generic_rl78_g23\r_bsp.h</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\board\generic_rl78_g23\r_bsp_config_reference.h</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\board\generic_rl78_g23\r_bsp_config_reference_ccrl.inc</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\board\generic_rl78_g23\r_bsp_config_reference_iccrl.inc</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\board\generic_rl78_g23\r_bsp_config_reference_llvm.inc</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\board\generic_rl78_g23\r_bsp_init.c</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\board\generic_rl78_g23\stkinit.asm</Path>
+                  </Category>
+                </Category>
+                <Category Name="doc">
+                  <Category Name="en">
+                    <Path>docs\dl\src\smc_gen\r_bsp\doc\en\r01an5522ej0180-rl78-bsp.pdf</Path>
+                  </Category>
+                  <Category Name="ja">
+                    <Path>docs\dl\src\smc_gen\r_bsp\doc\ja\r01an5522jj0180-rl78-bsp.pdf</Path>
+                  </Category>
+                </Category>
+                <Category Name="mcu">
+                  <Category Name="all">
+                    <Path>docs\dl\src\smc_gen\r_bsp\mcu\all\cstart.asm</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\mcu\all\fsp_common_api.h</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\mcu\all\r_bsp_common.c</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\mcu\all\r_bsp_common.h</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\mcu\all\r_bsp_common_ccrl.asm</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\mcu\all\r_bsp_rl78_compiler.h</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\mcu\all\r_fsp_error.h</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\mcu\all\r_rtos.h</Path>
+                  </Category>
+                  <Category Name="rl78_g23">
+                    <Path>docs\dl\src\smc_gen\r_bsp\mcu\rl78_g23\mcu_clocks.c</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\mcu\rl78_g23\mcu_clocks.h</Path>
+                    <Path>docs\dl\src\smc_gen\r_bsp\mcu\rl78_g23\mcu_info.h</Path>
+                    <Category Name="register_access">
+                      <Category Name="ccrl">
+                        <Path>docs\dl\src\smc_gen\r_bsp\mcu\rl78_g23\register_access\ccrl\iodefine.h</Path>
+                      </Category>
+                    </Category>
+                  </Category>
+                </Category>
+              </Category>
+              <Category Name="r_comms_i2c_rl">
+                <Path>docs\dl\src\smc_gen\r_comms_i2c_rl\r_comms_i2c_if.h</Path>
+                <Category Name="doc">
+                  <Category Name="en">
+                    <Path>docs\dl\src\smc_gen\r_comms_i2c_rl\doc\en\r01an6192ej0141-sensor-rl78.pdf</Path>
+                    <Path>docs\dl\src\smc_gen\r_comms_i2c_rl\doc\en\r01an6193ej0111-comms-rl78.pdf</Path>
+                  </Category>
+                </Category>
+                <Category Name="inc">
+                  <Category Name="api">
+                    <Path>docs\dl\src\smc_gen\r_comms_i2c_rl\inc\api\rm_comms_api.h</Path>
+                  </Category>
+                  <Category Name="instances">
+                    <Path>docs\dl\src\smc_gen\r_comms_i2c_rl\inc\instances\rm_comms_i2c.h</Path>
+                  </Category>
+                </Category>
+                <Category Name="src">
+                  <Category Name="rm_comms_i2c">
+                    <Path>docs\dl\src\smc_gen\r_comms_i2c_rl\src\rm_comms_i2c\rm_comms_i2c.c</Path>
+                    <Path>docs\dl\src\smc_gen\r_comms_i2c_rl\src\rm_comms_i2c\rm_comms_i2c_driver_rl.c</Path>
+                    <Path>docs\dl\src\smc_gen\r_comms_i2c_rl\src\rm_comms_i2c\rm_comms_i2c_rl78_instance.c</Path>
+                  </Category>
+                </Category>
+              </Category>
+              <Category Name="r_config">
+                <Path>docs\dl\src\smc_gen\r_config\r_bsp_config.h</Path>
+                <Path>docs\dl\src\smc_gen\r_config\r_bsp_config.inc</Path>
+                <Path>docs\dl\src\smc_gen\r_config\r_comms_i2c_rl_config.h</Path>
+                <Path>docs\dl\src\smc_gen\r_config\r_hs400x_rl_config.h</Path>
+              </Category>
+              <Category Name="r_hs400x">
+                <Path>docs\dl\src\smc_gen\r_hs400x\r_hs400x_if.h</Path>
+                <Category Name="doc">
+                  <Category Name="en">
+                    <Path>docs\dl\src\smc_gen\r_hs400x\doc\en\r01an6192ej0141-sensor-rl78.pdf</Path>
+                    <Path>docs\dl\src\smc_gen\r_hs400x\doc\en\r01an6446ej0102-hs400x-rl78.pdf</Path>
+                  </Category>
+                </Category>
+                <Category Name="inc">
+                  <Category Name="api">
+                    <Path>docs\dl\src\smc_gen\r_hs400x\inc\api\rm_hs400x_api.h</Path>
+                  </Category>
+                  <Category Name="instances">
+                    <Path>docs\dl\src\smc_gen\r_hs400x\inc\instances\rm_hs400x.h</Path>
+                  </Category>
+                </Category>
+                <Category Name="src">
+                  <Category Name="rm_hs400x">
+                    <Path>docs\dl\src\smc_gen\r_hs400x\src\rm_hs400x\rm_hs400x.c</Path>
+                    <Path>docs\dl\src\smc_gen\r_hs400x\src\rm_hs400x\rm_hs400x_instance.c</Path>
+                    <Path>docs\dl\src\smc_gen\r_hs400x\src\rm_hs400x\rm_hs400x_rl_driver.c</Path>
+                  </Category>
+                </Category>
+              </Category>
+              <Category Name="r_pincfg">
+                <Path>docs\dl\src\smc_gen\r_pincfg\Pin.c</Path>
+                <Path>docs\dl\src\smc_gen\r_pincfg\Pin.h</Path>
+              </Category>
+            </Category>
+          </Category>
+        </Category>
+      </Category>
       <Category Name="src">
         <Path>src\RL78G23_IAQ_SOFTAP.c</Path>
         <Category Name="app">
@@ -395,6 +612,53 @@
           <Path>HardwareDebug\Pin.obj</Path>
           <Path>HardwareDebug\RL78G23_IAQ_SOFTAP.lib</Path>
         </LinkOrder>
+        <NoTargetFile Target="docs\dl\src\RL78G23_IAQ_SOFTAP.c"/>
+        <NoTargetFile Target="docs\dl\src\app\da16200_AT.c"/>
+        <NoTargetFile Target="docs\dl\src\app\hal.c"/>
+        <NoTargetFile Target="docs\dl\src\app\http_server.c"/>
+        <NoTargetFile Target="docs\dl\src\app\hw.c"/>
+        <NoTargetFile Target="docs\dl\src\app\sensor.c"/>
+        <NoTargetFile Target="docs\dl\src\gfx\src\display\draw\draw.c"/>
+        <NoTargetFile Target="docs\dl\src\gfx\src\display\driver\st7735s.c"/>
+        <NoTargetFile Target="docs\dl\src\gfx\src\display\text\font.c"/>
+        <NoTargetFile Target="docs\dl\src\gfx\src\display\text\text.c"/>
+        <NoTargetFile Target="docs\dl\src\gfx\src\gfx.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_CSI00\Config_CSI00.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_CSI00\Config_CSI00_user.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_DTC\Config_DTC.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_DTC\Config_DTC_user.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_IICA0\Config_IICA0.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_IICA0\Config_IICA0_user.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_PORT\Config_PORT.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_PORT\Config_PORT_user.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_TAU0_0\Config_TAU0_0.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_TAU0_0\Config_TAU0_0_user.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_TAU0_4\Config_TAU0_4.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_TAU0_4\Config_TAU0_4_user.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_TAU0_5\Config_TAU0_5.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_TAU0_5\Config_TAU0_5_user.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_UARTA0\Config_UARTA0.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\Config_UARTA0\Config_UARTA0_user.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\general\r_cg_dtc_common.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\general\r_cg_iica_common.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\general\r_cg_sau_common.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\general\r_cg_systeminit.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\general\r_cg_tau_common.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\general\r_cg_uarta_common.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\r_bsp\board\generic_rl78_g23\hdwinit.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\r_bsp\board\generic_rl78_g23\r_bsp_init.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\r_bsp\board\generic_rl78_g23\stkinit.asm"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\r_bsp\mcu\all\cstart.asm"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\r_bsp\mcu\all\r_bsp_common.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\r_bsp\mcu\all\r_bsp_common_ccrl.asm"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\r_bsp\mcu\rl78_g23\mcu_clocks.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\r_comms_i2c_rl\src\rm_comms_i2c\rm_comms_i2c.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\r_comms_i2c_rl\src\rm_comms_i2c\rm_comms_i2c_driver_rl.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\r_comms_i2c_rl\src\rm_comms_i2c\rm_comms_i2c_rl78_instance.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\r_hs400x\src\rm_hs400x\rm_hs400x.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\r_hs400x\src\rm_hs400x\rm_hs400x_instance.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\r_hs400x\src\rm_hs400x\rm_hs400x_rl_driver.c"/>
+        <NoTargetFile Target="docs\dl\src\smc_gen\r_pincfg\Pin.c"/>
         <IndividualOptions Target="src\RL78G23_IAQ_SOFTAP.c">
           <CompileOptions>
             <Option>-cpu=S3</Option>
