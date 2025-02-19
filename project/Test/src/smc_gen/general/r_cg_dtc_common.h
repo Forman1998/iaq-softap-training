@@ -14,60 +14,36 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2021, 2022 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2021, 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name        : Config_INTC_user.c
-* Component Version: 1.3.0
+* File Name        : r_cg_dtc_common.h
+* Version          : 1.0.50
 * Device(s)        : R7F100GGNxFB
-* Description      : This file implements device driver for Config_INTC.
+* Description      : Common header file for DTC peripheral.
 ***********************************************************************************************************************/
+
+#ifndef DTC_COMMON_H
+#define DTC_COMMON_H
+
 /***********************************************************************************************************************
-Includes
+Macro definitions (Register bit)
 ***********************************************************************************************************************/
-#include "r_cg_macrodriver.h"
-#include "r_cg_userdefine.h"
-#include "Config_INTC.h"
-/* Start user code for include. Do not edit comment generated here */
+
+/***********************************************************************************************************************
+Macro definitions
+***********************************************************************************************************************/
+
+/***********************************************************************************************************************
+Typedef definitions
+***********************************************************************************************************************/
+
+/***********************************************************************************************************************
+Global functions
+***********************************************************************************************************************/
+void R_DTC_Set_PowerOn(void);
+void R_DTC_Set_PowerOff(void);
+/* Start user code for function. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
-
-/***********************************************************************************************************************
-Pragma directive
-***********************************************************************************************************************/
-#pragma interrupt r_Config_INTC_intp1_interrupt(vect=INTP1)
-/* Start user code for pragma. Do not edit comment generated here */
-/* End user code. Do not edit comment generated here */
-
-/***********************************************************************************************************************
-Global variables and functions
-***********************************************************************************************************************/
-/* Start user code for global. Do not edit comment generated here */
-/* End user code. Do not edit comment generated here */
-
-/***********************************************************************************************************************
-* Function Name: R_Config_INTC_Create_UserInit
-* Description  : This function adds user code after initializing the INTC module.
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-void R_Config_INTC_Create_UserInit(void)
-{
-    /* Start user code for user init. Do not edit comment generated here */
-    /* End user code. Do not edit comment generated here */
-}
-
-/***********************************************************************************************************************
-* Function Name: r_Config_INTC_intp1_interrupt
-* Description  : This function is INTP1 interrupt service routine
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-static void __near r_Config_INTC_intp1_interrupt(void)
-{
-    /* Start user code for r_Config_INTC_intp1_interrupt. Do not edit comment generated here */
-    /* End user code. Do not edit comment generated here */
-}
-
-/* Start user code for adding. Do not edit comment generated here */
-/* End user code. Do not edit comment generated here */
+#endif

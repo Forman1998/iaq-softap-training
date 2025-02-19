@@ -14,12 +14,12 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2021, 2022 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2021, 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
 * File Name        : Config_UARTA0_user.c
-* Component Version: 1.4.0
+* Component Version: 1.8.0
 * Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_UARTA0.
 ***********************************************************************************************************************/
@@ -30,6 +30,7 @@ Includes
 #include "r_cg_userdefine.h"
 #include "Config_UARTA0.h"
 /* Start user code for include. Do not edit comment generated here */
+#include "hal.h"
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************

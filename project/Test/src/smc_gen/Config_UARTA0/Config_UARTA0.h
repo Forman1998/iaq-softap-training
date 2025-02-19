@@ -14,12 +14,12 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2021, 2022 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2021, 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
 * File Name        : Config_UARTA0.h
-* Component Version: 1.4.0
+* Component Version: 1.8.0
 * Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_UARTA0.
 ***********************************************************************************************************************/
@@ -39,8 +39,9 @@ Macro definitions (Register bit)
 /***********************************************************************************************************************
 Macro definitions
 ***********************************************************************************************************************/
-#define _8B_UARTA_OUTPUT_BAUDRATE          (0x8BU)
-#define UARTA0_WAIT_1_CLOCK_CYCLE          (1U)
+#define _8B_UARTA_OUTPUT_BAUDRATE             (0x8BU)
+#define UARTA0_WAIT_1_CLOCK_CYCLE             (1U)    /* wait for 1 cycle as default,
+                                                         please change the waiting time value according to the system */
 
 /***********************************************************************************************************************
 Typedef definitions

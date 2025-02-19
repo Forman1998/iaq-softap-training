@@ -28,18 +28,37 @@
 #include "http_server.h"
 #include "sensor.h"
 #include <string.h>
+#include "gfx.h"
+
+static sensor_data_t sensor_data;
 
 static uint8_t http_ip_port[500];
 void main(void)
 {
 	http_receive_status http_status;
 	EI();
+	R_Config_CSI00_Start_app();
+	Gfx_init();
+	Gfx_display_on();
+	Gfx_normal_backlight();
+	Gfx_display_refresh();
+
+	Gfx_set_background_title();
+	Gfx_set_background_temp_humid();
+	Gfx_display_refresh();
+
 	wifi_init();
 	wifi_set();
 	Sensor_read();
 	while(1)
 	{
 		Sensor_read();
+		sensor_data.temperature_int = Sensor_get_temp();
+		sensor_data.humidity_int = Sensor_get_humidity();
+
+		Gfx_write_temp_humid(&sensor_data);
+		Gfx_display_refresh();
+
 		memset(http_ip_port, 0, 500);
 		http_status = HTTP_ERROR;
 		/* Wi-Fi server data receive */

@@ -14,12 +14,12 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2021, 2022 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2021, 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
 * File Name        : r_smc_entry.h
-* Version          : 1.0.12
+* Version          : 1.0.50
 * Device(s)        : R7F100GGNxFB
 * Description      : SMC platform header file..
 ***********************************************************************************************************************/
@@ -30,13 +30,18 @@ Includes
 #include "r_cg_macrodriver.h"
 #include "Config_IICA0.h"
 #include "Config_PORT.h"
-#include "Config_INTC.h"
+#include "Config_DTC.h"
+#include "Config_CSI00.h"
 #include "Config_TAU0_5.h"
 #include "Config_TAU0_0.h"
+#include "Config_TAU0_4.h"
 #include "Config_UARTA0.h"
+#include "Pin.h"
+#include "r_cg_sau_common.h"
 #include "r_cg_uarta_common.h"
 #include "r_cg_tau_common.h"
 #include "r_cg_iica_common.h"
+#include "r_cg_dtc_common.h"
 #include "r_cg_userdefine.h"
 
 #ifndef SMC_ENTRY_H

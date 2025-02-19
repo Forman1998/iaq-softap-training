@@ -14,12 +14,12 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2021, 2022 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2021, 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
 * File Name        : r_cg_iica.h
-* Version          : 1.0.12
+* Version          : 1.0.50
 * Device(s)        : R7F100GGNxFB
 * Description      : General header file for IICA peripheral.
 ***********************************************************************************************************************/

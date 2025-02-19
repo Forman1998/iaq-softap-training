@@ -14,12 +14,12 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2021, 2022 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2021, 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
 * File Name        : Config_PORT.c
-* Component Version: 1.3.0
+* Component Version: 1.6.0
 * Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_PORT.
 ***********************************************************************************************************************/
@@ -54,7 +54,8 @@ void R_Config_PORT_Create(void)
 {
     volatile uint16_t w_count;
 
-    CCDE = _02_P17_OUTPUT_CURRENT_ON | _01_P16_OUTPUT_CURRENT_ON;
+    CCDE = _00_P63_OUTPUT_CURRENT_OFF | _40_P62_OUTPUT_CURRENT_ON | _00_P61_OUTPUT_CURRENT_OFF | 
+           _00_P60_OUTPUT_CURRENT_OFF | _02_P17_OUTPUT_CURRENT_ON | _01_P16_OUTPUT_CURRENT_ON;
 
     /* Wait for stable time (10us) */
     for (w_count = 0U; w_count < PORT_STABLE_WAITTIME; w_count++)
@@ -63,6 +64,7 @@ void R_Config_PORT_Create(void)
     }
  
     CCS0 = _00_OUTPUT_CURRENT_HIZ;
+    CCS6 = _00_OUTPUT_CURRENT_HIZ;
     /* Set PORT0 registers */
     P0 = _00_Pn1_OUTPUT_0 | _00_Pn0_OUTPUT_0;
     PDIDIS0 = _00_PDIDISn0_INPUT_BUFFER_ON;
@@ -71,24 +73,32 @@ void R_Config_PORT_Create(void)
     PMCE0 = _00_PMCEn1_DIGITAL_ON;
     PM0 =  _FC_PM0_DEFAULT | _00_PMn1_MODE_OUTPUT | _01_PMn0_NOT_USE;
     /* Set PORT1 registers */
-    P1 = _00_Pn7_OUTPUT_0 | _00_Pn6_OUTPUT_0 | _00_Pn5_OUTPUT_0 | _00_Pn4_OUTPUT_0 | _00_Pn3_OUTPUT_0 | 
+    P1 = _00_Pn7_OUTPUT_0 | _00_Pn6_OUTPUT_0 | _00_Pn5_OUTPUT_0 | _00_Pn4_OUTPUT_0 | _08_Pn3_OUTPUT_1 | 
          _00_Pn2_OUTPUT_0 | _00_Pn1_OUTPUT_0 | _00_Pn0_OUTPUT_0;
-    PMCA1 = _F7_PMCA1_DEFAULT | _08_PMCAn3_NOT_USE;
-    PMCE1 = _00_PMCEn7_DIGITAL_ON | _00_PMCEn6_DIGITAL_ON | _00_PMCEn5_NOT_USE | _00_PMCEn4_NOT_USE | 
-            _00_PMCEn3_NOT_USE | _00_PMCEn2_NOT_USE | _00_PMCEn1_NOT_USE | _00_PMCEn0_NOT_USE;
-    PM1 = _00_PMn7_MODE_OUTPUT | _00_PMn6_MODE_OUTPUT | _20_PMn5_NOT_USE | _10_PMn4_NOT_USE | _08_PMn3_NOT_USE | 
+    PDIDIS1 = _00_PDIDISn5_INPUT_BUFFER_ON | _00_PDIDISn4_INPUT_BUFFER_ON | _00_PDIDISn3_INPUT_BUFFER_ON | 
+              _00_PDIDISn2_INPUT_BUFFER_ON | _00_PDIDISn1_INPUT_BUFFER_ON | _00_PDIDISn0_INPUT_BUFFER_ON;
+    POM1 = _00_POMn5_NCH_OFF | _00_POMn4_NCH_OFF | _00_POMn3_NCH_OFF | _00_POMn2_NCH_OFF | _00_POMn1_NCH_OFF | 
+           _00_POMn0_NCH_OFF;
+    PMCA1 = _F7_PMCA1_DEFAULT | _00_PMCAn3_DIGITAL_ON;
+    PMCE1 = _00_PMCEn7_DIGITAL_ON | _00_PMCEn6_DIGITAL_ON | _00_PMCEn5_DIGITAL_ON | _00_PMCEn4_DIGITAL_ON | 
+            _00_PMCEn3_DIGITAL_ON | _00_PMCEn2_DIGITAL_ON | _00_PMCEn1_DIGITAL_ON | _00_PMCEn0_DIGITAL_ON;
+    PM1 = _00_PMn7_MODE_OUTPUT | _00_PMn6_MODE_OUTPUT | _20_PMn5_NOT_USE | _10_PMn4_NOT_USE | _00_PMn3_MODE_OUTPUT | 
           _04_PMn2_NOT_USE | _02_PMn1_NOT_USE | _01_PMn0_NOT_USE;
+    /* Set PORT6 registers */
+    P6 = _00_Pn3_OUTPUT_0 | _00_Pn2_OUTPUT_0 | _00_Pn1_OUTPUT_0 | _00_Pn0_OUTPUT_0;
+    PMCE6 = _00_PMCEn1_DIGITAL_ON | _00_PMCEn0_DIGITAL_ON;
+    PM6 =  _F0_PM6_DEFAULT | _08_PMn3_NOT_USE | _00_PMn2_MODE_OUTPUT | _02_PMn1_NOT_USE | _01_PMn0_NOT_USE;
     /* Set PORT7 registers */
-    P7 = _00_Pn5_OUTPUT_0 | _00_Pn4_OUTPUT_0 | _00_Pn3_OUTPUT_0 | _00_Pn2_OUTPUT_0 | _00_Pn1_OUTPUT_0 | 
+    P7 = _00_Pn5_OUTPUT_0 | _00_Pn4_OUTPUT_0 | _08_Pn3_OUTPUT_1 | _00_Pn2_OUTPUT_0 | _00_Pn1_OUTPUT_0 | 
          _01_Pn0_OUTPUT_1;
     PDIDIS7 = _00_PDIDISn4_INPUT_BUFFER_ON | _00_PDIDISn2_INPUT_BUFFER_ON | _00_PDIDISn1_INPUT_BUFFER_ON;
     POM7 = _00_POMn4_NCH_OFF | _00_POMn2_NCH_OFF | _00_POMn1_NCH_OFF;
-    PMCT7 = _00_PMCTn5_NOT_USE | _00_PMCTn4_NOT_USE | _00_PMCTn3_NOT_USE | _00_PMCTn2_NOT_USE | _00_PMCTn1_NOT_USE | 
-            _00_PMCTn0_DIGITAL_ON;
-    PM7 = _C0_PM7_DEFAULT | _20_PMn5_NOT_USE | _10_PMn4_NOT_USE | _08_PMn3_NOT_USE | _04_PMn2_NOT_USE | 
+    PMCT7 = _00_PMCTn5_NOT_USE | _00_PMCTn4_NOT_USE | _00_PMCTn3_DIGITAL_ON | _00_PMCTn2_NOT_USE | 
+            _00_PMCTn1_NOT_USE | _00_PMCTn0_DIGITAL_ON;
+    PM7 = _C0_PM7_DEFAULT | _20_PMn5_NOT_USE | _10_PMn4_NOT_USE | _00_PMn3_MODE_OUTPUT | _04_PMn2_NOT_USE | 
           _02_PMn1_NOT_USE | _00_PMn0_MODE_OUTPUT;
     /* Set PORT14 registers */
-    P14 = _00_Pn7_OUTPUT_0 | _00_Pn6_OUTPUT_0 | _00_Pn0_OUTPUT_0;
+    P14 = _00_Pn7_OUTPUT_0 | _40_Pn6_OUTPUT_1 | _00_Pn0_OUTPUT_0;
     PMCA14 = _7F_PMCA14_DEFAULT | _00_PMCAn7_DIGITAL_ON;
     PM14 =  _3E_PM14_DEFAULT | _00_PMn7_MODE_OUTPUT | _00_PMn6_MODE_OUTPUT | _01_PMn0_NOT_USE;
 

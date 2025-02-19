@@ -14,43 +14,47 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2021, 2022 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2021, 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name        : Config_INTC.h
-* Component Version: 1.3.0
+* File Name        : Config_DTC_user.c
+* Component Version: 1.5.0
 * Device(s)        : R7F100GGNxFB
-* Description      : This file implements device driver for Config_INTC.
+* Description      : This file implements device driver for Config_DTC.
 ***********************************************************************************************************************/
-
 /***********************************************************************************************************************
 Includes
 ***********************************************************************************************************************/
-#include "r_cg_intc.h"
-
-#ifndef CFG_Config_INTC_H
-#define CFG_Config_INTC_H
-
-/***********************************************************************************************************************
-Macro definitions (Register bit)
-***********************************************************************************************************************/
-
-/***********************************************************************************************************************
-Macro definitions
-***********************************************************************************************************************/
-
-/***********************************************************************************************************************
-Typedef definitions
-***********************************************************************************************************************/
-
-/***********************************************************************************************************************
-Global functions
-***********************************************************************************************************************/
-void R_Config_INTC_Create(void);
-void R_Config_INTC_INTP1_Start(void);
-void R_Config_INTC_INTP1_Stop(void);
-void R_Config_INTC_Create_UserInit(void);
-/* Start user code for function. Do not edit comment generated here */
+#include "r_cg_macrodriver.h"
+#include "r_cg_userdefine.h"
+#include "Config_DTC.h"
+/* Start user code for include. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
-#endif
+
+/***********************************************************************************************************************
+Pragma directive
+***********************************************************************************************************************/
+/* Start user code for pragma. Do not edit comment generated here */
+/* End user code. Do not edit comment generated here */
+
+/***********************************************************************************************************************
+Global variables and functions
+***********************************************************************************************************************/
+/* Start user code for global. Do not edit comment generated here */
+/* End user code. Do not edit comment generated here */
+
+/***********************************************************************************************************************
+* Function Name: R_Config_DTC_Create_UserInit
+* Description  : This function adds user code after initializing the data transfer controller.
+* Arguments    : None
+* Return Value : None
+***********************************************************************************************************************/
+void R_Config_DTC_Create_UserInit(void)
+{
+    /* Start user code for user init. Do not edit comment generated here */
+    /* End user code. Do not edit comment generated here */
+}
+
+/* Start user code for adding. Do not edit comment generated here */
+/* End user code. Do not edit comment generated here */

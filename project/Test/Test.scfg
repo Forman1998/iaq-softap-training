@@ -177,9 +177,9 @@
         <Item bank="0" id="SAU1_INTSRE2" priority="3"/>
         <Item bank="0" id="ELCL_INTELCL" priority="3"/>
         <Item bank="0" id="SMS_INTSMSE" priority="3"/>
-        <Item bank="0" id="SAU0_INTST0" priority="3"/>
-        <Item bank="0" id="SAU0_INTCSI00" priority="3"/>
-        <Item bank="0" id="SAU0_INTIIC00" priority="3"/>
+        <Item bank="0" id="SAU0_INTST0" priority="1"/>
+        <Item bank="0" id="SAU0_INTCSI00" priority="1"/>
+        <Item bank="0" id="SAU0_INTIIC00" priority="1"/>
         <Item bank="0" id="TAU0_INTTM00" priority="3"/>
         <Item bank="0" id="SAU0_INTSRE0" priority="3"/>
         <Item bank="0" id="TAU0_INTTM01H" priority="3"/>
@@ -226,48 +226,25 @@
         <pinItem allocation="24" comments="" direction="O" id="P147" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="23" comments="" direction="O" id="P146" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="34" comments="" direction="O" id="P01" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="19" comments="" direction="O" id="P13" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="2" comments="" direction="None" id="SDAA0" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="9" comments="" direction="None" id="TxDA0" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="3" comments="" direction="IO" id="CCD06" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="11" comments="" direction="O" id="P70" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="15" comments="" direction="IO" id="CCD01" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="16" comments="" direction="IO" id="CCD00" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="8" comments="" direction="O" id="P73" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="39" comments="" direction="None" id="TOOL0" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="20" comments="" direction="None" id="SO00" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
+        <pinItem allocation="22" comments="" direction="None" id="SCK00" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="10" comments="" direction="None" id="RxDA0" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
         <pinItem allocation="1" comments="" direction="None" id="SCLA0" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
-        <pinItem allocation="13" comments="" direction="None" id="INTP1" isUsedBySoftware="true" locked="false" operationMode="" status="0"/>
     </tool>
     <tool id="Summary" version="1.0.0.0">
         <option id="com.renesas.smc.code.path" value="src\smc_gen"/>
         <option id="com.renesas.smc.code.type" value="Normal Folder"/>
     </tool>
     <tool id="SWComponent" version="1.0.0.0">
-        <configuration inuse="true" name="r_bsp">
-            <component description="Dependencies : None&#10;The r_bsp package provides a foundation for code to be built on top of. It provides startup code, iodefines, and MCU information for different boards. There are 2 folders that make up the r_bsp package. The 'mcu' folder contains files that are common to a MCU group. These files provide functionality such as easy register access, CPU functions, and a file named 'mcu_info.h' for each MCU group. The 'mcu_info.h' file has information about the MCU on the board and is configured based on the information given in r_bsp_config.h. The information in 'mcu_info.h' is used to help configure Renesas middleware that uses the r_bsp package. The 'board' folder has a folder with startup code for each supported board.  Which MCU and board is chosen is decided by the settings in 'platform.h'. The user can choose which board they are using by uncommenting the include path that applies to their board. For example, if you are using the RSK+RX64M then you would uncomment the #include &quot;./board/generic_rx64m/r_bsp.h&quot; include path. Users are encouraged to add their own boards to the 'board' directory. BSPs are configured by using the r_bsp_config.h file. Each board will have a reference configuration file named r_bsp_config_reference.h. The user should copy this file to their project, rename it to r_bsp_config.h, and use the options inside the file to configure the BSP for their project." detailDescription="Board Support Packages. - v1.40" display="r_bsp" id="r_bsp1.40" version="1.40">
-                <gridItem id="BSP_CFG_STARTUP_DISABLE" selectedIndex="0"/>
-                <gridItem id="BSP_CFG_INVALID_MEMORY_ACCESS_DETECTION_ENABLE" selectedIndex="0"/>
-                <gridItem id="BSP_CFG_RAM_GUARD_FUNC" selectedIndex="0"/>
-                <gridItem id="BSP_CFG_PORT_FUNCTION_GUARD" selectedIndex="0"/>
-                <gridItem id="BSP_CFG_INT_FUNCTION_GUARD" selectedIndex="0"/>
-                <gridItem id="BSP_CFG_CHIP_STATE_CTRL_GUARD" selectedIndex="0"/>
-                <gridItem id="BSP_CFG_DATA_FLASH_ACCESS_ENABLE" selectedIndex="0"/>
-                <gridItem id="BSP_CFG_CONFIGURATOR_SELECT" selectedIndex="1"/>
-                <gridItem id="BSP_CFG_CLOCK_OPERATION_API_FUNCTIONS_DISABLE" selectedIndex="1"/>
-                <gridItem id="BSP_CFG_GET_FREQ_API_FUNCTIONS_DISABLE" selectedIndex="0"/>
-                <gridItem id="BSP_CFG_SET_CLOCK_SOURCE_API_FUNCTIONS_DISABLE" selectedIndex="1"/>
-                <gridItem id="BSP_CFG_CHANGE_CLOCK_SETTING_API_FUNCTIONS_DISABLE" selectedIndex="1"/>
-                <gridItem id="BSP_CFG_SOFTWARE_DELAY_API_FUNCTIONS_DISABLE" selectedIndex="0"/>
-                <gridItem id="BSP_CFG_PARAM_CHECKING_ENABLE" selectedIndex="1"/>
-                <gridItem id="BSP_CFG_USER_WARM_START_CALLBACK_PRE_INITC_ENABLED" selectedIndex="0"/>
-                <gridItem id="BSP_CFG_USER_WARM_START_PRE_C_FUNCTION" selectedIndex="my_sw_warmstart_prec_function"/>
-                <gridItem id="BSP_CFG_USER_WARM_START_CALLBACK_POST_INITC_ENABLED" selectedIndex="0"/>
-                <gridItem id="BSP_CFG_USER_WARM_START_POST_C_FUNCTION" selectedIndex="my_sw_warmstart_postc_function"/>
-                <gridItem id="BSP_CFG_WDT_REFRESH_ENABLE" selectedIndex="0"/>
-                <gridItem id="BSP_CFG_USER_WDT_REFRESH_INIT_FUNCTION" selectedIndex="my_sw_wdt_refresh_init_function"/>
-                <gridItem id="BSP_CFG_USER_WDT_REFRESH_SETTING_FUNCTION" selectedIndex="my_sw_wdt_refresh_setting_function"/>
-            </component>
-            <source description="RL78 Software Integration System" display="RL78 Software Integration System" id="com.renesas.smc.tools.swcomponent.rl78.sis.source"/>
-            <source description="RL78 Software Integration System" display="RL78 Software Integration System" id="com.renesas.smc.tools.swcomponent.rl78.sis.source"/>
-        </configuration>
         <configuration apiMode="FULL_API" id="221d9fc2-bdfc-4bf4-b6da-31922eae0835" inuse="true" name="Config_IICA0">
             <allocatable id="0">
                 <isocket id="CountingClock" selection="Clock.tool_clock_fCLK" value="3.2E7"/>
@@ -323,7 +300,7 @@
                     <item id="enable" input="" vlaue="0"/>
                 </option>
             </allocatable>
-            <component description="This is a clocked communication function (Master mode) to communicate with two or more devices by using two lines: serial clock (SCL) and serial data (SDA)." detailDescription="" display="IIC Communication (Master mode)" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.iicmaster" version="1.4.0"/>
+            <component description="This is a clocked communication function (Master mode) to communicate with two or more devices by using two lines: serial clock (SCL) and serial data (SDA)." detailDescription="" display="IIC Communication (Master mode)" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.iicmaster" version="1.7.0"/>
             <allocator channelLevel0="0" channelLevel1="" channelLevel2="" channelLevel3="" channelLevel4="" channelLevel5="" description="IIC Communication (Master mode)" display="IICA0" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.iicamaster.iica0" type="IICAmaster">
                 <context/>
             </allocator>
@@ -397,6 +374,10 @@
                 <option enabled="false" id="elcClockValue" selection="input">
                     <item id="input" input="32000" vlaue="0"/>
                 </option>
+                <option enabled="true" id="TxDA0PinOutputSetting" selection="enable">
+                    <item id="disable" input="" vlaue="0"/>
+                    <item id="enable" input="" vlaue="0"/>
+                </option>
                 <option enabled="true" id="dataLength" selection="8bits">
                     <item id="5bits" input="" vlaue="0"/>
                     <item id="7bits" input="" vlaue="0"/>
@@ -468,7 +449,7 @@
                     <item id="disable" input="" vlaue="0"/>
                 </option>
             </allocatable>
-            <component description="The universal asynchronous receiver/transmitter(UART) interface supports serial communication." detailDescription="" display="UART Communication" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.uart" version="1.4.0"/>
+            <component description="The universal asynchronous receiver/transmitter(UART) interface supports serial communication." detailDescription="" display="UART Communication" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.uart" version="1.8.0"/>
             <allocator channelLevel0="0" channelLevel1="" channelLevel2="" channelLevel3="" channelLevel4="" channelLevel5="" description="UART Communication" display="UARTA0" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.uart.allocator01" type="UARTA">
                 <context>
                     <option enabled="true" id="Mode" selection="both">
@@ -530,6 +511,10 @@
                             <item id="Output1Use" input="" vlaue="0"/>
                             <item id="Output1Unuse" input="" vlaue="0"/>
                         </option>
+                        <option enabled="true" id="outputELCL" selection="outputELCLUnuse">
+                            <item id="outputELCLUse" input="" vlaue="0"/>
+                            <item id="outputELCLUnuse" input="" vlaue="0"/>
+                        </option>
                     </allocatable>
                 </allocatable>
                 <allocatable id="PORT1_Check">
@@ -565,6 +550,10 @@
                             <item id="Output1Use" input="" vlaue="0"/>
                             <item id="Output1Unuse" input="" vlaue="0"/>
                         </option>
+                        <option enabled="false" id="outputELCL" selection="outputELCLUnuse">
+                            <item id="outputELCLUse" input="" vlaue="0"/>
+                            <item id="outputELCLUnuse" input="" vlaue="0"/>
+                        </option>
                     </allocatable>
                     <allocatable id="P11">
                         <option enabled="true" id="UseStatus" selection="Unuse">
@@ -592,6 +581,10 @@
                             <item id="Output1Use" input="" vlaue="0"/>
                             <item id="Output1Unuse" input="" vlaue="0"/>
                         </option>
+                        <option enabled="false" id="outputELCL" selection="outputELCLUnuse">
+                            <item id="outputELCLUse" input="" vlaue="0"/>
+                            <item id="outputELCLUnuse" input="" vlaue="0"/>
+                        </option>
                     </allocatable>
                     <allocatable id="P12">
                         <option enabled="true" id="UseStatus" selection="Unuse">
@@ -615,18 +608,22 @@
                             <item id="Output1Use" input="" vlaue="0"/>
                             <item id="Output1Unuse" input="" vlaue="0"/>
                         </option>
+                        <option enabled="false" id="outputELCL" selection="outputELCLUnuse">
+                            <item id="outputELCLUse" input="" vlaue="0"/>
+                            <item id="outputELCLUnuse" input="" vlaue="0"/>
+                        </option>
                     </allocatable>
                     <allocatable id="P13">
-                        <option enabled="true" id="UseStatus" selection="Unuse">
+                        <option enabled="true" id="UseStatus" selection="Out">
                             <item id="Unuse" input="" vlaue="0"/>
                             <item id="In" input="" vlaue="0"/>
                             <item id="Out" input="" vlaue="0"/>
                         </option>
-                        <option enabled="true" id="Pullup" selection="PullupUnuse">
+                        <option enabled="false" id="Pullup" selection="PullupUnuse">
                             <item id="PullupUse" input="" vlaue="0"/>
                             <item id="PullupUnuse" input="" vlaue="0"/>
                         </option>
-                        <option enabled="true" id="TTLbuffer" selection="TTLbufferUnuse">
+                        <option enabled="false" id="TTLbuffer" selection="TTLbufferUnuse">
                             <item id="TTLbufferUse" input="" vlaue="0"/>
                             <item id="TTLbufferUnuse" input="" vlaue="0"/>
                         </option>
@@ -638,9 +635,13 @@
                             <item id="NchUse" input="" vlaue="0"/>
                             <item id="NchUnuse" input="" vlaue="0"/>
                         </option>
-                        <option enabled="false" id="Output1" selection="Output1Use">
+                        <option enabled="true" id="Output1" selection="Output1Use">
                             <item id="Output1Use" input="" vlaue="0"/>
                             <item id="Output1Unuse" input="" vlaue="0"/>
+                        </option>
+                        <option enabled="true" id="outputELCL" selection="outputELCLUnuse">
+                            <item id="outputELCLUse" input="" vlaue="0"/>
+                            <item id="outputELCLUnuse" input="" vlaue="0"/>
                         </option>
                     </allocatable>
                     <allocatable id="P14">
@@ -669,6 +670,10 @@
                             <item id="Output1Use" input="" vlaue="0"/>
                             <item id="Output1Unuse" input="" vlaue="0"/>
                         </option>
+                        <option enabled="false" id="outputELCL" selection="outputELCLUnuse">
+                            <item id="outputELCLUse" input="" vlaue="0"/>
+                            <item id="outputELCLUnuse" input="" vlaue="0"/>
+                        </option>
                     </allocatable>
                     <allocatable id="P15">
                         <option enabled="true" id="UseStatus" selection="Unuse">
@@ -696,6 +701,10 @@
                             <item id="Output1Use" input="" vlaue="0"/>
                             <item id="Output1Unuse" input="" vlaue="0"/>
                         </option>
+                        <option enabled="false" id="outputELCL" selection="outputELCLUnuse">
+                            <item id="outputELCLUse" input="" vlaue="0"/>
+                            <item id="outputELCLUnuse" input="" vlaue="0"/>
+                        </option>
                     </allocatable>
                     <allocatable id="P16">
                         <option enabled="true" id="UseStatus" selection="OutputCurrent">
@@ -721,6 +730,10 @@
                             <item id="2mA" input="" vlaue="0"/>
                             <item id="5mA" input="" vlaue="0"/>
                             <item id="10mA" input="" vlaue="0"/>
+                        </option>
+                        <option enabled="false" id="outputELCL" selection="outputELCLUnuse">
+                            <item id="outputELCLUse" input="" vlaue="0"/>
+                            <item id="outputELCLUnuse" input="" vlaue="0"/>
                         </option>
                     </allocatable>
                     <allocatable id="P17">
@@ -760,6 +773,10 @@
                             <item id="Max20mA" input="" vlaue="0"/>
                             <item id="Max40mA" input="" vlaue="0"/>
                         </option>
+                        <option enabled="false" id="outputELCL" selection="outputELCLUnuse">
+                            <item id="outputELCLUse" input="" vlaue="0"/>
+                            <item id="outputELCLUnuse" input="" vlaue="0"/>
+                        </option>
                     </allocatable>
                 </allocatable>
                 <allocatable id="PORT2_Check">
@@ -787,10 +804,96 @@
                     </option>
                 </allocatable>
                 <allocatable id="PORT6_Check">
-                    <option enabled="true" id="PortnEnable" selection="Disable">
+                    <option enabled="true" id="PortnEnable" selection="Enable">
                         <item id="Enable" input="" vlaue="0"/>
                         <item id="Disable" input="" vlaue="0"/>
                     </option>
+                </allocatable>
+                <allocatable id="PORT6_Chan">
+                    <allocatable id="P60">
+                        <option enabled="true" id="UseStatus" selection="Unuse">
+                            <item id="Unuse" input="" vlaue="0"/>
+                            <item id="In" input="" vlaue="0"/>
+                            <item id="Out" input="" vlaue="0"/>
+                            <item id="OutputCurrent" input="" vlaue="0"/>
+                        </option>
+                        <option enabled="false" id="Output1" selection="Output1Unuse">
+                            <item id="Output1Use" input="" vlaue="0"/>
+                            <item id="Output1Unuse" input="" vlaue="0"/>
+                        </option>
+                        <option enabled="false" id="OutputCurrentSet" selection="Hiz">
+                            <item id="Hiz" input="" vlaue="0"/>
+                            <item id="2mA" input="" vlaue="0"/>
+                            <item id="5mA" input="" vlaue="0"/>
+                            <item id="10mA" input="" vlaue="0"/>
+                            <item id="15mA" input="" vlaue="0"/>
+                        </option>
+                        <option enabled="false" id="outputELCL" selection="outputELCLUnuse">
+                            <item id="outputELCLUse" input="" vlaue="0"/>
+                            <item id="outputELCLUnuse" input="" vlaue="0"/>
+                        </option>
+                    </allocatable>
+                    <allocatable id="P61">
+                        <option enabled="true" id="UseStatus" selection="Unuse">
+                            <item id="Unuse" input="" vlaue="0"/>
+                            <item id="In" input="" vlaue="0"/>
+                            <item id="Out" input="" vlaue="0"/>
+                            <item id="OutputCurrent" input="" vlaue="0"/>
+                        </option>
+                        <option enabled="false" id="Output1" selection="Output1Unuse">
+                            <item id="Output1Use" input="" vlaue="0"/>
+                            <item id="Output1Unuse" input="" vlaue="0"/>
+                        </option>
+                        <option enabled="false" id="OutputCurrentSet" selection="Hiz">
+                            <item id="Hiz" input="" vlaue="0"/>
+                            <item id="2mA" input="" vlaue="0"/>
+                            <item id="5mA" input="" vlaue="0"/>
+                            <item id="10mA" input="" vlaue="0"/>
+                            <item id="15mA" input="" vlaue="0"/>
+                        </option>
+                        <option enabled="false" id="outputELCL" selection="outputELCLUnuse">
+                            <item id="outputELCLUse" input="" vlaue="0"/>
+                            <item id="outputELCLUnuse" input="" vlaue="0"/>
+                        </option>
+                    </allocatable>
+                    <allocatable id="P62">
+                        <option enabled="true" id="UseStatus" selection="OutputCurrent">
+                            <item id="Unuse" input="" vlaue="0"/>
+                            <item id="In" input="" vlaue="0"/>
+                            <item id="Out" input="" vlaue="0"/>
+                            <item id="OutputCurrent" input="" vlaue="0"/>
+                        </option>
+                        <option enabled="false" id="Output1" selection="Output1Unuse">
+                            <item id="Output1Use" input="" vlaue="0"/>
+                            <item id="Output1Unuse" input="" vlaue="0"/>
+                        </option>
+                        <option enabled="true" id="OutputCurrentSet" selection="Hiz">
+                            <item id="Hiz" input="" vlaue="0"/>
+                            <item id="2mA" input="" vlaue="0"/>
+                            <item id="5mA" input="" vlaue="0"/>
+                            <item id="10mA" input="" vlaue="0"/>
+                            <item id="15mA" input="" vlaue="0"/>
+                        </option>
+                    </allocatable>
+                    <allocatable id="P63">
+                        <option enabled="true" id="UseStatus" selection="Unuse">
+                            <item id="Unuse" input="" vlaue="0"/>
+                            <item id="In" input="" vlaue="0"/>
+                            <item id="Out" input="" vlaue="0"/>
+                            <item id="OutputCurrent" input="" vlaue="0"/>
+                        </option>
+                        <option enabled="false" id="Output1" selection="Output1Unuse">
+                            <item id="Output1Use" input="" vlaue="0"/>
+                            <item id="Output1Unuse" input="" vlaue="0"/>
+                        </option>
+                        <option enabled="false" id="OutputCurrentSet" selection="Hiz">
+                            <item id="Hiz" input="" vlaue="0"/>
+                            <item id="2mA" input="" vlaue="0"/>
+                            <item id="5mA" input="" vlaue="0"/>
+                            <item id="10mA" input="" vlaue="0"/>
+                            <item id="15mA" input="" vlaue="0"/>
+                        </option>
+                    </allocatable>
                 </allocatable>
                 <allocatable id="PORT7_Check">
                     <option enabled="true" id="PortnEnable" selection="Enable">
@@ -869,16 +972,16 @@
                         </option>
                     </allocatable>
                     <allocatable id="P73">
-                        <option enabled="true" id="UseStatus" selection="Unuse">
+                        <option enabled="true" id="UseStatus" selection="Out">
                             <item id="Unuse" input="" vlaue="0"/>
                             <item id="In" input="" vlaue="0"/>
                             <item id="Out" input="" vlaue="0"/>
                         </option>
-                        <option enabled="true" id="Pullup" selection="PullupUnuse">
+                        <option enabled="false" id="Pullup" selection="PullupUnuse">
                             <item id="PullupUse" input="" vlaue="0"/>
                             <item id="PullupUnuse" input="" vlaue="0"/>
                         </option>
-                        <option enabled="false" id="Output1" selection="Output1Use">
+                        <option enabled="true" id="Output1" selection="Output1Use">
                             <item id="Output1Use" input="" vlaue="0"/>
                             <item id="Output1Unuse" input="" vlaue="0"/>
                         </option>
@@ -966,7 +1069,7 @@
                             <item id="PullupUse" input="" vlaue="0"/>
                             <item id="PullupUnuse" input="" vlaue="0"/>
                         </option>
-                        <option enabled="true" id="Output1" selection="Output1Unuse">
+                        <option enabled="true" id="Output1" selection="Output1Use">
                             <item id="Output1Use" input="" vlaue="0"/>
                             <item id="Output1Unuse" input="" vlaue="0"/>
                         </option>
@@ -994,7 +1097,7 @@
                     <item id="ReadDigitalOutputLevel" input="" vlaue="0"/>
                 </option>
             </allocatable>
-            <component description="The ports is function that config each pin to be used as general input/output pin or input/output function of internal IP." detailDescription="" display="Ports" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.port" version="1.3.0"/>
+            <component description="The ports is function that config each pin to be used as general input/output pin or input/output function of internal IP." detailDescription="" display="Ports" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.port" version="1.6.0"/>
             <allocator channelLevel0="" channelLevel1="" channelLevel2="" channelLevel3="" channelLevel4="" channelLevel5="" description="Input output configuration of PORT" display="PORT" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.port.rl78g23.PORT" type="">
                 <context/>
             </allocator>
@@ -1055,7 +1158,7 @@
                     <item id="32bitCountMode" input="" vlaue="0"/>
                 </option>
             </allocatable>
-            <component description="The interval timer function is timer that generating timer interrupt at regular intervals. It also can measure the interval of the input signals." detailDescription="" display="Interval Timer" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.intervaltimer" version="1.3.0"/>
+            <component description="The interval timer function is timer that generating timer interrupt at regular intervals. It also can measure the interval of the input signals." detailDescription="" display="Interval Timer" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.intervaltimer" version="1.6.0"/>
             <allocator channelLevel0="0" channelLevel1="5" channelLevel2="" channelLevel3="" channelLevel4="" channelLevel5="" description="Timer array unit 0 channel 5" display="TAU0_5" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.intervaltimer.g23.tau05" type="TAU">
                 <context>
                     <option enabled="true" id="FilterMode" selection="16bitCountMode">
@@ -1123,7 +1226,7 @@
                     <item id="32bitCountMode" input="" vlaue="0"/>
                 </option>
             </allocatable>
-            <component description="The interval timer function is timer that generating timer interrupt at regular intervals. It also can measure the interval of the input signals." detailDescription="" display="Interval Timer" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.intervaltimer" version="1.3.0"/>
+            <component description="The interval timer function is timer that generating timer interrupt at regular intervals. It also can measure the interval of the input signals." detailDescription="" display="Interval Timer" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.intervaltimer" version="1.6.0"/>
             <allocator channelLevel0="0" channelLevel1="0" channelLevel2="" channelLevel3="" channelLevel4="" channelLevel5="" description="Timer array unit 0 channel 0" display="TAU0_0" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.intervaltimer.g23.tau00" type="TAU">
                 <context>
                     <option enabled="true" id="FilterMode" selection="16bitCountMode">
@@ -1136,164 +1239,1370 @@
             </allocator>
             <source description="Code generator components provide peripheral drivers with customized generated source geared towards small code size" display="Code Generator" id="com.renesas.smc.tools.swcomponent.codegenerator.source"/>
         </configuration>
-        <configuration apiMode="FULL_API" id="09152a56-4031-4bfb-b14f-48833dab5160" inuse="true" name="Config_INTC">
-            <allocatable id="INTC">
-                <allocatable id="INTP0">
-                    <option enabled="true" id="enableINTP" selection="disable">
-                        <item id="enable" input="" vlaue="0"/>
-                        <item id="disable" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="validedge" selection="falling">
-                        <item id="falling" input="" vlaue="0"/>
-                        <item id="rising" input="" vlaue="0"/>
-                        <item id="both" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="intpPriority" selection="Level3">
-                        <item id="Level0" input="" vlaue="0"/>
-                        <item id="Level1" input="" vlaue="0"/>
-                        <item id="Level2" input="" vlaue="0"/>
-                        <item id="Level3" input="" vlaue="0"/>
-                    </option>
-                </allocatable>
-                <allocatable id="INTP1">
-                    <option enabled="true" id="enableINTP" selection="enable">
-                        <item id="enable" input="" vlaue="0"/>
-                        <item id="disable" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="true" id="validedge" selection="falling">
-                        <item id="falling" input="" vlaue="0"/>
-                        <item id="rising" input="" vlaue="0"/>
-                        <item id="both" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="true" id="intpPriority" selection="Level3">
-                        <item id="Level0" input="" vlaue="0"/>
-                        <item id="Level1" input="" vlaue="0"/>
-                        <item id="Level2" input="" vlaue="0"/>
-                        <item id="Level3" input="" vlaue="0"/>
-                    </option>
-                </allocatable>
-                <allocatable id="INTP2">
-                    <option enabled="true" id="enableINTP" selection="disable">
-                        <item id="enable" input="" vlaue="0"/>
-                        <item id="disable" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="validedge" selection="falling">
-                        <item id="falling" input="" vlaue="0"/>
-                        <item id="rising" input="" vlaue="0"/>
-                        <item id="both" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="intpPriority" selection="Level3">
-                        <item id="Level0" input="" vlaue="0"/>
-                        <item id="Level1" input="" vlaue="0"/>
-                        <item id="Level2" input="" vlaue="0"/>
-                        <item id="Level3" input="" vlaue="0"/>
-                    </option>
-                </allocatable>
-                <allocatable id="INTP3">
-                    <option enabled="true" id="enableINTP" selection="disable">
-                        <item id="enable" input="" vlaue="0"/>
-                        <item id="disable" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="validedge" selection="falling">
-                        <item id="falling" input="" vlaue="0"/>
-                        <item id="rising" input="" vlaue="0"/>
-                        <item id="both" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="intpPriority" selection="Level3">
-                        <item id="Level0" input="" vlaue="0"/>
-                        <item id="Level1" input="" vlaue="0"/>
-                        <item id="Level2" input="" vlaue="0"/>
-                        <item id="Level3" input="" vlaue="0"/>
-                    </option>
-                </allocatable>
-                <allocatable id="INTP4">
-                    <option enabled="true" id="enableINTP" selection="disable">
-                        <item id="enable" input="" vlaue="0"/>
-                        <item id="disable" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="validedge" selection="falling">
-                        <item id="falling" input="" vlaue="0"/>
-                        <item id="rising" input="" vlaue="0"/>
-                        <item id="both" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="intpPriority" selection="Level3">
-                        <item id="Level0" input="" vlaue="0"/>
-                        <item id="Level1" input="" vlaue="0"/>
-                        <item id="Level2" input="" vlaue="0"/>
-                        <item id="Level3" input="" vlaue="0"/>
-                    </option>
-                </allocatable>
-                <allocatable id="INTP5">
-                    <option enabled="true" id="enableINTP" selection="disable">
-                        <item id="enable" input="" vlaue="0"/>
-                        <item id="disable" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="validedge" selection="falling">
-                        <item id="falling" input="" vlaue="0"/>
-                        <item id="rising" input="" vlaue="0"/>
-                        <item id="both" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="intpPriority" selection="Level3">
-                        <item id="Level0" input="" vlaue="0"/>
-                        <item id="Level1" input="" vlaue="0"/>
-                        <item id="Level2" input="" vlaue="0"/>
-                        <item id="Level3" input="" vlaue="0"/>
-                    </option>
-                </allocatable>
-                <allocatable id="INTP6">
-                    <option enabled="true" id="enableINTP" selection="disable">
-                        <item id="enable" input="" vlaue="0"/>
-                        <item id="disable" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="validedge" selection="falling">
-                        <item id="falling" input="" vlaue="0"/>
-                        <item id="rising" input="" vlaue="0"/>
-                        <item id="both" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="intpPriority" selection="Level3">
-                        <item id="Level0" input="" vlaue="0"/>
-                        <item id="Level1" input="" vlaue="0"/>
-                        <item id="Level2" input="" vlaue="0"/>
-                        <item id="Level3" input="" vlaue="0"/>
-                    </option>
-                </allocatable>
-                <allocatable id="INTP8">
-                    <option enabled="true" id="enableINTP" selection="disable">
-                        <item id="enable" input="" vlaue="0"/>
-                        <item id="disable" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="validedge" selection="falling">
-                        <item id="falling" input="" vlaue="0"/>
-                        <item id="rising" input="" vlaue="0"/>
-                        <item id="both" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="intpPriority" selection="Level3">
-                        <item id="Level0" input="" vlaue="0"/>
-                        <item id="Level1" input="" vlaue="0"/>
-                        <item id="Level2" input="" vlaue="0"/>
-                        <item id="Level3" input="" vlaue="0"/>
-                    </option>
-                </allocatable>
-                <allocatable id="INTP9">
-                    <option enabled="true" id="enableINTP" selection="disable">
-                        <item id="enable" input="" vlaue="0"/>
-                        <item id="disable" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="validedge" selection="falling">
-                        <item id="falling" input="" vlaue="0"/>
-                        <item id="rising" input="" vlaue="0"/>
-                        <item id="both" input="" vlaue="0"/>
-                    </option>
-                    <option enabled="false" id="intpPriority" selection="Level3">
-                        <item id="Level0" input="" vlaue="0"/>
-                        <item id="Level1" input="" vlaue="0"/>
-                        <item id="Level2" input="" vlaue="0"/>
-                        <item id="Level3" input="" vlaue="0"/>
-                    </option>
-                </allocatable>
+        <configuration inuse="true" name="r_bsp">
+            <component description="Dependencies : None&#10;The r_bsp package provides a foundation for code to be built on top of. It provides startup code, iodefines, and MCU information for different boards. There are 2 folders that make up the r_bsp package. The 'mcu' folder contains files that are common to a MCU group. These files provide functionality such as easy register access, CPU functions, and a file named 'mcu_info.h' for each MCU group. The 'mcu_info.h' file has information about the MCU on the board and is configured based on the information given in r_bsp_config.h. The information in 'mcu_info.h' is used to help configure Renesas middleware that uses the r_bsp package. The 'board' folder has a folder with startup code for each supported board.  Which MCU and board is chosen is decided by the settings in 'platform.h'. The user can choose which board they are using by uncommenting the include path that applies to their board. For example, if you are using the RSK+RX64M then you would uncomment the #include &quot;./board/generic_rx64m/r_bsp.h&quot; include path. Users are encouraged to add their own boards to the 'board' directory. BSPs are configured by using the r_bsp_config.h file. Each board will have a reference configuration file named r_bsp_config_reference.h. The user should copy this file to their project, rename it to r_bsp_config.h, and use the options inside the file to configure the BSP for their project." detailDescription="Board Support Packages. - v1.80" display="r_bsp" id="r_bsp1.80" version="1.80">
+                <gridItem id="BSP_CFG_STARTUP_DISABLE" selectedIndex="0"/>
+                <gridItem id="BSP_CFG_INVALID_MEMORY_ACCESS_DETECTION_ENABLE" selectedIndex="0"/>
+                <gridItem id="BSP_CFG_RAM_GUARD_FUNC" selectedIndex="0"/>
+                <gridItem id="BSP_CFG_PORT_FUNCTION_GUARD" selectedIndex="0"/>
+                <gridItem id="BSP_CFG_INT_FUNCTION_GUARD" selectedIndex="0"/>
+                <gridItem id="BSP_CFG_CHIP_STATE_CTRL_GUARD" selectedIndex="0"/>
+                <gridItem id="BSP_CFG_DATA_FLASH_ACCESS_ENABLE" selectedIndex="0"/>
+                <gridItem id="BSP_CFG_CONFIGURATOR_SELECT" selectedIndex="1"/>
+                <gridItem id="BSP_CFG_CLOCK_OPERATION_API_FUNCTIONS_DISABLE" selectedIndex="1"/>
+                <gridItem id="BSP_CFG_GET_FREQ_API_FUNCTIONS_DISABLE" selectedIndex="0"/>
+                <gridItem id="BSP_CFG_SET_CLOCK_SOURCE_API_FUNCTIONS_DISABLE" selectedIndex="1"/>
+                <gridItem id="BSP_CFG_CHANGE_CLOCK_SETTING_API_FUNCTIONS_DISABLE" selectedIndex="1"/>
+                <gridItem id="BSP_CFG_SOFTWARE_DELAY_API_FUNCTIONS_DISABLE" selectedIndex="0"/>
+                <gridItem id="BSP_CFG_PARAM_CHECKING_ENABLE" selectedIndex="1"/>
+                <gridItem id="BSP_CFG_USER_WARM_START_CALLBACK_PRE_INITC_ENABLED" selectedIndex="0"/>
+                <gridItem id="BSP_CFG_USER_WARM_START_PRE_C_FUNCTION" selectedIndex="my_sw_warmstart_prec_function"/>
+                <gridItem id="BSP_CFG_USER_WARM_START_CALLBACK_POST_INITC_ENABLED" selectedIndex="0"/>
+                <gridItem id="BSP_CFG_USER_WARM_START_POST_C_FUNCTION" selectedIndex="my_sw_warmstart_postc_function"/>
+                <gridItem id="BSP_CFG_WDT_REFRESH_ENABLE" selectedIndex="0"/>
+                <gridItem id="BSP_CFG_USER_WDT_REFRESH_INIT_FUNCTION" selectedIndex="my_sw_wdt_refresh_init_function"/>
+                <gridItem id="BSP_CFG_USER_WDT_REFRESH_SETTING_FUNCTION" selectedIndex="my_sw_wdt_refresh_setting_function"/>
+            </component>
+            <source description="RL78 Software Integration System" display="RL78 Software Integration System" id="com.renesas.smc.tools.swcomponent.rl78.sis.source"/>
+            <source description="RL78 Software Integration System" display="RL78 Software Integration System" id="com.renesas.smc.tools.swcomponent.rl78.sis.source"/>
+        </configuration>
+        <configuration inuse="true" name="r_hs400x">
+            <component description="Dependency : r_bsp version(s) 1.41&#10;Dependency : r_comms_i2c version(s) 1.11&#10;The HS400x SIS module controls the Renesas Electronics HS400x sensors using IICA and SAU driver generated by Smart Configurator." detailDescription="HS400x Sensor Middleware" display="r_hs400x" id="r_hs400x1.02" version="1.02">
+                <gridItem id="RM_HS400X_CFG_PARAM_CHECKING_ENABLE" selectedIndex="0"/>
+                <gridItem id="RM_HS400X_CFG_DEVICE_NUM_MAX" selectedIndex="0"/>
+                <gridItem id="RM_HS400X_CFG_MEASUREMENT_TYPE" selectedIndex="1"/>
+                <gridItem id="RM_HS400X_CFG_DATA_BOTH_HUMIDITY_TEMPERATURE" selectedIndex="1"/>
+                <gridItem id="RM_HS400X_CFG_DEVICE0_COMMS_INSTANCE" selectedIndex="0"/>
+                <gridItem id="RM_HS400X_CFG_DEVICE0_TEMPERATURE_RESOLUTION" selectedIndex="3"/>
+                <gridItem id="RM_HS400X_CFG_DEVICE0_HUMIDITY_RESOLUTION" selectedIndex="3"/>
+                <gridItem id="RM_HS400X_CFG_DEVICE0_PERIODIC_MEASUREMENT_FREQUENCY" selectedIndex="1"/>
+                <gridItem id="RM_HS400X_CFG_DEVICE0_CALLBACK" selectedIndex="hs400x_user_i2c_callback0"/>
+                <gridItem id="RM_HS400X_CFG_DEVICE1_COMMS_INSTANCE" selectedIndex="1"/>
+                <gridItem id="RM_HS400X_CFG_DEVICE1_TEMPERATURE_RESOLUTION" selectedIndex="3"/>
+                <gridItem id="RM_HS400X_CFG_DEVICE1_HUMIDITY_RESOLUTION" selectedIndex="3"/>
+                <gridItem id="RM_HS400X_CFG_DEVICE1_PERIODIC_MEASUREMENT_FREQUENCY" selectedIndex="1"/>
+                <gridItem id="RM_HS400X_CFG_DEVICE1_CALLBACK" selectedIndex="hs400x_user_i2c_callback1"/>
+            </component>
+            <source description="RL78 Software Integration System" display="RL78 Software Integration System" id="com.renesas.smc.tools.swcomponent.rl78.sis.source"/>
+            <source description="RL78 Software Integration System" display="RL78 Software Integration System" id="com.renesas.smc.tools.swcomponent.rl78.sis.source"/>
+        </configuration>
+        <configuration apiMode="FULL_API" id="9c28cdd8-73c4-4670-9ade-d5e4b7a59017" inuse="true" name="Config_TAU0_4">
+            <allocatable id="TAU04">
+                <isocket id="CountingClock" selection="Clock.tool_clock_fCLK" value="3.2E7"/>
+                <option enabled="true" id="OperationClock" selection="CK0">
+                    <item id="CK0" input="" vlaue="0"/>
+                    <item id="CK1" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="ClockSource" selection="FCLK32768">
+                    <item id="FCLK1" input="1" vlaue="0"/>
+                    <item id="FCLK2" input="2" vlaue="0"/>
+                    <item id="FCLK4" input="4" vlaue="0"/>
+                    <item id="FCLK8" input="8" vlaue="0"/>
+                    <item id="FCLK16" input="16" vlaue="0"/>
+                    <item id="FCLK32" input="32" vlaue="0"/>
+                    <item id="FCLK64" input="64" vlaue="0"/>
+                    <item id="FCLK128" input="128" vlaue="0"/>
+                    <item id="FCLK256" input="256" vlaue="0"/>
+                    <item id="FCLK512" input="512" vlaue="0"/>
+                    <item id="FCLK1024" input="1024" vlaue="0"/>
+                    <item id="FCLK2048" input="2048" vlaue="0"/>
+                    <item id="FCLK4096" input="4096" vlaue="0"/>
+                    <item id="FCLK8192" input="8192" vlaue="0"/>
+                    <item id="FCLK16384" input="16384" vlaue="0"/>
+                    <item id="FCLK32768" input="32768" vlaue="0"/>
+                </option>
+                <option enabled="true" id="IntervalValue16bits" selection="intervalValueText16bits">
+                    <item id="intervalValueText16bits" input="1" vlaue="0"/>
+                </option>
+                <option enabled="true" id="IntervalUnit16bits" selection="count">
+                    <item id="ms" input="" vlaue="0"/>
+                    <item id="us" input="" vlaue="0"/>
+                    <item id="ns" input="" vlaue="0"/>
+                    <item id="count" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="StartInt" selection="disable">
+                    <item id="enable" input="" vlaue="0"/>
+                    <item id="disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="InterruptEnable" selection="enable">
+                    <item id="enable" input="" vlaue="0"/>
+                    <item id="disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="Priority" selection="Level3">
+                    <item id="Level0" input="" vlaue="0"/>
+                    <item id="Level1" input="" vlaue="0"/>
+                    <item id="Level2" input="" vlaue="0"/>
+                    <item id="Level3" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="FilterMode" selection="16bitCountMode">
+                    <item id="8bitCountMode" input="" vlaue="0"/>
+                    <item id="16bitCountMode" input="" vlaue="0"/>
+                    <item id="16bitCaptureMode" input="" vlaue="0"/>
+                    <item id="32bitCountMode" input="" vlaue="0"/>
+                </option>
             </allocatable>
-            <component description="The interrupt controller (INTC) is a function that sets request such as external pin interrupts." detailDescription="" display="Interrupt Controller" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.intp" version="1.3.0"/>
-            <allocator channelLevel0="" channelLevel1="" channelLevel2="" channelLevel3="" channelLevel4="" channelLevel5="" description="Interrupt Controller" display="INTC" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.intp" type="">
+            <component description="The interval timer function is timer that generating timer interrupt at regular intervals. It also can measure the interval of the input signals." detailDescription="" display="Interval Timer" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.intervaltimer" version="1.6.0"/>
+            <allocator channelLevel0="0" channelLevel1="4" channelLevel2="" channelLevel3="" channelLevel4="" channelLevel5="" description="Timer array unit 0 channel 4" display="TAU0_4" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.intervaltimer.g23.tau04" type="TAU">
+                <context>
+                    <option enabled="true" id="FilterMode" selection="16bitCountMode">
+                        <item enabled="true" id="8bitCountMode"/>
+                        <item enabled="true" id="16bitCountMode"/>
+                        <item enabled="true" id="16bitCaptureMode"/>
+                        <item enabled="true" id="32bitCountMode"/>
+                    </option>
+                </context>
+            </allocator>
+            <source description="Code generator components provide peripheral drivers with customized generated source geared towards small code size" display="Code Generator" id="com.renesas.smc.tools.swcomponent.codegenerator.source"/>
+        </configuration>
+        <configuration apiMode="FULL_API" id="45ab0cbb-f583-43da-990e-5033bcdbf7b3" inuse="true" name="Config_CSI00">
+            <allocatable id="CSI00">
+                <osocket id="SendSetting" value="SingleTransfer"/>
+                <osocket id="BothSetting" value="SingleTransfer"/>
+                <osocket id="RecvSetting" value="SingleTransfer"/>
+                <isocket id="vddRangeMode" selection="Clock.tool_clock_vddRangeMode" value="hsmainmode"/>
+                <isocket id="fCLK" selection="Clock.tool_clock_fCLK" value="3.2E7"/>
+                <isocket id="evddRange" selection="Clock.tool_clock_evddRange" value="1.8~5.5"/>
+                <option enabled="true" id="TransClockMode" selection="internal">
+                    <item id="internal" input="" vlaue="0"/>
+                    <item id="external" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="OperationClock" selection="CK0">
+                    <item id="CK0" input="" vlaue="0"/>
+                    <item id="CK1" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="Prescaler" selection="FCLK0">
+                    <item id="FCLK0" input="1" vlaue="0"/>
+                    <item id="FCLK1" input="2" vlaue="0"/>
+                    <item id="FCLK2" input="4" vlaue="0"/>
+                    <item id="FCLK3" input="8" vlaue="0"/>
+                    <item id="FCLK4" input="16" vlaue="0"/>
+                    <item id="FCLK5" input="32" vlaue="0"/>
+                    <item id="FCLK6" input="64" vlaue="0"/>
+                    <item id="FCLK7" input="128" vlaue="0"/>
+                    <item id="FCLK8" input="256" vlaue="0"/>
+                    <item id="FCLK9" input="512" vlaue="0"/>
+                    <item id="FCLK10" input="1024" vlaue="0"/>
+                    <item id="FCLK11" input="2048" vlaue="0"/>
+                    <item id="FCLK12" input="4096" vlaue="0"/>
+                    <item id="FCLK13" input="8192" vlaue="0"/>
+                    <item id="FCLK14" input="16384" vlaue="0"/>
+                    <item id="FCLK15" input="32768" vlaue="0"/>
+                </option>
+                <option enabled="true" id="TransferMode" selection="Single">
+                    <item id="Single" input="" vlaue="0"/>
+                    <item id="Continuous" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="DataLength" selection="8Bits">
+                    <item id="8Bits" input="" vlaue="0"/>
+                    <item id="7Bits" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="TransDir" selection="MSB">
+                    <item id="LSB" input="" vlaue="0"/>
+                    <item id="MSB" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="datatiming" selection="Type4Item">
+                    <item id="Type1Item" input="" vlaue="0"/>
+                    <item id="Type2Item" input="" vlaue="0"/>
+                    <item id="Type3Item" input="" vlaue="0"/>
+                    <item id="Type4Item" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="Bitrate" selection="BaudrateValue">
+                    <item id="BaudrateValue" input="8000000" vlaue="1"/>
+                    <item id="Slection9600" input="9600" vlaue="0"/>
+                    <item id="Slection19200" input="19200" vlaue="0"/>
+                    <item id="Slection31250" input="31250" vlaue="0"/>
+                    <item id="Slection38400" input="38400" vlaue="0"/>
+                    <item id="Slection76800" input="76800" vlaue="0"/>
+                    <item id="Slection153600" input="153600" vlaue="0"/>
+                    <item id="Slection312500" input="312500" vlaue="0"/>
+                </option>
+                <option enabled="true" id="SCKmnOutput" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="SOmnOutput" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="INTPriority" selection="Level1">
+                    <item id="Level0" input="" vlaue="0"/>
+                    <item id="Level1" input="" vlaue="0"/>
+                    <item id="Level2" input="" vlaue="0"/>
+                    <item id="Level3" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="TransEnd" selection="Enable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="RecvError" selection="Enable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="ModeSetting" selection="TransMode">
+                    <item id="TransMode" input="" vlaue="0"/>
+                    <item id="RecvMode" input="" vlaue="0"/>
+                    <item id="BothMode" input="" vlaue="0"/>
+                </option>
+            </allocatable>
+            <component description="SPI (CSI) is communication function that three-wire serial data transfer with clock synchronous." detailDescription="" display="SPI (CSI) Communication" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.csi" version="1.6.0"/>
+            <allocator channelLevel0="0" channelLevel1="0" channelLevel2="00" channelLevel3="" channelLevel4="" channelLevel5="" description="SAU channel 0, CSI channel 00" display="CSI00" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.csi.csi00" type="CSI">
+                <context>
+                    <option enabled="true" id="ModeSetting" selection="TransMode">
+                        <item enabled="true" id="TransMode"/>
+                        <item enabled="true" id="RecvMode"/>
+                        <item enabled="true" id="BothMode"/>
+                    </option>
+                </context>
+            </allocator>
+            <source description="Code generator components provide peripheral drivers with customized generated source geared towards small code size" display="Code Generator" id="com.renesas.smc.tools.swcomponent.codegenerator.source"/>
+        </configuration>
+        <configuration apiMode="FULL_API" id="9d324539-fb38-4eaf-bb7b-960d9002586c" inuse="true" name="Config_DTC">
+            <allocatable id="DTC">
+                <allocatable id="DTCD0">
+                    <option enabled="true" id="transMd" selection="normal">
+                        <item id="normal" input="" vlaue="0"/>
+                        <item id="repeat" input="" vlaue="0"/>
+                    </option>
+                    <option enabled="true" id="transferDataSizeSetting" selection="8bits">
+                        <item id="8bits" input="" vlaue="0"/>
+                        <item id="16bits" input="" vlaue="0"/>
+                    </option>
+                    <option enabled="false" id="interruptSetting" selection="Disable">
+                        <item id="Disable" input="" vlaue="0"/>
+                        <item id="Enable" input="" vlaue="0"/>
+                    </option>
+                    <option enabled="false" id="areaSetting" selection="areaSettingDestinationSide">
+                        <item id="areaSettingSourceSide" input="" vlaue="0"/>
+                        <item id="areaSettingDestinationSide" input="" vlaue="0"/>
+                    </option>
+                    <option enabled="true" id="sourceAddress" selection="sourceAddress">
+                        <item id="sourceAddress" input="0x0000" vlaue="0"/>
+                    </option>
+                    <option enabled="true" id="sourceAddressSel" selection="sourceAddressIncremented">
+                        <item id="sourceAddressFixed" input="" vlaue="0"/>
+                        <item id="sourceAddressIncremented" input="" vlaue="0"/>
+                    </option>
+                    <option enabled="true" id="destinationAddress" selection="destinationAddress">
+                        <item id="destinationAddress" input="0x0000" vlaue="0"/>
+                    </option>
+                    <option enabled="true" id="destinationAddressSel" selection="destinationAddressFixed">
+                        <item id="destinationAddressFixed" input="" vlaue="0"/>
+                        <item id="destinationAddressIncremented" input="" vlaue="0"/>
+                    </option>
+                    <option enabled="true" id="transferCount" selection="transferCount">
+                        <item id="transferCount" input="1" vlaue="1"/>
+                    </option>
+                    <option enabled="true" id="transferBlockSize" selection="transferBlockSize">
+                        <item id="transferBlockSize" input="1" vlaue="1"/>
+                    </option>
+                </allocatable>
+                <isocket id="OcdTrace" selection="System.tool_ocd_OcdTrace" value="disable"/>
+                <option enabled="true" id="BaseValue" selection="BaseValue">
+                    <item id="BaseValue" input="0xFFD00" vlaue="1047808"/>
+                </option>
+                <option enabled="true" id="slavechannel0" selection="Enable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="chain0" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="actsrc0" selection="uart0tr_itm12">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel1" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain1" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc1" selection="intp1_itmx2">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel2" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain2" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc2" selection="intp2_itmx3">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel3" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain3" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc3" selection="intp3_itmx4">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel4" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain4" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc4" selection="intp4_itmx5">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel5" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain5" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc5" selection="intp5_itmx6">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel6" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain6" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc6" selection="ad_itm10">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel7" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain7" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc7" selection="uart0re_itm11">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel8" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain8" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc8" selection="uart0tr_itm12">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel9" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain9" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc9" selection="uart1re_itm13">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel10" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain10" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc10" selection="uart1tr_itm14">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel11" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain11" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc11" selection="uart2re_itm15">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel12" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain12" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc12" selection="uart2tr_itm16">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel13" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain13" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc13" selection="tau00_itm23">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel14" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain14" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc14" selection="tau01_itm24">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel15" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain15" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc15" selection="tau02_itm25">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel16" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain16" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc16" selection="tau03_itm26">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel17" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain17" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc17" selection="tau04_itm27">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel18" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain18" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc18" selection="tau05_itm28">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel19" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain19" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc19" selection="tau06_itm29">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel20" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain20" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc20" selection="tau07_itm30">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel21" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain21" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc21" selection="rtc_itm31">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel22" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="chain22" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc22" selection="it32_itm32">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+                <option enabled="true" id="slavechannel23" selection="Disable">
+                    <item id="Enable" input="" vlaue="0"/>
+                    <item id="Disable" input="" vlaue="0"/>
+                </option>
+                <option enabled="false" id="actsrc23" selection="cmp0_itm35">
+                    <item id="intp0_itmx1" input="" vlaue="0"/>
+                    <item id="intp1_itmx2" input="" vlaue="0"/>
+                    <item id="intp2_itmx3" input="" vlaue="0"/>
+                    <item id="intp3_itmx4" input="" vlaue="0"/>
+                    <item id="intp4_itmx5" input="" vlaue="0"/>
+                    <item id="intp5_itmx6" input="" vlaue="0"/>
+                    <item id="intp6_itmx7" input="" vlaue="0"/>
+                    <item id="key_itmx9" input="" vlaue="0"/>
+                    <item id="ad_itm10" input="" vlaue="0"/>
+                    <item id="uart0re_itm11" input="" vlaue="0"/>
+                    <item id="uart0tr_itm12" input="" vlaue="0"/>
+                    <item id="uart1re_itm13" input="" vlaue="0"/>
+                    <item id="uart1tr_itm14" input="" vlaue="0"/>
+                    <item id="uart2re_itm15" input="" vlaue="0"/>
+                    <item id="uart2tr_itm16" input="" vlaue="0"/>
+                    <item id="uarta0re_itm19" input="" vlaue="0"/>
+                    <item id="uarta0tr_itm20" input="" vlaue="0"/>
+                    <item id="uarta1re_itm21" input="" vlaue="0"/>
+                    <item id="uarta1tr_itm22" input="" vlaue="0"/>
+                    <item id="tau00_itm23" input="" vlaue="0"/>
+                    <item id="tau01_itm24" input="" vlaue="0"/>
+                    <item id="tau02_itm25" input="" vlaue="0"/>
+                    <item id="tau03_itm26" input="" vlaue="0"/>
+                    <item id="tau04_itm27" input="" vlaue="0"/>
+                    <item id="tau05_itm28" input="" vlaue="0"/>
+                    <item id="tau06_itm29" input="" vlaue="0"/>
+                    <item id="tau07_itm30" input="" vlaue="0"/>
+                    <item id="rtc_itm31" input="" vlaue="0"/>
+                    <item id="it32_itm32" input="" vlaue="0"/>
+                    <item id="ctsuwr_itm33" input="" vlaue="0"/>
+                    <item id="ctsurd_itm34" input="" vlaue="0"/>
+                    <item id="cmp0_itm35" input="" vlaue="0"/>
+                    <item id="cmp1_itm36" input="" vlaue="0"/>
+                    <item id="elc_itm37" input="" vlaue="0"/>
+                    <item id="snooz_itm38" input="" vlaue="0"/>
+                    <item id="lvd_itm39" input="" vlaue="0"/>
+                </option>
+            </allocatable>
+            <component description="This software component provides configurations for DTC to perform data transfers." detailDescription="" display="Data Transfer Controller" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.dtc" version="1.5.0"/>
+            <allocator channelLevel0="" channelLevel1="" channelLevel2="" channelLevel3="" channelLevel4="" channelLevel5="" description="DTC" display="DTC" id="com.renesas.smc.tools.swcomponent.codegenerator.rl78.dtc.dtcd0" type="DTC">
                 <context/>
             </allocator>
             <source description="Code generator components provide peripheral drivers with customized generated source geared towards small code size" display="Code Generator" id="com.renesas.smc.tools.swcomponent.codegenerator.source"/>

@@ -64,11 +64,15 @@
 *                               Added a comment about macro definition BSP_CFG_CONFIGURATOR_VERSION.
 *         : 31.05.2022 1.30     Added the following macro definition.
 *                                - BSP_CFG_SOFTWARE_DELAY_API_FUNCTIONS_DISABLE
-*         : 11.11.2022 1.40     Changed the initial values of the following macro defiintions from 0 to 1.
+*         : 11.11.2022 1.40     Changed the initial values of the following macro definitions from 0 to 1.
 *                                - BSP_CFG_CLOCK_OPERATION_API_FUNCTIONS_DISABLE
 *                                - BSP_CFG_SET_CLOCK_SOURCE_API_FUNCTIONS_DISABLE
 *                                - BSP_CFG_CHANGE_CLOCK_SETTING_API_FUNCTIONS_DISABLE
 *                                - BSP_CFG_SOFTWARE_DELAY_API_FUNCTIONS_DISABLE
+*         : 31.01.2023 1.50     Fixed typo in history.
+*         : 28.02.2023 1.60     Added the version number of Smart Configurator.
+*                               Modified the comment related to the version number of Smart Configurator.
+*         : 30.11.2023 1.62     Adjusted indentation of macro definitions.
 ***********************************************************************************************************************/
 
 #ifndef R_BSP_CONFIG_REF_HEADER_FILE
@@ -900,11 +904,13 @@
    2021-07 : 1010
    2021-10 : 1010
    2022-01 : 1030
+   2023-04 : 1060
    If you are using the standalone version of Smart Configurator,
    set the following values.
    v1.0.1  : 1001
    v1.1.0  : 1010
    v1.3.0  : 1030
+   v1.6.0  : 1060
 */
 #define BSP_CFG_CONFIGURATOR_VERSION    (1001)
 
@@ -1189,10 +1195,10 @@
    my_sw_warmstart_postc_function just after the initialization of the C runtime environment by bsp_init_hardware.
 */
 #define BSP_CFG_USER_WARM_START_CALLBACK_PRE_INITC_ENABLED    (0)
-#define BSP_CFG_USER_WARM_START_PRE_C_FUNCTION     my_sw_warmstart_prec_function
+#define BSP_CFG_USER_WARM_START_PRE_C_FUNCTION                my_sw_warmstart_prec_function
 
 #define BSP_CFG_USER_WARM_START_CALLBACK_POST_INITC_ENABLED    (0)
-#define BSP_CFG_USER_WARM_START_POST_C_FUNCTION    my_sw_warmstart_postc_function
+#define BSP_CFG_USER_WARM_START_POST_C_FUNCTION                my_sw_warmstart_postc_function
 
 /* If the user sets the window open period of watchdog timer to 50%,
    set the following macro definition(BSP_CFG_WDT_REFRESH_ENABLE) to 2

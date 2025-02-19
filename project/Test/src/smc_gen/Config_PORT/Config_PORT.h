@@ -14,12 +14,12 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2021, 2022 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2021, 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
 * File Name        : Config_PORT.h
-* Component Version: 1.3.0
+* Component Version: 1.6.0
 * Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_PORT.
 ***********************************************************************************************************************/
@@ -40,11 +40,13 @@ Macro definitions (Register bit)
 Macro definitions
 ***********************************************************************************************************************/
 #define _FC_PM0_DEFAULT                         (0xFCU)    /* PM0 default value */
+#define _F0_PM6_DEFAULT                         (0xF0U)    /* PM6 default value */
 #define _C0_PM7_DEFAULT                         (0xC0U)    /* PM7 default value */
 #define _3E_PM14_DEFAULT                        (0x3EU)    /* PM14 default value */
 #define _F7_PMCA1_DEFAULT                       (0xF7U)    /* PMCA1 default value */
 #define _7F_PMCA14_DEFAULT                      (0x7FU)    /* PMCA14 default value */
-#define PORT_STABLE_WAITTIME                    (26U)    /* Wait time for stable (10us) */
+#define PORT_STABLE_WAITTIME                    (26U)    /* wait for 10us as default,
+                                                         please change the waiting time value according to the system */
 
 /***********************************************************************************************************************
 Typedef definitions

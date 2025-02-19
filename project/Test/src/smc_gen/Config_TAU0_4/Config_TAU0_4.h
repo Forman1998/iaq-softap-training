@@ -14,83 +14,44 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2021, 2022 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2021, 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
-* File Name        : Config_INTC.c
-* Component Version: 1.3.0
+* File Name        : Config_TAU0_4.h
+* Component Version: 1.6.0
 * Device(s)        : R7F100GGNxFB
-* Description      : This file implements device driver for Config_INTC.
+* Description      : This file implements device driver for Config_TAU0_4.
 ***********************************************************************************************************************/
+
 /***********************************************************************************************************************
 Includes
 ***********************************************************************************************************************/
-#include "r_cg_macrodriver.h"
-#include "r_cg_userdefine.h"
-#include "Config_INTC.h"
-/* Start user code for include. Do not edit comment generated here */
+#include "r_cg_tau.h"
+
+#ifndef CFG_Config_TAU0_4_H
+#define CFG_Config_TAU0_4_H
+
+/***********************************************************************************************************************
+Macro definitions (Register bit)
+***********************************************************************************************************************/
+
+/***********************************************************************************************************************
+Macro definitions
+***********************************************************************************************************************/
+#define _0000_TAU_TDR04_VALUE               (0x0000U)    /* 16-bit timer data register 04 (TDR04) */
+
+/***********************************************************************************************************************
+Typedef definitions
+***********************************************************************************************************************/
+
+/***********************************************************************************************************************
+Global functions
+***********************************************************************************************************************/
+void R_Config_TAU0_4_Create(void);
+void R_Config_TAU0_4_Start(void);
+void R_Config_TAU0_4_Stop(void);
+void R_Config_TAU0_4_Create_UserInit(void);
+/* Start user code for function. Do not edit comment generated here */
 /* End user code. Do not edit comment generated here */
-
-/***********************************************************************************************************************
-Pragma directive
-***********************************************************************************************************************/
-/* Start user code for pragma. Do not edit comment generated here */
-/* End user code. Do not edit comment generated here */
-
-/***********************************************************************************************************************
-Global variables and functions
-***********************************************************************************************************************/
-/* Start user code for global. Do not edit comment generated here */
-/* End user code. Do not edit comment generated here */
-
-/***********************************************************************************************************************
-* Function Name: R_Config_INTC_Create
-* Description  : This function initializes the INTC module.
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-void R_Config_INTC_Create(void)
-{
-    PMK1 = 1U;    /* disable INTP1 operation */
-    PIF1 = 0U;    /* clear INTP1 interrupt flag */
-    /* Set INTP1 low priority */
-    PPR11 = 1U;
-    PPR01 = 1U;
-    EGN0 = _02_INTP1_EDGE_FALLING_SEL;
-    EGP0 = _00_INTP1_EDGE_RISING_UNSEL;
-    /* Set INTP1 pin */
-    PMCT5 &= 0xFEU;
-    PMCE5 &= 0xFEU;
-    CCDE &= 0xF7U;
-    PM5 |= 0x01U;
-
-    R_Config_INTC_Create_UserInit();
-}
-
-/***********************************************************************************************************************
-* Function Name: R_Config_INTC_INTP1_Start
-* Description  : This function clears INTP1 interrupt flag and enables interrupt.
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-void R_Config_INTC_INTP1_Start(void)
-{
-    PIF1 = 0U;    /* clear INTP1 interrupt flag */
-    PMK1 = 0U;    /* enable INTP1 interrupt */
-}
-
-/***********************************************************************************************************************
-* Function Name: R_Config_INTC_INTP1_Stop
-* Description  : This function disables INTP1 interrupt and clears interrupt flag.
-* Arguments    : None
-* Return Value : None
-***********************************************************************************************************************/
-void R_Config_INTC_INTP1_Stop(void)
-{
-    PMK1 = 1U;    /* disable INTP1 interrupt */
-    PIF1 = 0U;    /* clear INTP1 interrupt flag */
-}
-
-/* Start user code for adding. Do not edit comment generated here */
-/* End user code. Do not edit comment generated here */
+#endif

@@ -14,12 +14,12 @@
 * following link:
 * http://www.renesas.com/disclaimer
 *
-* Copyright (C) 2021, 2022 Renesas Electronics Corporation. All rights reserved.
+* Copyright (C) 2021, 2024 Renesas Electronics Corporation. All rights reserved.
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
 * File Name        : Config_IICA0_user.c
-* Component Version: 1.4.0
+* Component Version: 1.7.0
 * Device(s)        : R7F100GGNxFB
 * Description      : This file implements device driver for Config_IICA0.
 ***********************************************************************************************************************/
@@ -49,6 +49,7 @@ extern volatile uint16_t g_iica0_rx_cnt;                 /* iica0 receive data c
 extern volatile uint8_t * gp_iica0_tx_address;           /* iica0 send buffer address */
 extern volatile uint16_t g_iica0_tx_cnt;                 /* iica0 send data count */
 /* Start user code for global. Do not edit comment generated here */
+extern void rm_comms_i2c_bus0_callback(bool aborted);
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************

@@ -65,11 +65,15 @@
 *                               Added a comment about macro definition BSP_CFG_CONFIGURATOR_VERSION.
 *         : 31.05.2022 1.30     Added the following macro definition.
 *                                - BSP_CFG_SOFTWARE_DELAY_API_FUNCTIONS_DISABLE
-*         : 11.11.2022 1.40     Changed the initial values of the following macro defiintions from 0 to 1.
+*         : 11.11.2022 1.40     Changed the initial values of the following macro definitions from 0 to 1.
 *                                - BSP_CFG_CLOCK_OPERATION_API_FUNCTIONS_DISABLE
 *                                - BSP_CFG_SET_CLOCK_SOURCE_API_FUNCTIONS_DISABLE
 *                                - BSP_CFG_CHANGE_CLOCK_SETTING_API_FUNCTIONS_DISABLE
 *                                - BSP_CFG_SOFTWARE_DELAY_API_FUNCTIONS_DISABLE
+*         : 31.01.2023 1.50     Fixed typo in history.
+*         : 28.02.2023 1.60     Added the version number of Smart Configurator.
+*                               Modified the comment related to the version number of Smart Configurator.
+*         : 30.11.2023 1.62     Adjusted indentation of macro definitions.
 ***********************************************************************************************************************/
 
 #ifndef R_BSP_CONFIG_REF_HEADER_FILE
@@ -901,13 +905,15 @@
    2021-07 : 1010
    2021-10 : 1010
    2022-01 : 1030
+   2023-04 : 1060
    If you are using the standalone version of Smart Configurator,
    set the following values.
    v1.0.1  : 1001
    v1.1.0  : 1010
    v1.3.0  : 1030
+   v1.6.0  : 1060
 */
-#define BSP_CFG_CONFIGURATOR_VERSION    (1050) /* Generated value. Do not edit this manually */
+#define BSP_CFG_CONFIGURATOR_VERSION    (1120) /* Generated value. Do not edit this manually */
 
 /* API function disable(R_BSP_StartClock, R_BSP_StopClock)
  0 : Enable API functions
@@ -1054,7 +1060,7 @@
 
 /* Input clock frequency in Hz(High-speed system clock(X1))
 */
-#define BSP_CFG_FMX_HZ (20000000)
+#define BSP_CFG_FMX_HZ (5000000) /* Generated value. Do not edit this manually */
 
 /* Control of X1 clock oscillation frequency
    Clock operation mode control register(CMC)
@@ -1076,7 +1082,7 @@
  6 : 2^17/fX(fX = 10MHz : 13.1ms, fX = 20MHz : 6.55ms)
  7 : 2^18/fX(fX = 10MHz : 26.2ms, fX = 20MHz : 13.1ms)
 */
-#define BSP_CFG_X1_WAIT_TIME_SEL (0)
+#define BSP_CFG_X1_WAIT_TIME_SEL (7) /* Generated value. Do not edit this manually */
 
 /* Setting in STOP mode or in HALT mode while the CPU is opeating with subsystem clock X.
    Subsystem clock supply mode control register(OSMC)
@@ -1190,10 +1196,10 @@
    my_sw_warmstart_postc_function just after the initialization of the C runtime environment by bsp_init_hardware.
 */
 #define BSP_CFG_USER_WARM_START_CALLBACK_PRE_INITC_ENABLED    (0)
-#define BSP_CFG_USER_WARM_START_PRE_C_FUNCTION     my_sw_warmstart_prec_function
+#define BSP_CFG_USER_WARM_START_PRE_C_FUNCTION                my_sw_warmstart_prec_function
 
 #define BSP_CFG_USER_WARM_START_CALLBACK_POST_INITC_ENABLED    (0)
-#define BSP_CFG_USER_WARM_START_POST_C_FUNCTION    my_sw_warmstart_postc_function
+#define BSP_CFG_USER_WARM_START_POST_C_FUNCTION                my_sw_warmstart_postc_function
 
 /* If the user sets the window open period of watchdog timer to 50%,
    set the following macro definition(BSP_CFG_WDT_REFRESH_ENABLE) to 2
