@@ -227,27 +227,7 @@
 		</details>
 
 		<details>
-			<summary>2.9 INTC - INTP1</summary>
-			<p>
-				To make use of the integrated DA16200, we must enable the external interrupt channel.<br>
-				Please do the following:
-			</p>
-			<ol>
-				<li>Add the <i>Interrupt Controller</i> component</li>
-				<li><b>Resource:</b> <i>INTC</i></li>
-			</ol>
-			<img class="modal-thumbnails" src="img/img_lab/intcp1.gif" alt="">
-			<p>Make the following changes to the configuration:</p>
-			<ol>
-				<li><b>INTP1 setting:</b> <i>Enabled/Checked</i></li>
-				<li><b>Valid edge:</b> <i>Falling edge</i></li>
-				<li><b>Priority:</b> <i>Level 3 (low)</i></li>
-			</ol>
-			<img class="modal-thumbnails" src="img/img_lab/intcp2.gif" alt="">
-		</details>
-
-		<details>
-			<summary>2.10 r_bsp</summary>
+			<summary>2.9 r_bsp</summary>
 			<p>
 				Now lets enable software delay in the bsp, Select the r_bsp cpmponent which is already present in the components tab. locate the <b>API functions disable (R_BSP_SoftwareDelay)</b> and select Enable for the configuration.
 			</p>
@@ -255,7 +235,7 @@
 		</details>
 
 		<details>
-			<summary>2.11 Generate Code</summary>
+			<summary>2.10 Generate Code</summary>
 			<p>Now click Generate Code.</p>
 			<img class="modal-thumbnails" src="img/img_lab/generate.gif" alt="">
 			<p>
